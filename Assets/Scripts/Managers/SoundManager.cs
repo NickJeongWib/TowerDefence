@@ -24,7 +24,7 @@ namespace My
 
         public bool bIsSFXOn;
         public bool bIsBGMOn;
-
+        public bool manjin;
         public enum BGM
         {
             Title,
