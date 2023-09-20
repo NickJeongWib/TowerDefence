@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-namespace My
+namespace TowerDefence
 {
     public class SoundManager : MonoBehaviour
     {

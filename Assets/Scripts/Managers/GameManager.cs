@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace My
-{
+namespace TowerDefence
+{ 
     public class GameManager : MonoBehaviour
     {
+        // ManagerRef
+        public TitleSceneManager TitleSceneManagerRef;
+
         // ΩÃ±€≈Ê
         public static GameManager GMInstance;
 
