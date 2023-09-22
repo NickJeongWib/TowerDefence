@@ -9,6 +9,8 @@ namespace TowerDefence
         // ManagerRef
         public TitleSceneManager TitleSceneManagerRef;
 
+        int Test_1;
+
         // ΩÃ±€≈Ê
         public static GameManager GMInstance;
 
