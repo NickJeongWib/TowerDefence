@@ -8,6 +8,7 @@ namespace TowerDefence
     {
         // ManagerRef
         public TitleSceneManager TitleSceneManagerRef;
+        float jiwonbabo;
 
         // ΩÃ±€≈Ê
         public static GameManager GMInstance;
