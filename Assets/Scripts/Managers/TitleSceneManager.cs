@@ -18,15 +18,14 @@ namespace TowerDefence
             GameManager.GMInstance.TitleSceneManagerRef = this;
         }
 
-        // Update is called once per frame
-        void Update()
-        {
 
-        }
-
-        public void OnClickLobby()
+        public void OnClick_Btn(GameObject obj)
         {
-            SceneManager.LoadScene("Lobby");
+            // 게임 시작 버튼 클릭 시 화면 이동
+            if (obj.gameObject.name == "Go_Lobby_Btn")
+            {
+                SceneManager.LoadScene("Lobby");
+            }
         }
     }
 }
