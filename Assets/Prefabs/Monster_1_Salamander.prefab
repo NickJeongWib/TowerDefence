@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2431201963309492674}
   - component: {fileID: -8275913267966679345}
   - component: {fileID: 8834000838465927556}
+  - component: {fileID: 2576515300842832973}
   m_Layer: 0
   m_Name: Monster_1_Salamander
   m_TagString: Enemy
@@ -64,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b09e6c52dada45f4ba48eda319ded9a3, type: 2}
+  - {fileID: 2100000, guid: 4e5d6c18ca1c24e479907cc1e58ec1a0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -115,11 +116,13 @@ MonoBehaviour:
   fixDrawOrder: 0
   addNormals: 0
   calculateTangents: 0
-  maskInteraction: 0
+  maskInteraction: 2
   maskMaterials:
-    materialsMaskDisabled: []
+    materialsMaskDisabled:
+    - {fileID: 2100000, guid: b09e6c52dada45f4ba48eda319ded9a3, type: 2}
     materialsInsideMask: []
-    materialsOutsideMask: []
+    materialsOutsideMask:
+    - {fileID: 2100000, guid: 4e5d6c18ca1c24e479907cc1e58ec1a0, type: 2}
   disableRenderingOnOverride: 1
   _animationName: Front_Walk
   loop: 1
@@ -150,3 +153,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   moveDirection: {x: 0, y: 0, z: 0}
+  skeletonAnimation: {fileID: 0}
+--- !u!70 &2576515300842832973
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2431201963309492672}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.12000823, y: 1.2218109}
+  m_Size: {x: 1.861866, y: 3.0923953}
+  m_Direction: 0

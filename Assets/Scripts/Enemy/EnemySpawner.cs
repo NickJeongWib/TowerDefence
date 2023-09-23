@@ -8,8 +8,10 @@ namespace TowerDefence
     {
         [SerializeField]
         private GameObject  enemyPrefab;    // 적 프리팹
+
         [SerializeField]
         private float       spawnTime;      // 적 생성 주기
+
         [SerializeField]
         private Transform[] wayPoints;      // 현재 스테이지 이동 경로
 

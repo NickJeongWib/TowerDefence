@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Go_Up
+  - Go_Front
+  - Go_Right
   layers:
   - Default
   - TransparentFX
