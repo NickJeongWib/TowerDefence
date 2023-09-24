@@ -12,11 +12,6 @@ namespace TowerDefence
         private int                 currentIndex = 0;       // 현재 목표지점 인덱스
         private EnemyMoveControl    enemyMoveControl;     // 오브젝트 이동 제어
 
-        /*SkeletonAnimation skeletonAnimation = GetComponent<SkeletonAnimation>();
-        string newInitialSkinName = "Side";
-        skeletonAnimation.initialSkinName = newInitialSkinName;
-            skeletonAnimation.Skeleton.SetSkin(newInitialSkinName);*/
-
         public void Setup(Transform[] wayPoints)
         {
             enemyMoveControl = GetComponent<EnemyMoveControl>();
