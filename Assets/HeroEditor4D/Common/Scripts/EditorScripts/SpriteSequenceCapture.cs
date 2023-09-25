@@ -170,17 +170,17 @@ namespace Assets.HeroEditor4D.Common.Scripts.EditorScripts
         {
             if (ComplexClipNames.Contains(upperClip))
             {
-                Character4D.animator.Play(upperClip, 2, normalizedTime);
+                Character4D.Animator.Play(upperClip, 2, normalizedTime);
             }
             else
             {
-                Character4D.animator.Play(upperClip, 1, normalizedTime);
-                Character4D.animator.Play(lowerClip, 0, normalizedTime);
+                Character4D.Animator.Play(upperClip, 1, normalizedTime);
+                Character4D.Animator.Play(lowerClip, 0, normalizedTime);
             }
 
-            Character4D.animator.speed = 0;
+            Character4D.Animator.speed = 0;
 
-	        if (Character4D.animator.IsInTransition(1))
+	        if (Character4D.Animator.IsInTransition(1))
 	        {
 				Debug.Log("IsInTransition");
 	        }
