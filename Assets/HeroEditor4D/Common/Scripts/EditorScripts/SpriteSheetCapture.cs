@@ -25,7 +25,7 @@ namespace Assets.HeroEditor4D.Common.Scripts.EditorScripts
             _character.Shadows.ForEach(i => i.SetActive(false));
             _character.Shadows[0].SetActive(shadow);
 
-            var stateHandler = _character.Animator.GetBehaviours<StateHandler>().SingleOrDefault(i => i.Name == "Death");
+            var stateHandler = _character.animator.GetBehaviours<StateHandler>().SingleOrDefault(i => i.Name == "Death");
 
             if (stateHandler)
             {
@@ -36,7 +36,7 @@ namespace Assets.HeroEditor4D.Common.Scripts.EditorScripts
 
             foreach (var option in options)
             {
-                _character.Animator.speed = 0;
+                _character.animator.speed = 0;
 
                 for (var j = 0; j < frameCount; j++)
                 {
@@ -44,7 +44,7 @@ namespace Assets.HeroEditor4D.Common.Scripts.EditorScripts
                     
                     yield return ShowFrame(option.StateL, option.StateU, option.StateC, normalizedTime);
 
-                    var clip = _character.Animator.GetCurrentAnimatorClipInfo(option.StateU == null ? 2 : 1)[0].clip;
+                    var clip = _character.animator.GetCurrentAnimatorClipInfo(option.StateU == null ? 2 : 1)[0].clip;
                     var expressionEvent = clip.events.Where(i => i.functionName == "SetExpression" && Mathf.Abs(i.time / clip.length - normalizedTime) <= 1f / (frameCount - 1))
                         .OrderBy(i => Mathf.Abs(i.time / clip.length - normalizedTime)).FirstOrDefault();
 
@@ -70,7 +70,7 @@ namespace Assets.HeroEditor4D.Common.Scripts.EditorScripts
             }
 
             _character.AnimationManager.SetState(CharacterState.Idle);
-            _character.Animator.speed = 1;
+            _character.animator.speed = 1;
 
             if (stateHandler)
             {
@@ -105,22 +105,22 @@ namespace Assets.HeroEditor4D.Common.Scripts.EditorScripts
 
             if (stateC != null)
             {
-                _character.Animator.Play(stateC, 2, normalizedTime);
+                _character.animator.Play(stateC, 2, normalizedTime);
             }
             else
             {
-                _character.Animator.Play(stateL, 0, normalizedTime);
-                _character.Animator.Play(stateU, 1, normalizedTime);
+                _character.animator.Play(stateL, 0, normalizedTime);
+                _character.animator.Play(stateU, 1, normalizedTime);
             }
             
             yield return null;
 
-            while (_character.Animator.GetCurrentAnimatorClipInfo(stateC == null ? 0 : 2).Length == 0)
+            while (_character.animator.GetCurrentAnimatorClipInfo(stateC == null ? 0 : 2).Length == 0)
             {
                 yield return null;
             }
 
-            if (_character.Animator.IsInTransition(1))
+            if (_character.animator.IsInTransition(1))
             {
                 Debug.Log("IsInTransition");
             }

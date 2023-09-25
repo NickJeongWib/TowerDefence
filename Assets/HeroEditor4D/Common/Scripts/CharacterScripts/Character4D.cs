@@ -26,7 +26,7 @@ namespace Assets.HeroEditor4D.Common.Scripts.CharacterScripts
         public List<GameObject> Shadows;
 
         [Header("Animation")]
-        public Animator Animator;
+        public Animator animator;
         public AnimationManager AnimationManager;
 
         [Header("Other")]
@@ -64,14 +64,15 @@ namespace Assets.HeroEditor4D.Common.Scripts.CharacterScripts
 
         public void Start()
         {
-            var stateHandler = Animator.GetBehaviours<StateHandler>().SingleOrDefault(i => i.Name == "Death");
+            animator = GetComponent<Animator>();
+            var stateHandler = animator.GetBehaviours<StateHandler>().SingleOrDefault(i => i.Name == "Death");
 
             if (stateHandler != null)
             {
                 stateHandler.StateExit.AddListener(() => SetExpression("Default"));
             }
 
-            Animator.keepAnimatorStateOnDisable = true;
+            //animator.keepAnimatorStateOnDisable = true;
         }
 
         public void Initialize()
@@ -110,13 +111,13 @@ namespace Assets.HeroEditor4D.Common.Scripts.CharacterScripts
         {
             switch (part)
             {
-                case EquipmentPart.MeleeWeapon1H: Animator.SetInteger("WeaponType", (int)WeaponType.Melee1H); break;
-                case EquipmentPart.MeleeWeapon2H: Animator.SetInteger("WeaponType", (int)WeaponType.Melee2H); break;
-                case EquipmentPart.Bow: Animator.SetInteger("WeaponType", (int)WeaponType.Bow); break;
-                case EquipmentPart.Crossbow: Animator.SetInteger("WeaponType", (int)WeaponType.Crossbow); break;
-                case EquipmentPart.Firearm1H: Animator.SetInteger("WeaponType", (int)WeaponType.Firearm1H); break;
-                case EquipmentPart.Firearm2H: Animator.SetInteger("WeaponType", (int)WeaponType.Firearm2H); break;
-                case EquipmentPart.SecondaryFirearm1H: Animator.SetInteger("WeaponType", (int)WeaponType.Paired); break;
+                case EquipmentPart.MeleeWeapon1H: animator.SetInteger("WeaponType", (int)WeaponType.Melee1H); break;
+                case EquipmentPart.MeleeWeapon2H: animator.SetInteger("WeaponType", (int)WeaponType.Melee2H); break;
+                case EquipmentPart.Bow: animator.SetInteger("WeaponType", (int)WeaponType.Bow); break;
+                case EquipmentPart.Crossbow: animator.SetInteger("WeaponType", (int)WeaponType.Crossbow); break;
+                case EquipmentPart.Firearm1H: animator.SetInteger("WeaponType", (int)WeaponType.Firearm1H); break;
+                case EquipmentPart.Firearm2H: animator.SetInteger("WeaponType", (int)WeaponType.Firearm2H); break;
+                case EquipmentPart.SecondaryFirearm1H: animator.SetInteger("WeaponType", (int)WeaponType.Paired); break;
             }
         }
 
@@ -128,7 +129,7 @@ namespace Assets.HeroEditor4D.Common.Scripts.CharacterScripts
         public void ResetEquipment()
         {
             Parts.ForEach(i => i.ResetEquipment());
-            Animator.SetInteger("WeaponType", (int)WeaponType.Melee1H);
+            animator.SetInteger("WeaponType", (int)WeaponType.Melee1H);
         }
 
         public Vector2 Direction { get; private set; }
