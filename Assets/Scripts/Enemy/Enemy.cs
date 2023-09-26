@@ -10,11 +10,13 @@ namespace TowerDefence
         private int                 wayPointCount;          // 이동 경로 개수
         private Transform[]         wayPoints;              // 이동 경로 정보
         private int                 currentIndex = 0;       // 현재 목표지점 인덱스
-        private EnemyMoveControl    enemyMoveControl;     // 오브젝트 이동 제어
+        private EnemyMoveControl    enemyMoveControl;       // 오브젝트 이동 제어
+        private EnemySpawner        enemySpawner;           // 적의 삭제를 본인이 하지 않고 EnemySpawner에 알려서 삭제
 
-        public void Setup(Transform[] wayPoints)
+        public void Setup(EnemySpawner enemySpawner, Transform[] wayPoints)
         {
             enemyMoveControl = GetComponent<EnemyMoveControl>();
+            this.enemySpawner = enemySpawner;
 
             // 적 이동 경로 WayPoints 정보 설정
             wayPointCount   = wayPoints.Length;
@@ -63,8 +65,16 @@ namespace TowerDefence
             else
             {
                 // 적 오브젝트 삭제
-                Destroy(gameObject);
+                //Destroy(gameObject);
+                OnDie();
             }
+        }
+
+        public void OnDie()
+        {
+            // EnemySpawner에서 리스트로 적 정보를 관리하기 때문에 Destory()를 직접하지 않고
+            // EnemySpawner에게 본인이 삭제될 때 필요한 처리를 하도록 DestoryEnemy() 함수 호출
+            enemySpawner.DestroyEnemy(this);
         }
     }
 
