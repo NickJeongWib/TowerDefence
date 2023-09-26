@@ -39,8 +39,6 @@ namespace TowerDefence
                     {
                         // 타워를 생성하는 SpawnTower() 호출
                         towerSpawner.SpawnTower(hit.transform);
-                        Debug.Log("1");
-
                     }
                 }
             }
