@@ -8,6 +8,7 @@ TagManager:
   - Go_Up
   - Go_Front
   - Go_Right
+  - Tile
   layers:
   - Default
   - TransparentFX
