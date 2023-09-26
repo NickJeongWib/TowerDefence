@@ -111,7 +111,7 @@ namespace Assets.HeroEditor4D.Common.Scripts.CharacterScripts
         {
             switch (part)
             {
-                case EquipmentPart.MeleeWeapon1H: animator.SetInteger("WeaponType", (int)WeaponType.Melee1H); break;
+                //case EquipmentPart.MeleeWeapon1H: animator.SetInteger("WeaponType", (int)WeaponType.Melee1H); break;
                 case EquipmentPart.MeleeWeapon2H: animator.SetInteger("WeaponType", (int)WeaponType.Melee2H); break;
                 case EquipmentPart.Bow: animator.SetInteger("WeaponType", (int)WeaponType.Bow); break;
                 case EquipmentPart.Crossbow: animator.SetInteger("WeaponType", (int)WeaponType.Crossbow); break;
