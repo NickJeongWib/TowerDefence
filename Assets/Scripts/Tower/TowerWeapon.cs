@@ -20,6 +20,11 @@ namespace TowerDefence
         private Transform       attackTarget = null;                        // 공격 대상
         private EnemySpawner    enemySpawner;                               // 게임에 존재하는 적 정보 획득용
 
+        // JGW
+        Vector3 TargetDir;
+        Vector3 TargetPos;
+
+
         public void Setup(EnemySpawner enemySpawner)
         {
             this.enemySpawner = enemySpawner;
@@ -47,6 +52,7 @@ namespace TowerDefence
         }
         private void RotateToTarget()
         {
+            #region HMJ Weapon Rotate
             // 원점으로부터의 거리와 수평축으로부터의 각도를 이용해 위치를 구하는 극 좌표게 이용
             // 각도 = arctan(y/x)
             // x,y 변위값 구하기
@@ -55,6 +61,19 @@ namespace TowerDefence
             // x,y 변위값을 바탕으로 각도 구하기
             float degree = Mathf.Atan2(dy, dx) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0, 0, degree);
+            #endregion
+
+            #region JGW Weapon Rotate
+            //// 적의 위치는 검색된 타켓 위치
+            //TargetPos = attackTarget.transform.position;
+            //// 플레이어가 가까운 적을보는 방법
+            //TargetDir = TargetPos - transform.position;
+            //// TargetDir를 정규화 해준다(0 ~ 1)
+            //TargetDir = TargetDir.normalized;
+
+            //weaponPrefab.transform.position = transform.position;
+            //weaponPrefab.transform.rotation = Quaternion.FromToRotation(Vector3.down, TargetDir);
+            #endregion 
         }
 
         private IEnumerator SearchTarget()

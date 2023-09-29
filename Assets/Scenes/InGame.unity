@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44402185, g: 0.49316472, b: 0.57223153, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1005,7 +1005,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8b515ede071efa46b44f80a5816d9b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerPrefab: {fileID: 1063387080856860, guid: 31c6da0774c2e204ab2805a5314c269e, type: 3}
+  towerPrefab: {fileID: 1063387080856860, guid: c622600651587d54982b5b13bfc79e20, type: 3}
   enemySpawner: {fileID: 2037967330}
 --- !u!4 &631838932
 Transform:
@@ -2096,6 +2096,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5297741302664769349, guid: 60d3c3197bd42d44b988ce96e786b945, type: 3}
   m_PrefabInstance: {fileID: 369549292}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1985695486
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1985695488}
+  - component: {fileID: 1985695487}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1985695487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985695486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eec1d1d7153406d40b9e76e9f6d5c963, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TitleSceneManagerRef: {fileID: 0}
+  SoundManagerRef: {fileID: 0}
+--- !u!4 &1985695488
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985695486}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.968472, y: 10.611656, z: -0.014321706}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2014267995
 GameObject:
   m_ObjectHideFlags: 0
