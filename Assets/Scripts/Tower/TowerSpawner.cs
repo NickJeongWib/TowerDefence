@@ -1,33 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace TowerDefence
 {
     public class TowerSpawner : MonoBehaviour
     {
-        [SerializeField]
-        private GameObject towerPrefab;
-        [SerializeField]
-        private EnemySpawner enemySpawner; // 현재 맵에 존재하는 적 리스트 정보를 얻기 위해
+        public GameObject characterPrefab; // 캐릭터 프리팹
+        public Tile[] allTiles; // 모든 타일 배열
 
-        public void SpawnTower(Transform tileTransform)
+        public void SpawnCharacter()
         {
-            Tile tile = tileTransform.GetComponent<Tile>();
-            
-            // 타워 건설 가능 여부 확인
-            // 선택한 타일의 위치에 타워 건설
-            if(tile.IsBuildTower == true)
+            // 비어 있는 타일 목록을 저장할 리스트 생성
+            List<Tile> emptyTiles = new List<Tile>();
+            foreach (Tile tile in allTiles)
             {
-                return;
+                if (!tile.isOccupied)
+                {
+                    emptyTiles.Add(tile);
+                }
             }
 
-            // 타워가 건설되어 있음으로 설정
-            tile.IsBuildTower = true;
-            // 선택한 타일의 위치에 타워 건설
-            GameObject clone = Instantiate(towerPrefab, tileTransform.position, Quaternion.identity);
-            // 타워 무기에 enemySpawner 정보 전달
-            clone.GetComponent<TowerWeapon>().Setup(enemySpawner);
+            // 비어 있는 타일이 있는지 확인
+            if (emptyTiles.Count > 0)
+            {
+                // 랜덤한 비어 있는 타일 선택
+                int randomIndex = Random.Range(0, emptyTiles.Count);
+                Tile selectedTile = emptyTiles[randomIndex];
+
+                // 선택한 타일이 비어 있을 때만 캐릭터를 소환
+                GameObject newCharacter = Instantiate(characterPrefab, selectedTile.transform.position, Quaternion.identity);
+                selectedTile.isOccupied = true;
+            }
         }
     }
 }
