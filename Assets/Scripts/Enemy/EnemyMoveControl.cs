@@ -34,7 +34,7 @@ namespace TowerDefence
         void OnTriggerEnter2D(Collider2D collision)
         {
             // JGW -- 웨이포인트 도착 시 몬스터 방향 전환
-            if(collision.CompareTag("Go_Right"))
+            if (collision.CompareTag("Go_Right"))
             {
                 skeletonAnimation.initialSkinName = "Side";
                 skeletonAnimation.AnimationName = "Side_Walk";
