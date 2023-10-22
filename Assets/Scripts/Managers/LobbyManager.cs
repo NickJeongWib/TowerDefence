@@ -28,11 +28,17 @@ namespace TowerDefence
         #region Pop_Up
         public void OnClickOpenPopUp_Btn(GameObject obj)
         {
+            //효과음 실행
+            GameManager.GMInstance.SoundManagerRef.PlaySFX(SoundManager.SFX.Btn_Select);
+
             obj.gameObject.SetActive(true);
         }
 
         public void OnClickClosePopUp_Btn(GameObject obj)
         {
+            //효과음 실행
+            GameManager.GMInstance.SoundManagerRef.PlaySFX(SoundManager.SFX.PopUp_Close);
+
             // 던전선택화면의 닫기 버튼 클릭 시
             if (obj.gameObject.name == "DungeonSelect_Close")
             {
@@ -73,6 +79,8 @@ namespace TowerDefence
 
         void Init()
         {
+            GameManager.GMInstance.lobbyManagerRef = this;
+
             // 사운드 관련 초기화
             for (int i = 0; i < GameManager.GMInstance.SoundManagerRef.SFXPlayers.Length; i++)
             {

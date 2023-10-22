@@ -7,11 +7,22 @@ namespace TowerDefence
     public class GameManager : MonoBehaviour
     {
         // ManagerRef
-        public TitleSceneManager TitleSceneManagerRef;
+        [SerializeField]
+        TitleSceneManager TitleSceneManagerRef;
+        public TitleSceneManager titleManagerRef { get { return TitleSceneManagerRef; } set { TitleSceneManagerRef = value; } }
+
+        [SerializeField]
+        LobbyManager LobbyManagerRef;
+        public LobbyManager lobbyManagerRef { get { return LobbyManagerRef; } set { LobbyManagerRef = value; } }
+
+
+        [SerializeField]
+        GameDataManager GameDataManagerRef;
+        public GameDataManager gameDataManagerRef { get { return GameDataManagerRef; } set { GameDataManagerRef = value; } }
+
 
         // ΩÃ±€≈Ê
         public static GameManager GMInstance;
-
 
         // Managers Reference
         public SoundManager SoundManagerRef;

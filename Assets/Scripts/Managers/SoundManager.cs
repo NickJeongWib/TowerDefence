@@ -33,7 +33,9 @@ namespace TowerDefence
 
         public enum SFX
         {
-
+            Btn_Select,
+            PopUp_Close,
+            Slide,
         }
 
 

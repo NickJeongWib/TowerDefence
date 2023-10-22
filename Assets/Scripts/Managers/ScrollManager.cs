@@ -12,18 +12,20 @@ namespace TowerDefence
         public Transform contentTr;
 
         
-        const int SIZE = 4;
+        const int SIZE = 10;
         float[] pos = new float[SIZE];
 
         public float distance, curPos, targetPos;
         bool isDrag;
+        [SerializeField]
         int targetIndex;
 
         void Start()
         {
             // 거리에 따라 0~1인 pos대입
             distance = 1f / (SIZE - 1);
-            for (int i = 0; i < SIZE; i++) pos[i] = distance * i;
+            for (int i = 0; i < SIZE; i++) 
+                pos[i] = distance * i;
         }
 
         float SetPos()
@@ -43,6 +45,9 @@ namespace TowerDefence
 
         public void OnEndDrag(PointerEventData eventData)
         {
+            //효과음 실행
+            GameManager.GMInstance.SoundManagerRef.PlaySFX(SoundManager.SFX.Slide);
+
             isDrag = false;
             targetPos = SetPos();
 
