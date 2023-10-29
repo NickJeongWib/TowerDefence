@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using static TowerDefence.Define;
 using TMPro;
 
 namespace TowerDefence
@@ -27,6 +29,11 @@ namespace TowerDefence
         [SerializeField]
         GameObject Shop_PopUp;
 
+        [SerializeField]
+        GameObject Shop_Character_Vertical_Value;
+
+        [SerializeField]
+        GameObject Inventory_Vertical_Value;
         #endregion
 
         #region Manager
@@ -42,6 +49,10 @@ namespace TowerDefence
 
         // TODO ## 로비화면 팝업 관련 함수
         #region Pop_Up
+        /// <summary>
+        /// 일반 팝업 오픈
+        /// </summary>
+        /// <param name="obj"></param>
         public void OnClickOpenPopUp_Btn(GameObject obj)
         {
             //효과음 실행
@@ -50,6 +61,10 @@ namespace TowerDefence
             obj.gameObject.SetActive(true);
         }
 
+        /// <summary>
+        /// TODO ## 상점 관련 팝업 오픈
+        /// </summary>
+        /// <param name="obj"></param>
         public void OpenPopUp_Btn(GameObject obj)
         {
             //효과음 실행
@@ -140,6 +155,8 @@ namespace TowerDefence
         //    }
         //}
 
+
+        // TODO ## 팝업 닫기 함수
         public void OnClickClosePopUp_Btn(GameObject obj)
         {
             //효과음 실행
@@ -155,6 +172,18 @@ namespace TowerDefence
                 ScrollManagerRef.targetPos = 0.0f;
                 ScrollManagerRef.curPos = 0.0f;
                 return;
+            }
+
+            // 상점 관련 닫기 버튼
+            if (obj.gameObject.name == "Shop_Tap")
+            {
+                Shop_Character_Vertical_Value.GetComponent<Scrollbar>().value = 1.0f;
+            }
+
+            // 인벤토리 관련 닫기 버튼
+            if (obj.gameObject.name == "Inventory_BG")
+            {
+                Inventory_Vertical_Value.GetComponent<Scrollbar>().value = 1.0f;
             }
 
             obj.transform.parent.gameObject.SetActive(false);
@@ -232,6 +261,7 @@ namespace TowerDefence
         }
         #endregion
 
+        #region Init
         void Init()
         {
             GameManager.GMInstance.lobbyManagerRef = this;
@@ -247,5 +277,56 @@ namespace TowerDefence
                 BGM_Slider.value = GameManager.GMInstance.SoundManagerRef.BGMPlayers[i].volume;
             }
         }
+        #endregion
+
+        #region GameStart_Btn
+        public void OnClickGameStart(GameObject obj)
+        {
+            // 버튼 클릭시 선택 단계 저장
+            if (obj.name == "Stage1_GameStart_Button")
+            {
+                GameManager.GMInstance.gameDataManagerRef.Stage_Lv = Stage_Level.Stage_1;
+            }
+            else if (obj.name == "Stage2_GameStart_Button")
+            {
+                GameManager.GMInstance.gameDataManagerRef.Stage_Lv = Stage_Level.Stage_2;
+            }
+            else if (obj.name == "Stage3_GameStart_Button")
+            {
+                GameManager.GMInstance.gameDataManagerRef.Stage_Lv = Stage_Level.Stage_3;
+            }
+            else if (obj.name == "Stage4_GameStart_Button")
+            {
+                GameManager.GMInstance.gameDataManagerRef.Stage_Lv = Stage_Level.Stage_4;
+            }
+            else if (obj.name == "Stage5_GameStart_Button")
+            {
+                GameManager.GMInstance.gameDataManagerRef.Stage_Lv = Stage_Level.Stage_5;
+            }
+            else if (obj.name == "Stage6_GameStart_Button")
+            {
+                GameManager.GMInstance.gameDataManagerRef.Stage_Lv = Stage_Level.Stage_6;
+            }
+            else if (obj.name == "Stage7_GameStart_Button")
+            {
+                GameManager.GMInstance.gameDataManagerRef.Stage_Lv = Stage_Level.Stage_7;
+            }
+            else if (obj.name == "Stage8_GameStart_Button")
+            {
+                GameManager.GMInstance.gameDataManagerRef.Stage_Lv = Stage_Level.Stage_8;
+            }
+            else if (obj.name == "Stage9_GameStart_Button")
+            {
+                GameManager.GMInstance.gameDataManagerRef.Stage_Lv = Stage_Level.Stage_9;
+            }
+            else if (obj.name == "Stage10_GameStart_Button")
+            {
+                GameManager.GMInstance.gameDataManagerRef.Stage_Lv = Stage_Level.Stage_10;
+            }
+
+            SceneManager.LoadScene("InGame");
+        }
+
+        #endregion
     }
 }
