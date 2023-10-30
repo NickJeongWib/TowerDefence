@@ -20,5 +20,14 @@ namespace TowerDefence
             Stage_10,
         }
 
+
+        public enum CharacterType
+        { 
+            Fire,
+            Water,
+            Grass,
+            Lighting,
+            Dark,
+        }
     }
 }
