@@ -1,0 +1,6 @@
+Character_ID,Character_Type,Character_Name,Price,Attack,ATK_Speed,Ability_Percent
+100,0,Test_1,100,10,10,10
+200,1,Test_2,100,20,20,20
+300,2,Test_3,100,30,30,30
+400,3,Test_4,100,40,40,40
+500,4,Test_5,100,50,50,50
