@@ -23,9 +23,9 @@ namespace TowerDefence
 
         public enum CharacterType
         { 
-            Fire,
-            Water,
-            Grass,
+            Fire, // 0
+            Water, // 1
+            Grass, // 2
             Lighting,
             Dark,
         }

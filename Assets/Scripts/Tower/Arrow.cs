@@ -1,22 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static TowerDefence.Define;
 
 namespace TowerDefence
 {
     public class Arrow : MonoBehaviour
     {
+      
         public Transform target; // 촉이 목표하는 대상 (예: 적)
-        public float speed = 10.0f; // 화살 이동 속도
         private Rigidbody2D rb;
-
+        public TowerCharacter towerCharacter;
         [SerializeField]
         private int attackDamage = 1;
+        [SerializeField]
+        float atkSpeed;
+
 
         private void Start()
         {
             rb = GetComponent<Rigidbody2D>();
             FindClosestEnemy(); // 가장 가까운 적 찾기
+            towerCharacter = transform.parent.GetComponent<TowerCharacter>();
         }
 
         private void Update()
@@ -31,13 +36,15 @@ namespace TowerDefence
 
                 // 화살을 이동
                 Vector3 moveDirection = targetDirection.normalized;
-                rb.velocity = moveDirection * speed;
+                atkSpeed = towerCharacter.characterinfo.ATK_Speed; //GetComponent<TowerCharacter>().characterinfo.ATK_Speed;
+                rb.velocity = moveDirection * atkSpeed;
             }
             else
             {
                 // 목표가 없으면 다시 가장 가까운 적을 찾음
                 FindClosestEnemy();
             }
+
         }
 
         private void FindClosestEnemy()
