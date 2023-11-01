@@ -7,8 +7,16 @@ namespace TowerDefence
 {
     public class TowerSpawner : MonoBehaviour
     {
-        public GameObject characterPrefab; // 캐릭터 프리팹
+        public GameObject[] characterPrefab; // 캐릭터 프리팹
         public Tile[] allTiles; // 모든 타일 배열
+
+        private void Start()
+        {
+            for (int i = 0; i < GameManager.GMInstance.gameDataManagerRef.character.Length; i++)
+            {
+                characterPrefab[i] = GameManager.GMInstance.gameDataManagerRef.character[i];
+            }
+        }
 
         public void SpawnCharacter()
         {
@@ -26,11 +34,13 @@ namespace TowerDefence
             if (emptyTiles.Count > 0)
             {
                 // 랜덤한 비어 있는 타일 선택
-                int randomIndex = Random.Range(0, emptyTiles.Count);
-                Tile selectedTile = emptyTiles[randomIndex];
+                int randomTileIndex = Random.Range(0, emptyTiles.Count);
+                Tile selectedTile = emptyTiles[randomTileIndex];
+
+                int randomCharacterIndex = Random.Range(0, characterPrefab.Length);
 
                 // 선택한 타일이 비어 있을 때만 캐릭터를 소환
-                GameObject newCharacter = Instantiate(characterPrefab, selectedTile.transform.position, Quaternion.identity);
+                GameObject newCharacter = Instantiate(characterPrefab[randomCharacterIndex], selectedTile.transform.position, Quaternion.identity);
                 selectedTile.isOccupied = true;
             }
         }

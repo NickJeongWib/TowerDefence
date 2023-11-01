@@ -1494,6 +1494,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isClearStage: 00000000000000000000
+  Stage_Lv: 0
+  character:
+  - {fileID: 5454967576968576224, guid: c49b84f84e5393c4d805759e5b5d4847, type: 3}
+  - {fileID: 2344281128652980755, guid: d93beda98f724a64fb84f7565969728b, type: 3}
+  - {fileID: 5828225596449468465, guid: 735d0b919be3afb49bd965ca08852195, type: 3}
+  - {fileID: 1298502829387591305, guid: 055e014806302e1409bfd031879a0c8b, type: 3}
+  - {fileID: 6154804737155739256, guid: 1dccf2dcf91406847b542ff25637109c, type: 3}
 --- !u!1 &2116769384
 GameObject:
   m_ObjectHideFlags: 0

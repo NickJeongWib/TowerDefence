@@ -1,14 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static TowerDefence.Define;
 
 namespace TowerDefence
 {
+    [System.Serializable]
+    public struct CharacterInfo
+    {
+        public int Character_ID;
+        public CharacterType Charactertype;
+        public string Character_Name;
+        public int Price;
+        public float Attack;
+        public float ATK_Speed;
+        public float Ability_Percent;
+    }
+
     public class TowerCharacter : MonoBehaviour
     {
+        public CharacterInfo characterinfo;
+
         public Transform projectileSpawnPoint; // 발사체 발사 위치
         public GameObject projectilePrefab; // 발사체 프리팹
-        public float projectileSpeed = 10.0f; // 발사체 속도
         public float attackCooldown = 1.0f; // 공격 쿨다운 시간
         private float currentCooldown = 0.0f; // 현재 쿨다운 시간
         public float attackRange = 3.0f; // 캐릭터의 공격 범위
@@ -33,6 +47,7 @@ namespace TowerDefence
                         // 발사체 생성
                         GameObject newProjectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
 
+                        newProjectile.transform.parent = this.transform;
                         // 방향 설정
                         Vector3 direction = (closestEnemy.transform.position - projectileSpawnPoint.position).normalized;
 
@@ -42,7 +57,7 @@ namespace TowerDefence
 
                         // Rigidbody2D 가져오고 방향과 속도 설정
                         Rigidbody2D rb = newProjectile.GetComponent<Rigidbody2D>();
-                        rb.velocity = direction * projectileSpeed;
+                        rb.velocity = direction;
 
                         currentCooldown = attackCooldown; // 공격 쿨다운 설정
                     }
