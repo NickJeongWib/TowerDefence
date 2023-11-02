@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0954c212baf7e6f448712b03e0b5dcae
+guid: 048d44759ec88694e99e7dd580848566
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tree Character01_Front_0
+      name: Dark Character01_Front_0
       rect:
         serializedVersion: 2
         x: 0
@@ -131,14 +131,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f3cc5df01076d8446ad878127be0f928
-      internalID: -1051642101
+      spriteID: b576d00d40d1e3b418f553b0ff15dda4
+      internalID: -48094407
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tree Character01_Front_1
+      name: Dark Character01_Front_1
       rect:
         serializedVersion: 2
         x: 512
@@ -152,14 +152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d6abcf127cb1e9545877da55a2429bc7
-      internalID: 316343549
+      spriteID: 3fc3a4b93ea45c14e83113465200a7ed
+      internalID: -274886137
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tree Character01_Front_2
+      name: Dark Character01_Front_2
       rect:
         serializedVersion: 2
         x: 1024
@@ -173,14 +173,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 61fc4e74f76062c47b905c7a293f5299
-      internalID: -849877632
+      spriteID: 779f8c75976b2ae4abdb6a8073b86a8b
+      internalID: -1395877881
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tree Character01_Front_3
+      name: Dark Character01_Front_3
       rect:
         serializedVersion: 2
         x: 1536
@@ -194,14 +194,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 726e58b33e78be644a483c44fd5303d2
-      internalID: 1567223475
+      spriteID: e743c3161f50d694eb334acddde439fd
+      internalID: 1033444556
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tree Character01_Front_4
+      name: Dark Character01_Front_4
       rect:
         serializedVersion: 2
         x: 2048
@@ -215,14 +215,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 524d49c7373ee424b9534c1e0516c638
-      internalID: 1223578221
+      spriteID: a9881f55dce8fa3439f9720fe1b8ef12
+      internalID: 2017237662
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tree Character01_Front_5
+      name: Dark Character01_Front_5
       rect:
         serializedVersion: 2
         x: 2560
@@ -236,14 +236,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2690802dc97dfd54d83f39021b79833a
-      internalID: 105801078
+      spriteID: 2b1dd0cdb540f8a44bd775acf6be8657
+      internalID: 1709678074
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tree Character01_Front_6
+      name: Dark Character01_Front_6
       rect:
         serializedVersion: 2
         x: 3072
@@ -257,14 +257,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a56458d4377b2c4984f9b38072a5225
-      internalID: -1889957723
+      spriteID: 870592c1480c20145b06f72bb0b90f2d
+      internalID: 1447467534
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tree Character01_Front_7
+      name: Dark Character01_Front_7
       rect:
         serializedVersion: 2
         x: 3584
@@ -278,8 +278,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d19486ce37ead1544bfe1031ac87c233
-      internalID: 1257545972
+      spriteID: 6d8aad91cb32ed549809e53e23d828a6
+      internalID: -57667483
       vertices: []
       indices: 
       edges: []
@@ -287,7 +287,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 90047b8f7b4cd704ebc79105e7c2ceca
+    spriteID: ed274e36e74dae2428b0942dfff6f5a6
     internalID: 0
     vertices: []
     indices: 
@@ -295,14 +295,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Tree Character01_Front_1: 316343549
-      Tree Character01_Front_6: -1889957723
-      Tree Character01_Front_5: 105801078
-      Tree Character01_Front_4: 1223578221
-      Tree Character01_Front_0: -1051642101
-      Tree Character01_Front_7: 1257545972
-      Tree Character01_Front_3: 1567223475
-      Tree Character01_Front_2: -849877632
+      Dark Character01_Front_0: -48094407
+      Dark Character01_Front_4: 2017237662
+      Dark Character01_Front_2: -1395877881
+      Dark Character01_Front_7: -57667483
+      Dark Character01_Front_6: 1447467534
+      Dark Character01_Front_3: 1033444556
+      Dark Character01_Front_1: -274886137
+      Dark Character01_Front_5: 1709678074
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

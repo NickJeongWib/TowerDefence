@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0954c212baf7e6f448712b03e0b5dcae
+guid: 9fe091810f12b3e48ac0aaf6520bf3d5
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tree Character01_Front_0
+      name: Fire Character01_Front_0
       rect:
         serializedVersion: 2
         x: 0
@@ -131,14 +131,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f3cc5df01076d8446ad878127be0f928
-      internalID: -1051642101
+      spriteID: 6830c60ba1a358045a1e0ead1a168ec9
+      internalID: 946435788
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tree Character01_Front_1
+      name: Fire Character01_Front_1
       rect:
         serializedVersion: 2
         x: 512
@@ -152,14 +152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d6abcf127cb1e9545877da55a2429bc7
-      internalID: 316343549
+      spriteID: 3029224583f8cc04eb6d8b9f3a33b24b
+      internalID: -1652013718
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tree Character01_Front_2
+      name: Fire Character01_Front_2
       rect:
         serializedVersion: 2
         x: 1024
@@ -173,14 +173,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 61fc4e74f76062c47b905c7a293f5299
-      internalID: -849877632
+      spriteID: d2d645f492396e94da0e605809305fc2
+      internalID: -1440898439
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tree Character01_Front_3
+      name: Fire Character01_Front_3
       rect:
         serializedVersion: 2
         x: 1536
@@ -194,14 +194,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 726e58b33e78be644a483c44fd5303d2
-      internalID: 1567223475
+      spriteID: f8f9128e782634d47bbd2fdcee8a0a95
+      internalID: 244694665
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tree Character01_Front_4
+      name: Fire Character01_Front_4
       rect:
         serializedVersion: 2
         x: 2048
@@ -215,14 +215,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 524d49c7373ee424b9534c1e0516c638
-      internalID: 1223578221
+      spriteID: fceeabc42c8857d468786a50cf031390
+      internalID: 1168699187
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tree Character01_Front_5
+      name: Fire Character01_Front_5
       rect:
         serializedVersion: 2
         x: 2560
@@ -236,14 +236,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2690802dc97dfd54d83f39021b79833a
-      internalID: 105801078
+      spriteID: a7fa482b129c8a3438ebe7b348bfd2b4
+      internalID: -676254240
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tree Character01_Front_6
+      name: Fire Character01_Front_6
       rect:
         serializedVersion: 2
         x: 3072
@@ -257,14 +257,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a56458d4377b2c4984f9b38072a5225
-      internalID: -1889957723
+      spriteID: 4d8c73217f1c56d4ab03004182f03cba
+      internalID: -2026645663
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tree Character01_Front_7
+      name: Fire Character01_Front_7
       rect:
         serializedVersion: 2
         x: 3584
@@ -278,8 +278,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d19486ce37ead1544bfe1031ac87c233
-      internalID: 1257545972
+      spriteID: b386986921ce60740a2eb96e7a1c319c
+      internalID: -1413235278
       vertices: []
       indices: 
       edges: []
@@ -287,7 +287,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 90047b8f7b4cd704ebc79105e7c2ceca
+    spriteID: 747336a0c30fdae40adce594651a1f93
     internalID: 0
     vertices: []
     indices: 
@@ -295,14 +295,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Tree Character01_Front_1: 316343549
-      Tree Character01_Front_6: -1889957723
-      Tree Character01_Front_5: 105801078
-      Tree Character01_Front_4: 1223578221
-      Tree Character01_Front_0: -1051642101
-      Tree Character01_Front_7: 1257545972
-      Tree Character01_Front_3: 1567223475
-      Tree Character01_Front_2: -849877632
+      Fire Character01_Front_1: -1652013718
+      Fire Character01_Front_3: 244694665
+      Fire Character01_Front_0: 946435788
+      Fire Character01_Front_7: -1413235278
+      Fire Character01_Front_2: -1440898439
+      Fire Character01_Front_6: -2026645663
+      Fire Character01_Front_4: 1168699187
+      Fire Character01_Front_5: -676254240
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
