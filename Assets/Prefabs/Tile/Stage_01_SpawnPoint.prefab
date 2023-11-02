@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -4493253255709735546}
   - component: {fileID: -8839077920941571695}
   m_Layer: 0
-  m_Name: TowerSpawnPoint
+  m_Name: Stage_01_SpawnPoint
   m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
