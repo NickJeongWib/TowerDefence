@@ -10796,7 +10796,6 @@ MonoBehaviour:
     maxEnemyCount: 0
     enemyPrefabs: []
   spawnEnemyCount: 0
-  enemycount: 0
 --- !u!4 &2037967331
 Transform:
   m_ObjectHideFlags: 0
@@ -10826,7 +10825,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wave:
   - spawnTime: 0.5
-    maxEnemyCount: 20
+    maxEnemyCount: 10
     enemyPrefabs:
     - {fileID: 4803848294983315011, guid: a154111b6fa9aa847a46041dd8eaae01, type: 3}
     - {fileID: 6387261825648354669, guid: 36d5cdda9def5464facd67e7056216bd, type: 3}
