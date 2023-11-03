@@ -34,6 +34,11 @@ namespace TowerDefence
 
         [SerializeField]
         GameObject Inventory_Vertical_Value;
+
+        [SerializeField]
+        GameObject Character_Select_PopUp;
+
+        int Shop_Index;
         #endregion
 
         #region Manager
@@ -58,6 +63,18 @@ namespace TowerDefence
             //효과음 실행
             GameManager.GMInstance.SoundManagerRef.PlaySFX(SoundManager.SFX.Btn_Select);
 
+            if (obj.name == "Character_Info_Btn")
+            {
+                // 캐릭터 클릭 시 팝업 활성화
+                Character_Select_PopUp.gameObject.SetActive(true);
+
+                Character_Select_PopUp.transform.position = new Vector3(obj.transform.parent.position.x, obj.transform.parent.position.y + 100.0f, 0);
+            }
+            if (obj.name == "Character_UpGrade")
+            {
+                Character_Select_PopUp.SetActive(false);
+            }
+
             obj.gameObject.SetActive(true);
         }
 
@@ -74,87 +91,93 @@ namespace TowerDefence
             {
                 Shop_PopUp.gameObject.SetActive(true);
 
-                // 해당사항 메뉴 흰색으로 표시
-                Shop_Menu_Text[0].color = Color.gray;
-                Shop_Menu_Text[1].color = Color.white;
-                Shop_Menu_Text[2].color = Color.gray;
+                Shop_Index = 2;
 
-                Shop_PopUps[0].gameObject.SetActive(false);
-                Shop_PopUps[1].gameObject.SetActive(true);
-                Shop_PopUps[2].gameObject.SetActive(false);
+                //Debug.Log(1);
+                // 해당사항 메뉴 흰색으로 표시
+
+                for (int i = 0; i < Shop_Menu_Text.Length; i++)
+                {
+                    // 설정한 인덱스가 맞으면 활성화
+                    if (i == Shop_Index)
+                    {
+                        Shop_Menu_Text[i].color = Color.white;
+                        Shop_PopUps[i].gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        // 인덱스가 아닌것들은 비활성화
+                        Shop_Menu_Text[i].color = Color.gray;
+                        Shop_PopUps[i].gameObject.SetActive(false);
+                    }
+                }
+
+                // 상점 재화 창 스크롤 value 값 초기화 - 스크롤 바로 골드 창이 뜰 수 있는 value값
+                Shop_PopUp.transform.GetChild(7).GetChild(1).GetComponent<Scrollbar>().value = 0.095f;
 
                 // 포커스 위치 조정
-                Shop_Focus.transform.position = new Vector3(Shop_PopUp.transform.GetChild(1).GetChild(2).position.x, Shop_Focus.transform.position.y, 0);
+                Shop_Focus.transform.position = new Vector3(Shop_PopUp.transform.GetChild(1).GetChild(4).position.x, Shop_Focus.transform.position.y, 0);
             }
             else if (obj.name == "Gem_Add_Btn")
             {
                 Shop_PopUp.gameObject.SetActive(true);
 
-                Shop_Menu_Text[0].color = Color.gray;
-                Shop_Menu_Text[1].color = Color.gray;
-                Shop_Menu_Text[2].color = Color.white;
+                Shop_Index = 2;
 
-                Shop_PopUps[0].gameObject.SetActive(false);
-                Shop_PopUps[1].gameObject.SetActive(false);
-                Shop_PopUps[2].gameObject.SetActive(true);
+                //Debug.Log(1);
+                // 해당사항 메뉴 흰색으로 표시
 
+                for (int i = 0; i < Shop_Menu_Text.Length; i++)
+                {
+                    // 설정한 인덱스가 맞으면 활성화
+                    if (i == Shop_Index)
+                    {
+                        Shop_Menu_Text[i].color = Color.white;
+                        Shop_PopUps[i].gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        // 인덱스가 아닌것들은 비활성화
+                        Shop_Menu_Text[i].color = Color.gray;
+                        Shop_PopUps[i].gameObject.SetActive(false);
+                    }
+                }
+                
+
+                // 상점 재화 창 스크롤 value 값 초기화 - 스크롤 최상단으로 변경
+                Shop_PopUp.transform.GetChild(7).GetChild(1).GetComponent<Scrollbar>().value = 1.0f;
                 // 포커스 위치 조정
-                Shop_Focus.transform.position = new Vector3(Shop_PopUp.transform.GetChild(1).GetChild(3).position.x, Shop_Focus.transform.position.y, 0);
+                Shop_Focus.transform.position = new Vector3(Shop_PopUp.transform.GetChild(1).GetChild(4).position.x, Shop_Focus.transform.position.y, 0);
             }
             else if (obj.name == "Button_Shop")
             {
                 Shop_PopUp.gameObject.SetActive(true);
 
-                // 해당사항 메뉴 흰색으로 표시
-                Shop_Menu_Text[0].color = Color.white;
-                Shop_Menu_Text[1].color = Color.gray;
-                Shop_Menu_Text[2].color = Color.gray;
+                Shop_Index = 0;
 
-                Shop_PopUps[0].gameObject.SetActive(true);
-                Shop_PopUps[1].gameObject.SetActive(false);
-                Shop_PopUps[2].gameObject.SetActive(false);
+                //Debug.Log(1);
+                // 해당사항 메뉴 흰색으로 표시
+
+                for (int i = 0; i < Shop_Menu_Text.Length; i++)
+                {
+                    // 설정한 인덱스가 맞으면 활성화
+                    if (i == Shop_Index)
+                    {
+                        Shop_Menu_Text[i].color = Color.white;
+                        Shop_PopUps[i].gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        // 인덱스가 아닌것들은 비활성화
+                        Shop_Menu_Text[i].color = Color.gray;
+                        Shop_PopUps[i].gameObject.SetActive(false);
+                    }
+                }
 
                 // 포커스 위치 조정
                 Shop_Focus.transform.position = new Vector3(Shop_PopUp.transform.GetChild(1).GetChild(1).position.x, Shop_Focus.transform.position.y, 0);
             }
         }
-
-        //public void OnClickOpenPopUp_Btn(GameObject obj, GameObject popUp)
-        //{
-        //    //효과음 실행
-        //    GameManager.GMInstance.SoundManagerRef.PlaySFX(SoundManager.SFX.Btn_Select);
-
-        //    popUp.gameObject.SetActive(true);
-
-        //    if (obj.name == "Gold_Add_Btn")
-        //    {
-        //        // 해당사항 메뉴 흰색으로 표시
-        //        Shop_Menu_Text[0].color = Color.gray;
-        //        Shop_Menu_Text[1].color = Color.white;
-        //        Shop_Menu_Text[2].color = Color.gray;
-
-        //        Shop_PopUp[0].gameObject.SetActive(false);
-        //        Shop_PopUp[1].gameObject.SetActive(true);
-        //        Shop_PopUp[2].gameObject.SetActive(false);
-
-        //        // 포커스 위치 조정
-        //        Shop_Focus.transform.position = new Vector3(0, Shop_Focus.transform.position.y, 0);
-        //    }
-        //    else if (obj.name == "Gem_Add_Btn")
-        //    {
-        //        Shop_Menu_Text[0].color = Color.gray;
-        //        Shop_Menu_Text[1].color = Color.gray;
-        //        Shop_Menu_Text[2].color = Color.white;
-
-        //        Shop_PopUp[0].gameObject.SetActive(false);
-        //        Shop_PopUp[1].gameObject.SetActive(false);
-        //        Shop_PopUp[2].gameObject.SetActive(true);
-
-        //        // 포커스 위치 조정
-        //        Shop_Focus.transform.position = new Vector3(400, Shop_Focus.transform.position.y, 0);
-        //    }
-        //}
-
 
         // TODO ## 팝업 닫기 함수
         public void OnClickClosePopUp_Btn(GameObject obj)
@@ -178,6 +201,8 @@ namespace TowerDefence
             if (obj.gameObject.name == "Shop_Tap")
             {
                 Shop_Character_Vertical_Value.GetComponent<Scrollbar>().value = 1.0f;
+
+                Shop_PopUp.transform.GetChild(7).GetChild(1).GetComponent<Scrollbar>().value = 1.0f;
             }
 
             // 인벤토리 관련 닫기 버튼
@@ -185,6 +210,8 @@ namespace TowerDefence
             {
                 Inventory_Vertical_Value.GetComponent<Scrollbar>().value = 1.0f;
             }
+
+
 
             obj.transform.parent.gameObject.SetActive(false);
         }
@@ -221,41 +248,126 @@ namespace TowerDefence
 
             if (btn.name == "Shop_Character_Button")
             {
+                Shop_Index = 0;
+
                 //Debug.Log(1);
                 // 해당사항 메뉴 흰색으로 표시
-                Shop_Menu_Text[0].color = Color.white;
-                Shop_Menu_Text[1].color = Color.gray;
-                Shop_Menu_Text[2].color = Color.gray;
 
-                Shop_PopUps[0].gameObject.SetActive(true);
-                Shop_PopUps[1].gameObject.SetActive(false);
-                Shop_PopUps[2].gameObject.SetActive(false);
+                for (int i = 0; i < Shop_Menu_Text.Length; i++)
+                {
+                    // 설정한 인덱스가 맞으면 활성화
+                    if (i == Shop_Index)
+                    {
+                        Shop_Menu_Text[i].color = Color.white;
+                        Shop_PopUps[i].gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        // 인덱스가 아닌것들은 비활성화
+                        Shop_Menu_Text[i].color = Color.gray;
+                        Shop_PopUps[i].gameObject.SetActive(false);
+                    }
+                }
+
+                //Shop_Menu_Text[0].color = Color.white;
+                //Shop_Menu_Text[1].color = Color.gray;
+                //Shop_Menu_Text[2].color = Color.gray;
+
+                //Shop_PopUps[0].gameObject.SetActive(true);
+                //Shop_PopUps[1].gameObject.SetActive(false);
+                //Shop_PopUps[2].gameObject.SetActive(false);
             }
-            else if (btn.name == "Shop_Gold_Button")
+            else if (btn.name == "Shop_Package_Button")
             {
+                Shop_Index = 1;
+
                 //Debug.Log(2);
                 // 해당사항 메뉴 흰색으로 표시
-                Shop_Menu_Text[0].color = Color.gray;
-                Shop_Menu_Text[1].color = Color.white;
-                Shop_Menu_Text[2].color = Color.gray;
 
-                Shop_PopUps[0].gameObject.SetActive(false);
-                Shop_PopUps[1].gameObject.SetActive(true);
-                Shop_PopUps[2].gameObject.SetActive(false);
+                for (int i = 0; i < Shop_Menu_Text.Length; i++)
+                {
+                    // 설정한 인덱스가 맞으면 활성화
+                    if (i == Shop_Index)
+                    {
+                        Shop_Menu_Text[i].color = Color.white;
+                        Shop_PopUps[i].gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        // 인덱스가 아닌것들은 비활성화
+                        Shop_Menu_Text[i].color = Color.gray;
+                        Shop_PopUps[i].gameObject.SetActive(false);
+                    }
+                }
+
+                //Shop_Menu_Text[0].color = Color.gray;
+                //Shop_Menu_Text[1].color = Color.white;
+                //Shop_Menu_Text[2].color = Color.gray;
+
+                //Shop_PopUps[0].gameObject.SetActive(false);
+                //Shop_PopUps[1].gameObject.SetActive(true);
+                //Shop_PopUps[2].gameObject.SetActive(false);
             }
-            else if (btn.name == "Shop_Gem_Button")
+            else if (btn.name == "Shop_Goods_Button")
             {
+                Shop_Index = 2;
+
+                for (int i = 0; i < Shop_Menu_Text.Length; i++)
+                {
+                    // 설정한 인덱스가 맞으면 활성화
+                    if (i == Shop_Index)
+                    {
+                        Shop_Menu_Text[i].color = Color.white;
+                        Shop_PopUps[i].gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        // 인덱스가 아닌것들은 비활성화
+                        Shop_Menu_Text[i].color = Color.gray;
+                        Shop_PopUps[i].gameObject.SetActive(false);
+                    }
+                }
                 //Debug.Log(3);
                 // 해당사항 메뉴 흰색으로 표시
-                Shop_Menu_Text[0].color = Color.gray;
-                Shop_Menu_Text[1].color = Color.gray;
-                Shop_Menu_Text[2].color = Color.white;
+                //Shop_Menu_Text[0].color = Color.gray;
+                //Shop_Menu_Text[1].color = Color.gray;
+                //Shop_Menu_Text[2].color = Color.white;
 
-                Shop_PopUps[0].gameObject.SetActive(false);
-                Shop_PopUps[1].gameObject.SetActive(false);
-                Shop_PopUps[2].gameObject.SetActive(true);
+                //Shop_PopUps[0].gameObject.SetActive(false);
+                //Shop_PopUps[1].gameObject.SetActive(false);
+                //Shop_PopUps[2].gameObject.SetActive(true);
             }
-          
+            else if (btn.name == "Shop_Costume_Button")
+            {
+                Shop_Index = 3;
+
+                for (int i = 0; i < Shop_Menu_Text.Length; i++)
+                {
+                    // 설정한 인덱스가 맞으면 활성화
+                    if (i == Shop_Index)
+                    {
+                        Shop_Menu_Text[i].color = Color.white;
+                        Shop_PopUps[i].gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        // 인덱스가 아닌것들은 비활성화
+                        Shop_Menu_Text[i].color = Color.gray;
+                        Shop_PopUps[i].gameObject.SetActive(false);
+                    }
+                }
+
+                //Debug.Log(3);
+                // 해당사항 메뉴 흰색으로 표시
+                //Shop_Menu_Text[0].color = Color.gray;
+                //Shop_Menu_Text[1].color = Color.gray;
+                //Shop_Menu_Text[2].color = Color.white;
+
+                //Shop_PopUps[0].gameObject.SetActive(false);
+                //Shop_PopUps[1].gameObject.SetActive(false);
+                //Shop_PopUps[2].gameObject.SetActive(true);
+            }
+
             // 포커스 위치 조정
             Shop_Focus.transform.position = new Vector3(btn.transform.position.x, Shop_Focus.transform.position.y, 0);
         }
