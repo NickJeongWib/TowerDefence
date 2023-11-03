@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 8241964421515666489}
   - component: {fileID: 8697606455925655781}
   - component: {fileID: 8009402754451320747}
+  - component: {fileID: 7506510871244291037}
   m_Layer: 0
   m_Name: TestEnemy_02
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonDataAsset: {fileID: 11400000, guid: 22cda6b20d993344c8c04d4d5e8da37a, type: 2}
-  initialSkinName: Side
+  initialSkinName: Front
   fixPrefabOverrideViaMeshFilter: 0
   initialFlipX: 0
   initialFlipY: 0
@@ -121,7 +122,7 @@ MonoBehaviour:
     materialsInsideMask: []
     materialsOutsideMask: []
   disableRenderingOnOverride: 1
-  _animationName: Side_Idle
+  _animationName: Front_Walk
   loop: 1
   timeScale: 1
 --- !u!114 &8697606455925655781
@@ -152,3 +153,19 @@ MonoBehaviour:
   moveSpeed: 5
   moveDirection: {x: 0, y: 0, z: 0}
   skeletonAnimation: {fileID: 0}
+--- !u!70 &7506510871244291037
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6387261825648354669}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.12689996, y: 1.2218109}
+  m_Size: {x: 2.0500002, y: 3.0923953}
+  m_Direction: 0
