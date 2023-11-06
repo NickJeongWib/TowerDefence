@@ -29,12 +29,6 @@ namespace TowerDefence
             wavesystem = GetComponent<WaveSystem>();
         }
 
-        private void Awake()
-        {
-            // 적 생성 코루틴 함수 호출
-            //StartCoroutine("SpawnEnemy");
-        }
-
         public void StartWave(Wave wave)
         {
             // 매개변수로 받아온 웨이브 정보 지점
