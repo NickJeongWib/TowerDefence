@@ -38,6 +38,9 @@ namespace TowerDefence
         [SerializeField]
         GameObject Character_Select_PopUp;
 
+        [SerializeField]
+        GameObject None_Touch_Btn;
+
         int Shop_Index;
         #endregion
 
@@ -67,10 +70,10 @@ namespace TowerDefence
             {
                 // 캐릭터 클릭 시 팝업 활성화
                 Character_Select_PopUp.gameObject.SetActive(true);
-
+                None_Touch_Btn.gameObject.SetActive(true);
                 Character_Select_PopUp.transform.position = new Vector3(obj.transform.parent.position.x, obj.transform.parent.position.y + 100.0f, 0);
             }
-            if (obj.name == "Character_UpGrade")
+            else if (obj.name == "Character_Upgrade")
             {
                 Character_Select_PopUp.SetActive(false);
             }
@@ -209,6 +212,7 @@ namespace TowerDefence
             if (obj.gameObject.name == "Inventory_BG")
             {
                 Inventory_Vertical_Value.GetComponent<Scrollbar>().value = 1.0f;
+                OnClick_None_Touch_Btn();
             }
 
 
@@ -440,5 +444,11 @@ namespace TowerDefence
         }
 
         #endregion
+
+        public void OnClick_None_Touch_Btn()
+        {
+            Character_Select_PopUp.SetActive(false);
+            None_Touch_Btn.SetActive(false);
+        }
     }
 }

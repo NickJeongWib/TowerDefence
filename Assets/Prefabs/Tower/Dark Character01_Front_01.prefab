@@ -150,15 +150,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e86604911935ac4d9edb3db3a74bdc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterinfo:
-    Character_ID: 0
-    Charactertype: 0
-    Character_Name: 
-    Price: 0
-    Attack: 0
-    ATK_Speed: 0
-    Ability_Percent: 0
   projectileSpawnPoint: {fileID: 3919668899139019265}
   projectilePrefab: {fileID: 8930298171425269818, guid: 655ef4e1faa45e5468b92d8ccd5c5b47, type: 3}
+  projectileSpeed: 20
   attackCooldown: 0.5
   attackRange: 5
