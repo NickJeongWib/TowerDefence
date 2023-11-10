@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: -5363444757503957323}
   - component: {fileID: 1110078864877642505}
   m_Layer: 0
-  m_Name: Frozen Character01_Front_01
+  m_Name: Ice_Character_ID_200
   m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

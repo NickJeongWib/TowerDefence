@@ -39,12 +39,15 @@ namespace TowerDefence
                 Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 draggedTower.transform.position = new Vector3(mousePosition.x, mousePosition.y, draggedTower.transform.position.z) + new Vector3(initialMouseOffset.x, initialMouseOffset.y, 0);
 
-                if (Input.GetMouseButtonUp(0) && draggedTower != null && dontmove == false)
+                if (Input.GetMouseButtonUp(0) && draggedTower != null)
                 {
                     draggedTower.transform.position = new Vector3(initialTowerPosition.x, initialTowerPosition.y, 0);
-                    isDragging = false;
-                    ismix = true;
+                    isDragging = false;  
                 }
+                else if (Input.GetMouseButtonUp(0))
+                {
+
+                }    
             }
         }
         private void OnTriggerExit2D(Collider2D other)

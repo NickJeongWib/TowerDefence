@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7191453062318583316}
   - component: {fileID: -709327788297662654}
   m_Layer: 0
-  m_Name: Lightning Character01_Front_01
+  m_Name: Lightning Character_ID_400
   m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
