@@ -120,16 +120,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterinfo:
-    Character_ID: 0
-    Charactertype: 0
-    Character_Name: 
-    Price: 0
-    Attack: 0
-    ATK_Speed: 0
-    Ability_Percent: 0
+    Character_ID: 400
+    Charactertype: 3
+    Character_Name: Test_4
+    Price: 100
+    Attack: 0.4
+    ATK_Speed: 10
+    Ability_Percent: 13.1
   projectileSpawnPoint: {fileID: 1607197940440731843}
   projectilePrefab: {fileID: 8930298171425269818, guid: 655ef4e1faa45e5468b92d8ccd5c5b47, type: 3}
-  projectileSpeed: 30
   attackCooldown: 0.5
   attackRange: 5
 --- !u!1 &4601233263661646528

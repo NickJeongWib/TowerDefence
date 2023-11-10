@@ -119,9 +119,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e86604911935ac4d9edb3db3a74bdc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterinfo:
+    Character_ID: 300
+    Charactertype: 2
+    Character_Name: Test_3
+    Price: 100
+    Attack: 0.3
+    ATK_Speed: 10
+    Ability_Percent: 12.1
   projectileSpawnPoint: {fileID: 8614062725317153455}
   projectilePrefab: {fileID: 8930298171425269818, guid: 655ef4e1faa45e5468b92d8ccd5c5b47, type: 3}
-  projectileSpeed: 10
   attackCooldown: 0.5
   attackRange: 5
 --- !u!1 &9081752744656245584
