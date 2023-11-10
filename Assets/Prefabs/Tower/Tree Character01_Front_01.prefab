@@ -12,9 +12,12 @@ GameObject:
   - component: {fileID: 5906273068041751079}
   - component: {fileID: 482519093689953685}
   - component: {fileID: 4884139907740229107}
+  - component: {fileID: -7132484077899750491}
+  - component: {fileID: 3629127701913477245}
+  - component: {fileID: 5899100233732775522}
   m_Layer: 0
   m_Name: Tree Character01_Front_01
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -119,11 +122,77 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e86604911935ac4d9edb3db3a74bdc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterinfo:
+    Character_ID: 300
+    Charactertype: 2
+    Character_Name: Test_3
+    Price: 100
+    Attack: 0.3
+    ATK_Speed: 10
+    Ability_Percent: 12.1
   projectileSpawnPoint: {fileID: 8614062725317153455}
   projectilePrefab: {fileID: 8930298171425269818, guid: 655ef4e1faa45e5468b92d8ccd5c5b47, type: 3}
-  projectileSpeed: 10
   attackCooldown: 0.5
   attackRange: 5
+--- !u!114 &-7132484077899750491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5828225596449468465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c8d5a355196e1240bb1e6577905dd11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &3629127701913477245
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5828225596449468465}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.00000017881393, y: 0.015048981}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.12, y: 5.12}
+    newSize: {x: 5.12, y: 5.12}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.6888515, y: 2.6218834}
+  m_EdgeRadius: 0
+--- !u!50 &5899100233732775522
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5828225596449468465}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &9081752744656245584
 GameObject:
   m_ObjectHideFlags: 0
