@@ -10,17 +10,20 @@ namespace TowerDefence
         // 클리어 된 스테이지 여부
         [SerializeField]
         public bool[] isClearStage;
-        
+
         public Stage_Level Stage_Lv;
 
         public GameObject[] character;
+        public GameObject[] quest;
 
         List<Dictionary<string, object>> Character_Data;
+        List<Dictionary<string, object>> Quest_Data;
 
-       void Awake()
+        void Awake()
         {
             // TODO ## 데이터 테이블 읽어오는 곳
             Character_Data = CSVReader.Read("CSV");
+            Quest_Data = CSVReader.Read("Quest_Data");
 
             for (int i = 0; i < Character_Data.Count; i++)
             {
@@ -33,13 +36,37 @@ namespace TowerDefence
                 character[i].GetComponent<TowerCharacter>().characterinfo.Ability_Percent = (float)Character_Data[i]["Ability_Percent"];
 
 
-                print("ID : " + Character_Data[i]["Character_ID"] + " " +
-                    "Type : " + Character_Data[i]["Character_Type"] + " " +
-                    "Name : " + Character_Data[i]["Character_Name"] + " " +
-                    "Price : " + Character_Data[i]["Price"] + " " +
-                    "Attack : " + Character_Data[i]["Attack"] + " " +
-                    "ATK_Speed : " + Character_Data[i]["ATK_Speed"] + " " +
-                    "Ability_Percent : " + Character_Data[i]["Ability_Percent"]);
+                //print("ID : " + Character_Data[i]["Character_ID"] + " " +
+                //    "Type : " + Character_Data[i]["Character_Type"] + " " +
+                //    "Name : " + Character_Data[i]["Character_Name"] + " " +
+                //    "Price : " + Character_Data[i]["Price"] + " " +
+                //    "Attack : " + Character_Data[i]["Attack"] + " " +
+                //    "ATK_Speed : " + Character_Data[i]["ATK_Speed"] + " " +
+                //    "Ability_Percent : " + Character_Data[i]["Ability_Percent"]);
+            }
+
+            // 업적 데이터 테이블 읽어오는 곳
+            for (int i = 0; i < Quest_Data.Count; i++)
+            {
+                quest[i].GetComponent<Quest>().QuestInfo.Quest_ID = (int)Quest_Data[i]["Quest_ID"];
+                quest[i].GetComponent<Quest>().QuestInfo.Quest_Category = Quest_Data[i]["Category"].ToString();
+                quest[i].GetComponent<Quest>().QuestInfo.Quest_Type = (Quest_Category_Type)Quest_Data[i]["Category_Type"];
+                quest[i].GetComponent<Quest>().QuestInfo.Quest_Desc = Quest_Data[i]["Description"].ToString();
+                quest[i].GetComponent<Quest>().QuestInfo.Reward_Category = Quest_Data[i]["Reward_Category"].ToString();
+                quest[i].GetComponent<Quest>().QuestInfo.Reward_Type = (Quest_Reward)Quest_Data[i]["Reward_Type"];
+                quest[i].GetComponent<Quest>().QuestInfo.Reward_Amount = (int)Quest_Data[i]["Amount"];
+
+                // 업적 클리어 여부
+                int isclear = (int)Quest_Data[i]["IsClear"];
+
+                if (isclear == 1)
+                {
+                    quest[i].GetComponent<Quest>().QuestInfo.Quest_IsClear = true;
+                }
+                else
+                {
+                    quest[i].GetComponent<Quest>().QuestInfo.Quest_IsClear = false;
+                }
             }
         }
 

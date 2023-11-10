@@ -6,6 +6,7 @@ namespace TowerDefence
 {
     public class Define
     {
+        // 스테이지 선택
         public enum Stage_Level
         {
             Stage_1,
@@ -20,13 +21,27 @@ namespace TowerDefence
             Stage_10,
         }
 
+        // 퀘스트 카테고리
+        public enum Quest_Category_Type
+        {
+            Character_Mix,
+            Stage_Clear,
+            Monster_Kill_Count,
+        }
 
+        public enum Quest_Reward
+        {
+            Gem,
+            Gold,
+        }
+
+        // 캐릭터 타입
         public enum CharacterType
-        { 
+        {
             Fire, // 0
             Water, // 1
             Grass, // 2
-            Lighting,
+            Lightning,
             Dark,
         }
     }
