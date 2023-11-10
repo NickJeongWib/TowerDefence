@@ -9,7 +9,6 @@ TagManager:
   - Go_Front
   - Go_Right
   - Tile
-  - Tower
   layers:
   - Default
   - TransparentFX
