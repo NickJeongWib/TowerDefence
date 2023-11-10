@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44402185, g: 0.49316472, b: 0.57223153, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1501,6 +1501,33 @@ MonoBehaviour:
   - {fileID: 5828225596449468465, guid: 735d0b919be3afb49bd965ca08852195, type: 3}
   - {fileID: 1298502829387591305, guid: 055e014806302e1409bfd031879a0c8b, type: 3}
   - {fileID: 6154804737155739256, guid: 1dccf2dcf91406847b542ff25637109c, type: 3}
+  quest:
+  - {fileID: 3574551928927337607, guid: 42c90f3b53c1c9a4d8c05c24d7a65cee, type: 3}
+  - {fileID: 3574551928927337607, guid: a8ab24b8fe2da2c4485c0ea0e5311260, type: 3}
+  - {fileID: 3574551928927337607, guid: d9f4e4a84c4ddf04885d08b27826e9bd, type: 3}
+  - {fileID: 3574551928927337607, guid: 4dac9b31d9640864b9b27f59ba6e0f47, type: 3}
+  - {fileID: 3574551928927337607, guid: 3b9ab5457862b8f4481a270d32281acd, type: 3}
+  - {fileID: 3574551928927337607, guid: 1113f686a34bcd84782a18fbb733490e, type: 3}
+  - {fileID: 3574551928927337607, guid: d2603f36ed2e49a46a01ff7dbcf0befb, type: 3}
+  - {fileID: 3574551928927337607, guid: 15b11bb346d39344498125bc0ae3db99, type: 3}
+  - {fileID: 3574551928927337607, guid: a704071c27822bc4ab32d0fb8e293559, type: 3}
+  - {fileID: 3574551928927337607, guid: 8a932b03bf76e5044a2060fab636a33f, type: 3}
+  - {fileID: 3574551928927337607, guid: 286d411114c0bd745be7cab18dd34423, type: 3}
+  - {fileID: 3574551928927337607, guid: 5f68d73baecfd354fb3e6946160d0221, type: 3}
+  - {fileID: 3574551928927337607, guid: 61c85935e32a6754aba3c487cf5e69af, type: 3}
+  - {fileID: 3574551928927337607, guid: 90f0e1f2045d8ff488c58e3e23d0a17f, type: 3}
+  - {fileID: 3574551928927337607, guid: 76fc7e84a720101478f701ae25c3be90, type: 3}
+  - {fileID: 3574551928927337607, guid: 56cf1520e3668f441b34458ce4993ff6, type: 3}
+  - {fileID: 3574551928927337607, guid: 154ce777156f97148bf1483334955396, type: 3}
+  - {fileID: 3574551928927337607, guid: fc9e306946140444eb2f9d8381e4ec69, type: 3}
+  - {fileID: 3574551928927337607, guid: 62008f5afcf8b3842bdffcbdf8509cf6, type: 3}
+  - {fileID: 3574551928927337607, guid: 1c7d54256ef9e4c4f94ef9f398070b78, type: 3}
+  - {fileID: 3574551928927337607, guid: ced3c99134609884b94cf6d029212b8f, type: 3}
+  - {fileID: 3574551928927337607, guid: 7a689c598cdd5ee44aa5e69e53032b03, type: 3}
+  - {fileID: 3574551928927337607, guid: 94f7ac2a8e316964fbcee698b5f20a36, type: 3}
+  - {fileID: 3574551928927337607, guid: 2999864f2c3b72544bb1d415b7092eff, type: 3}
+  - {fileID: 3574551928927337607, guid: bd316b01207f5134086f9b9e381c52a8, type: 3}
+  - {fileID: 3574551928927337607, guid: 0b358059c5e334941b51992ac47da9ab, type: 3}
 --- !u!1 &2116769384
 GameObject:
   m_ObjectHideFlags: 0
