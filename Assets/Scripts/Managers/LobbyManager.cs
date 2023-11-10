@@ -41,6 +41,8 @@ namespace TowerDefence
         [SerializeField]
         GameObject None_Touch_Btn;
 
+        public GameObject[] Equip_CharacterList;
+
         int Shop_Index;
         #endregion
 
