@@ -24,6 +24,7 @@ namespace TowerDefence
         public int Character_Upgrade_Price;
         public int Price;
 
+        public bool isBase_Char;
         public bool isExist;
     }
 

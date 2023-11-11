@@ -59,6 +59,15 @@ namespace TowerDefence
                     character[i].GetComponent<TowerCharacter>().characterinfo.isExist = false;
                 }
 
+                if ((int)Character_Data[i]["Base_Char"] == 1)
+                {
+                    character[i].GetComponent<TowerCharacter>().characterinfo.isBase_Char = true;
+                }
+                else
+                {
+                    character[i].GetComponent<TowerCharacter>().characterinfo.isBase_Char = false;
+                }
+
                 //print("ID : " + Character_Data[i]["Character_ID"] + " " +
                 //    "Type : " + Character_Data[i]["Character_Type"] + " " +
                 //    "Name : " + Character_Data[i]["Character_Name"] + " " +

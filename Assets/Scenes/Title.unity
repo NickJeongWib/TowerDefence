@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44402185, g: 0.49316472, b: 0.57223153, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1497,24 +1497,24 @@ MonoBehaviour:
   Stage_Lv: 0
   character:
   - {fileID: 5454967576968576224, guid: c49b84f84e5393c4d805759e5b5d4847, type: 3}
-  - {fileID: 5454967576968576224, guid: 1b81cd7b399f265438865ab7ccf6d4cf, type: 3}
-  - {fileID: 5454967576968576224, guid: 69af82e8c9d1aa74f90e357551b95f19, type: 3}
-  - {fileID: 5454967576968576224, guid: 9fa3b659c699c1547a7a03e488679fb9, type: 3}
   - {fileID: 2344281128652980755, guid: d93beda98f724a64fb84f7565969728b, type: 3}
-  - {fileID: 2344281128652980755, guid: 3496f5038524ac54582b46326d04e6dd, type: 3}
-  - {fileID: 2344281128652980755, guid: 96d20d1b4c8744d45b30ddd84278d6b2, type: 3}
-  - {fileID: 2344281128652980755, guid: cd257505cdaf27f4984fed94c10f5e25, type: 3}
   - {fileID: 5828225596449468465, guid: 735d0b919be3afb49bd965ca08852195, type: 3}
-  - {fileID: 5828225596449468465, guid: 2ff0ec863616f1d4e91b4b32492305f4, type: 3}
-  - {fileID: 5828225596449468465, guid: 9162bada0d4faaf49bc2edc7c23fc8e1, type: 3}
-  - {fileID: 5828225596449468465, guid: 6cdbffc010556424aa66bb49dd094485, type: 3}
   - {fileID: 1298502829387591305, guid: 055e014806302e1409bfd031879a0c8b, type: 3}
-  - {fileID: 1298502829387591305, guid: beff43ecdf770f04c893b7be5dab0236, type: 3}
-  - {fileID: 1298502829387591305, guid: 38de59bb0deb84242a74593e3d0821c2, type: 3}
-  - {fileID: 1298502829387591305, guid: 5bcd882499e235c4997a0cfe13e53e65, type: 3}
   - {fileID: 6154804737155739256, guid: 1dccf2dcf91406847b542ff25637109c, type: 3}
+  - {fileID: 5454967576968576224, guid: 1b81cd7b399f265438865ab7ccf6d4cf, type: 3}
+  - {fileID: 2344281128652980755, guid: 3496f5038524ac54582b46326d04e6dd, type: 3}
+  - {fileID: 5828225596449468465, guid: 2ff0ec863616f1d4e91b4b32492305f4, type: 3}
+  - {fileID: 1298502829387591305, guid: beff43ecdf770f04c893b7be5dab0236, type: 3}
   - {fileID: 6154804737155739256, guid: 668c18ce911fc0d48b95e2bffdcb2fae, type: 3}
+  - {fileID: 5454967576968576224, guid: 69af82e8c9d1aa74f90e357551b95f19, type: 3}
+  - {fileID: 2344281128652980755, guid: 96d20d1b4c8744d45b30ddd84278d6b2, type: 3}
+  - {fileID: 5828225596449468465, guid: 9162bada0d4faaf49bc2edc7c23fc8e1, type: 3}
+  - {fileID: 1298502829387591305, guid: 38de59bb0deb84242a74593e3d0821c2, type: 3}
   - {fileID: 6154804737155739256, guid: cf8d78b55c90f78469ede248e67d270d, type: 3}
+  - {fileID: 5454967576968576224, guid: 9fa3b659c699c1547a7a03e488679fb9, type: 3}
+  - {fileID: 2344281128652980755, guid: cd257505cdaf27f4984fed94c10f5e25, type: 3}
+  - {fileID: 5828225596449468465, guid: 6cdbffc010556424aa66bb49dd094485, type: 3}
+  - {fileID: 1298502829387591305, guid: 5bcd882499e235c4997a0cfe13e53e65, type: 3}
   - {fileID: 6154804737155739256, guid: ad738ef5d364f8545a8de3cb693c29f1, type: 3}
   quest:
   - {fileID: 4355415080336455958, guid: 582f454a0f106c746a6680c23623ec29, type: 3}
