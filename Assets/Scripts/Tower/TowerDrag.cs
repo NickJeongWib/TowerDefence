@@ -5,15 +5,13 @@ using UnityEngine.EventSystems;
 
 namespace TowerDefence
 {
-    public class TowerDrag : MonoBehaviour
+    public class TowerDrag : MonoBehaviour, IDropHandler
     {
         public GameObject[] CharaterPrefabs;
         private GameObject draggedTower; // 드래그 중인 타워 오브젝트
         private Vector3 initialTowerPosition; // 타워의 초기 위치
         private Vector3 initialMouseOffset; //드래그 시작 시 마우스와 타워 위치 간의 오프셋
         private bool isDragging = false;
-        bool ismix = false;
-        bool dontmove;
 
         private void Update()
         {
@@ -28,7 +26,6 @@ namespace TowerDefence
                     initialMouseOffset = draggedTower.transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
                     initialTowerPosition = draggedTower.transform.position; // 초기 위치 기억
                     isDragging = true;
-                    ismix = false;
                 }
             }
 
@@ -42,29 +39,22 @@ namespace TowerDefence
                 if (Input.GetMouseButtonUp(0) && draggedTower != null)
                 {
                     draggedTower.transform.position = new Vector3(initialTowerPosition.x, initialTowerPosition.y, 0);
-                    isDragging = false;  
+                    isDragging = false;
                 }
-                else if (Input.GetMouseButtonUp(0))
-                {
+            }
 
-                }    
-            }
         }
-        private void OnTriggerExit2D(Collider2D other)
+
+        public void OnDrop(PointerEventData eventData)
         {
-            if (other.CompareTag("Tower") && ismix == true)
-            {
-                
-                Destroy(draggedTower);
-                Destroy(other.gameObject);
-            }
+            
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-           if(other.CompareTag("Tower"))
+            if(other.CompareTag("Tower"))
             {
-                dontmove = true;
+
             }
         }
     }

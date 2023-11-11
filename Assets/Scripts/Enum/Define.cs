@@ -38,8 +38,9 @@ namespace TowerDefence
         // 캐릭터 타입
         public enum CharacterType
         {
+            Default,
             Fire, // 0
-            Water, // 1
+            Ice, // 1
             Grass, // 2
             Lightning,
             Dark,

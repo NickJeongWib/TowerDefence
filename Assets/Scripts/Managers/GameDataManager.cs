@@ -22,19 +22,51 @@ namespace TowerDefence
         void Awake()
         {
             // TODO ## 데이터 테이블 읽어오는 곳
-            Character_Data = CSVReader.Read("CSV");
+            Character_Data = CSVReader.Read("Character_DataTable");
             Quest_Data = CSVReader.Read("Quest_Data");
 
+            #region Character_DataTable
             for (int i = 0; i < Character_Data.Count; i++)
             {
-                character[i].GetComponent<TowerCharacter>().characterinfo.Character_ID = (int)Character_Data[i]["Character_ID"];
-                character[i].GetComponent<TowerCharacter>().characterinfo.Charactertype = (CharacterType)Character_Data[i]["Character_Type"];
-                character[i].GetComponent<TowerCharacter>().characterinfo.Character_Name = Character_Data[i]["Character_Name"].ToString();
-                character[i].GetComponent<TowerCharacter>().characterinfo.Price = (int)Character_Data[i]["Price"];
-                character[i].GetComponent<TowerCharacter>().characterinfo.Attack = (float)Character_Data[i]["Attack"];
-                character[i].GetComponent<TowerCharacter>().characterinfo.ATK_Speed = (float)Character_Data[i]["ATK_Speed"];
-                character[i].GetComponent<TowerCharacter>().characterinfo.Ability_Percent = (float)Character_Data[i]["Ability_Percent"];
+                character[i].GetComponent<TowerCharacter>().characterinfo.Character_ID = (int)Character_Data[i]["Char_ID"];
+                character[i].GetComponent<TowerCharacter>().characterinfo.Character_Name = Character_Data[i]["Char_Name"].ToString();
+                character[i].GetComponent<TowerCharacter>().characterinfo.Level = (int)Character_Data[i]["Char_Lv"];
+                character[i].GetComponent<TowerCharacter>().characterinfo.Charactertype = (CharacterType)Character_Data[i]["Char_Type"];
 
+                character[i].GetComponent<TowerCharacter>().characterinfo.Damage = (float)Character_Data[i]["Char_Damage"];
+                character[i].GetComponent<TowerCharacter>().characterinfo.Damage_Up_Rate = (float)Character_Data[i]["Char_Up_Damage"];
+
+                character[i].GetComponent<TowerCharacter>().characterinfo.ATK_Speed = (float)Character_Data[i]["Char_ATKSpeed"] / 100.0f;
+                character[i].GetComponent<TowerCharacter>().characterinfo.ATK_Speed_Up_Rate = (float)Character_Data[i]["Char_Up_ATKSpeed"] / 100.0f;
+
+                character[i].GetComponent<TowerCharacter>().characterinfo.ATK_Range = (float)Character_Data[i]["Char_ATKRange"] / 100.0f;
+                character[i].GetComponent<TowerCharacter>().characterinfo.ATK_Range_Up_Rate = (float)Character_Data[i]["Char_Up_ATKRange"] / 100.0f;
+
+                character[i].GetComponent<TowerCharacter>().characterinfo.Ability_Percent = (float)Character_Data[i]["Char_Ability"];
+                character[i].GetComponent<TowerCharacter>().characterinfo.Ability_Percent_Up_Rate = (float)Character_Data[i]["Char_Up_Ability"];
+
+                character[i].GetComponent<TowerCharacter>().characterinfo.Character_Upgrade_Price = (int)Character_Data[i]["Char_Up_Price"];
+
+                character[i].GetComponent<TowerCharacter>().characterinfo.Spawn_Cost = (int)Character_Data[i]["Char_Spawn_Cost"];
+                character[i].GetComponent<TowerCharacter>().characterinfo.Price = (int)Character_Data[i]["Char_Price"];
+
+                if ((int)Character_Data[i]["Char_Exist"] == 1)
+                {
+                    character[i].GetComponent<TowerCharacter>().characterinfo.isExist = true;
+                }
+                else
+                {
+                    character[i].GetComponent<TowerCharacter>().characterinfo.isExist = false;
+                }
+
+                if ((int)Character_Data[i]["Base_Char"] == 1)
+                {
+                    character[i].GetComponent<TowerCharacter>().characterinfo.isBase_Char = true;
+                }
+                else
+                {
+                    character[i].GetComponent<TowerCharacter>().characterinfo.isBase_Char = false;
+                }
 
                 //print("ID : " + Character_Data[i]["Character_ID"] + " " +
                 //    "Type : " + Character_Data[i]["Character_Type"] + " " +
@@ -44,8 +76,10 @@ namespace TowerDefence
                 //    "ATK_Speed : " + Character_Data[i]["ATK_Speed"] + " " +
                 //    "Ability_Percent : " + Character_Data[i]["Ability_Percent"]);
             }
+            #endregion
 
-            // 업적 데이터 테이블 읽어오는 곳
+            #region DB_Quest
+            // TODO ## 업적 데이터 테이블 읽어오는 곳
             for (int i = 0; i < Quest_Data.Count; i++)
             {
                 quest[i].GetComponent<Quest>().QuestInfo.Quest_ID = (int)Quest_Data[i]["Quest_ID"];
@@ -68,6 +102,7 @@ namespace TowerDefence
                     quest[i].GetComponent<Quest>().QuestInfo.Quest_IsClear = false;
                 }
             }
+            #endregion
         }
 
         void Start()

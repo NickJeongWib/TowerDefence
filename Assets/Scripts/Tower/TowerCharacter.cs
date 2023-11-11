@@ -11,10 +11,21 @@ namespace TowerDefence
         public int Character_ID;
         public CharacterType Charactertype;
         public string Character_Name;
-        public int Price;
-        public float Attack;
+        public int Level;
+        public float Damage;
+        public float Damage_Up_Rate;
         public float ATK_Speed;
+        public float ATK_Speed_Up_Rate;
+        public float ATK_Range;
+        public float ATK_Range_Up_Rate;
         public float Ability_Percent;
+        public float Ability_Percent_Up_Rate;
+        public int Spawn_Cost;
+        public int Character_Upgrade_Price;
+        public int Price;
+
+        public bool isBase_Char;
+        public bool isExist;
     }
 
     public class TowerCharacter : MonoBehaviour

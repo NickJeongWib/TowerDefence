@@ -11,12 +11,17 @@ namespace TowerDefence
     public class LobbyManager : MonoBehaviour
     {
         #region Var
+
+
+        [Header("----Music----")]
         [SerializeField]
         Slider SFX_Slider;
 
         [SerializeField]
         Slider BGM_Slider;
 
+
+        [Header("----Shop----")]
         [SerializeField]
         GameObject Shop_Focus;
 
@@ -33,15 +38,41 @@ namespace TowerDefence
         GameObject Shop_Character_Vertical_Value;
 
         [SerializeField]
+        GameObject[] Shop_CharacterList;
+
+        [Header("----UpGradePanel----")]
+        [SerializeField]
+        TextMeshProUGUI[] Upgrade_Panel_Text;
+        [SerializeField]
+        Image Upgrade_Panel_Image;
+
+        [Header("----Inventory----")]
+        [SerializeField]
+        GameObject Select_Char;
+
+        [SerializeField]
         GameObject Inventory_Vertical_Value;
 
         [SerializeField]
         GameObject Character_Select_PopUp;
 
         [SerializeField]
-        GameObject None_Touch_Btn;
+        GameObject Character_Upgrade_Panel;
 
         public GameObject[] Equip_CharacterList;
+
+        [SerializeField]
+        GameObject None_Touch_Btn;
+
+        [SerializeField]
+        GameObject[] Own_Char_List_UI;
+
+        [SerializeField]
+        GameObject[] Own_Char_List_Info;
+
+        [SerializeField]
+        bool[] is_EmptyEquip_Slots = new bool[5];
+
 
         int Shop_Index;
         #endregion
@@ -74,10 +105,14 @@ namespace TowerDefence
                 Character_Select_PopUp.gameObject.SetActive(true);
                 None_Touch_Btn.gameObject.SetActive(true);
                 Character_Select_PopUp.transform.position = new Vector3(obj.transform.parent.position.x, obj.transform.parent.position.y + 100.0f, 0);
+
+                Select_Char = obj.transform.parent.GetComponent<Own_Char>().OwnChar;
             }
             else if (obj.name == "Character_Upgrade")
             {
-                Character_Select_PopUp.SetActive(false);
+                Upgrade_PopUP_Refresh();
+
+                OnClick_None_Touch_Btn();
             }
 
             obj.gameObject.SetActive(true);
@@ -394,8 +429,34 @@ namespace TowerDefence
             {
                 BGM_Slider.value = GameManager.GMInstance.SoundManagerRef.BGMPlayers[i].volume;
             }
+
+            // TODO ## 로비 진입 시 상점 초기화
+            // 상점에 기본 유닛 제외 이 후 팔 캐릭터들 넣기
+            for (int i = 0; i < Shop_CharacterList.Length; i++)
+            {
+                Shop_CharacterList[i].GetComponent<Shop_Character_List>().Shop_Char_Info = GameManager.GMInstance.gameDataManagerRef.character[i + 5];
+
+                Shop_CharacterList[i].transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite =
+                    Shop_CharacterList[i].GetComponent<Shop_Character_List>().Shop_Char_Info.GetComponent<SpriteRenderer>().sprite;
+            }
+           
+            // 게임 데이터테이블의 캐릭터 수만큼 실행
+            for (int i = 0; i < GameManager.GMInstance.gameDataManagerRef.character.Length; i++)
+            {
+                // 만약 캐릭터가 존재하는 것이 있다면
+                if (GameManager.GMInstance.gameDataManagerRef.character[i].GetComponent<TowerCharacter>().characterinfo.isExist == true)
+                {
+                    // 보유캐릭터에 추가
+                    Own_Char_List_Info[i] = GameManager.GMInstance.gameDataManagerRef.character[i];
+                }
+            }
+
+            Own_Character_Refresh();
+            Empty_Slot_Check();
         }
         #endregion
+
+        #region Btn_Fun
 
         #region GameStart_Btn
         public void OnClickGameStart(GameObject obj)
@@ -452,5 +513,157 @@ namespace TowerDefence
             Character_Select_PopUp.SetActive(false);
             None_Touch_Btn.SetActive(false);
         }
+
+        #endregion
+
+        #region Inventory
+        // TODO ## 캐릭터 장착
+        public void OnClick_Char_Equip()
+        {
+            if (is_EmptyEquip_Slots[0] && is_EmptyEquip_Slots[1] && is_EmptyEquip_Slots[2] && is_EmptyEquip_Slots[3] && is_EmptyEquip_Slots[4])
+            {
+                Debug.Log("풀칸");
+                return;
+            }
+
+            // 장착 유닛 검사
+            for (int i = 0; i < Equip_CharacterList.Length; i++)
+            {
+                // 장착 유닛 칸이 없다면 장착
+                if (Equip_CharacterList[i].GetComponent<Equip_Character_Info>().Equip_Character == null)
+                {
+                    Equip_CharacterList[i].GetComponent<Equip_Character_Info>().Equip_Character = Select_Char;
+                    Equip_CharacterList[i].GetComponent<Image>().sprite = Select_Char.GetComponent<SpriteRenderer>().sprite;
+                    Equip_CharacterList[i].transform.localScale = Vector3.one;
+                    Debug.Log("장착");
+                    break;
+                }
+            }
+
+            Empty_Slot_Check();
+        }
+
+        // TODO ## 캐릭터 해제
+        public void OnClick_Char_UnEquip()
+        {
+            // 중복 캐릭터 검사
+            for (int i = 0; i < Equip_CharacterList.Length; i++)
+            {
+                if (Equip_CharacterList[i].GetComponent<Equip_Character_Info>().Equip_Character == null)
+                {
+                    continue;
+                }
+                // 만약 선택한 캐릭터와 동일한 캐릭터가 장착되있다면
+                if (Select_Char.GetComponent<TowerCharacter>().characterinfo.Character_ID == Equip_CharacterList[i].GetComponent<Equip_Character_Info>().Equip_Character.GetComponent<TowerCharacter>().characterinfo.Character_ID)
+                {
+                    Equip_CharacterList[i].transform.localScale = Vector3.zero;
+
+                    Equip_CharacterList[i].GetComponent<Equip_Character_Info>().Equip_Character = null;
+                }
+            }
+
+            Empty_Slot_Check();
+        }
+        #endregion
+
+
+        #region Fun
+
+        void Upgrade_PopUP_Refresh()
+        {
+            if (Select_Char.GetComponent<TowerCharacter>().characterinfo.Charactertype == CharacterType.Fire)
+            {
+                // 캐릭터 타입
+                Upgrade_Panel_Text[1].text = "불";
+            }
+            else if (Select_Char.GetComponent<TowerCharacter>().characterinfo.Charactertype == CharacterType.Ice)
+            {
+                // 캐릭터 타입
+                Upgrade_Panel_Text[1].text = "얼음";
+            }
+            else if (Select_Char.GetComponent<TowerCharacter>().characterinfo.Charactertype == CharacterType.Grass)
+            {
+                // 캐릭터 타입
+                Upgrade_Panel_Text[1].text = "나무";
+            }
+            else if (Select_Char.GetComponent<TowerCharacter>().characterinfo.Charactertype == CharacterType.Lightning)
+            {
+                // 캐릭터 타입
+                Upgrade_Panel_Text[1].text = "전기";
+            }
+            else if (Select_Char.GetComponent<TowerCharacter>().characterinfo.Charactertype == CharacterType.Dark)
+            {
+                // 캐릭터 타입
+                Upgrade_Panel_Text[1].text = "어둠";
+            }
+
+            // 캐릭터 이미지
+            Upgrade_Panel_Image.sprite = Select_Char.GetComponent<SpriteRenderer>().sprite;
+            // 캐릭터 이름
+            Upgrade_Panel_Text[0].text = Select_Char.GetComponent<TowerCharacter>().characterinfo.Character_Name;
+            // 캐릭터 공격력
+            Upgrade_Panel_Text[2].text = Select_Char.GetComponent<TowerCharacter>().characterinfo.Damage.ToString();
+            // 캐릭터 공격 속도
+            Upgrade_Panel_Text[3].text = Select_Char.GetComponent<TowerCharacter>().characterinfo.ATK_Speed.ToString();
+            // 캐릭터 공격 범위
+            Upgrade_Panel_Text[4].text = Select_Char.GetComponent<TowerCharacter>().characterinfo.ATK_Range.ToString();
+        }
+
+        void Empty_Slot_Check()
+        {
+            for (int i = 0; i < Equip_CharacterList.Length; i++)
+            {
+                if (Equip_CharacterList[i].GetComponent<Equip_Character_Info>().Equip_Character != null)
+                {
+                    is_EmptyEquip_Slots[i] = true;
+                }
+                else
+                {
+                    is_EmptyEquip_Slots[i] = false;
+                }
+            }
+        }
+
+        void Equip_List_Refresh()
+        {
+
+        }
+
+        public void Own_Character_Refresh()
+        {
+            for (int i = 0; i < Own_Char_List_Info.Length; i++)
+            {
+                // 보유 캐릭터 정보를 가지고 있지않다면 break로 for문 탈출
+                if (Own_Char_List_Info[i] == null)
+                {
+                    break;
+                } // 캐릭터를 보유하고 있다면 캐릭터 정보 저장
+                else if (Own_Char_List_Info[i] != null)
+                {
+                    Own_Char_List_UI[i].GetComponent<Own_Char>().OwnChar = Own_Char_List_Info[i];
+
+                    // 이미지 출력
+                    Own_Char_List_UI[i].transform.GetChild(0).GetComponent<Image>().sprite =
+                        Own_Char_List_UI[i].GetComponent<Own_Char>().OwnChar.GetComponent<SpriteRenderer>().sprite;
+
+                    // 크기 1로 만들기
+                    Own_Char_List_UI[i].transform.GetChild(0).transform.localScale = Vector3.one;
+                }
+            }
+
+            for (int i = 0; i < Own_Char_List_UI.Length; i++)
+            {
+                // 캐릭터가 빈 슬롯이라면 
+                if (Own_Char_List_UI[i].GetComponent<Own_Char>().OwnChar == null)
+                {
+                    Own_Char_List_UI[i].transform.GetChild(1).GetComponent<Button>().interactable = false;
+                }
+                else // 캐릭터가 존재하면
+                {
+                    Own_Char_List_UI[i].transform.GetChild(1).GetComponent<Button>().interactable = true;
+                }
+            }
+        }
+        #endregion
     }
 }
