@@ -10,11 +10,14 @@ namespace TowerDefence
         public GameObject[] characterPrefab; // 캐릭터 프리팹
         public Tile[] allTiles; // 모든 타일 배열
 
+
         private void Start()
         {
-            for (int i = 0; i < GameManager.GMInstance.gameDataManagerRef.character.Length; i++)
+
+            for (int i = 0; i < GameManager.GMInstance.lobbyManagerRef.Equip_CharacterList.Length; i++)
             {
                 characterPrefab[i] = GameManager.GMInstance.gameDataManagerRef.character[i];
+                
             }
         }
 

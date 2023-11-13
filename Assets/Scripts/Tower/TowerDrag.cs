@@ -1,16 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace TowerDefence
 {
-    public class TowerDrag : MonoBehaviour, IDropHandler
+    public class TowerDrag : MonoBehaviour
     {
         public GameObject[] CharaterPrefabs;
         private GameObject draggedTower; // 드래그 중인 타워 오브젝트
         private Vector3 initialTowerPosition; // 타워의 초기 위치
-        private Vector3 initialMouseOffset; //드래그 시작 시 마우스와 타워 위치 간의 오프셋
+        private Vector3 initialMouseOffset; // 드래그 시작 시 마우스와 타워 위치 간의 오프셋
         private bool isDragging = false;
 
         private void Update()
@@ -36,26 +35,29 @@ namespace TowerDefence
                 Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 draggedTower.transform.position = new Vector3(mousePosition.x, mousePosition.y, draggedTower.transform.position.z) + new Vector3(initialMouseOffset.x, initialMouseOffset.y, 0);
 
-                if (Input.GetMouseButtonUp(0) && draggedTower != null)
+                // 왼쪽 버튼을 땟을 때
+                if (Input.GetMouseButtonUp(0))
                 {
+                    // 충돌 체크
+                    Collider2D[] hitColliders = Physics2D.OverlapCircleAll(draggedTower.transform.position, 0.1f);
+                    foreach (Collider2D hitCollider in hitColliders)
+                    {
+                        if (hitCollider.CompareTag("Tower") && hitCollider.gameObject != draggedTower)
+                        {
+                            // 충돌한 타워와 드래그 중인 타워를 삭제
+                            Destroy(hitCollider.gameObject);
+                            Destroy(draggedTower);
+                            break;
+                        }
+                    }
+
+                    // 초기 위치로 이동
                     draggedTower.transform.position = new Vector3(initialTowerPosition.x, initialTowerPosition.y, 0);
                     isDragging = false;
                 }
             }
-
-        }
-
-        public void OnDrop(PointerEventData eventData)
-        {
-            
-        }
-
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            if(other.CompareTag("Tower"))
-            {
-
-            }
         }
     }
 }
+
+
