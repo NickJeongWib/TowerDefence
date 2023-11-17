@@ -1495,6 +1495,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isClearStage: 00000000000000000000
   Stage_Lv: 0
+  Equip_Char:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   character:
   - {fileID: 5454967576968576224, guid: c49b84f84e5393c4d805759e5b5d4847, type: 3}
   - {fileID: 2344281128652980755, guid: d93beda98f724a64fb84f7565969728b, type: 3}

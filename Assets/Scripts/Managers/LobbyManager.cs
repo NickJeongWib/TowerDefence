@@ -451,6 +451,11 @@ namespace TowerDefence
                 }
             }
 
+            for (int i = 0; i < Equip_CharacterList.Length; i++)
+            {
+                GameManager.GMInstance.gameDataManagerRef.Equip_Char[i] = Equip_CharacterList[i].GetComponent<Equip_Character_Info>().Equip_Character;
+            }
+
             Own_Character_Refresh();
             Empty_Slot_Check();
         }
@@ -540,6 +545,11 @@ namespace TowerDefence
                 }
             }
 
+            for (int i = 0; i < Equip_CharacterList.Length; i++)
+            {
+                GameManager.GMInstance.gameDataManagerRef.Equip_Char[i] = Equip_CharacterList[i].GetComponent<Equip_Character_Info>().Equip_Character;
+            }
+
             Empty_Slot_Check();
         }
 
@@ -560,6 +570,11 @@ namespace TowerDefence
 
                     Equip_CharacterList[i].GetComponent<Equip_Character_Info>().Equip_Character = null;
                 }
+            }
+
+            for (int i = 0; i < Equip_CharacterList.Length; i++)
+            {
+                GameManager.GMInstance.gameDataManagerRef.Equip_Char[i] = Equip_CharacterList[i].GetComponent<Equip_Character_Info>().Equip_Character;
             }
 
             Empty_Slot_Check();
@@ -604,7 +619,7 @@ namespace TowerDefence
             // 캐릭터 공격력
             Upgrade_Panel_Text[2].text = Select_Char.GetComponent<TowerCharacter>().characterinfo.Damage.ToString();
             // 캐릭터 공격 속도
-            Upgrade_Panel_Text[3].text = Select_Char.GetComponent<TowerCharacter>().characterinfo.ATK_Speed.ToString();
+            Upgrade_Panel_Text[3].text = Select_Char.GetComponent<TowerCharacter>().characterinfo.Char_ATKSpeed.ToString();
             // 캐릭터 공격 범위
             Upgrade_Panel_Text[4].text = Select_Char.GetComponent<TowerCharacter>().characterinfo.ATK_Range.ToString();
         }

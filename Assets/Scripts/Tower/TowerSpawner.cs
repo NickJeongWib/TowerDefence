@@ -13,11 +13,9 @@ namespace TowerDefence
 
         private void Start()
         {
-
-            for (int i = 0; i < GameManager.GMInstance.lobbyManagerRef.Equip_CharacterList.Length; i++)
+            for (int i = 0; i < GameManager.GMInstance.gameDataManagerRef.Equip_Char.Length; i++)
             {
-                characterPrefab[i] = GameManager.GMInstance.gameDataManagerRef.character[i];
-                
+                characterPrefab[i] = GameManager.GMInstance.gameDataManagerRef.Equip_Char[i];
             }
         }
 

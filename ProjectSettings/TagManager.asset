@@ -10,6 +10,7 @@ TagManager:
   - Go_Right
   - Tile
   - Tower
+  - Last_Point
   layers:
   - Default
   - TransparentFX

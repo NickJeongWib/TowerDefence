@@ -12,16 +12,15 @@ namespace TowerDefence
         private Rigidbody2D rb;
         public TowerCharacter towerCharacter;
         [SerializeField]
-        private int attackDamage = 1;
+        public float attackDamage;
         [SerializeField]
-        float atkSpeed;
+        public float atkSpeed;
 
 
         private void Start()
         {
             rb = GetComponent<Rigidbody2D>();
             FindClosestEnemy(); // 가장 가까운 적 찾기
-            towerCharacter = transform.parent.GetComponent<TowerCharacter>();
         }
 
         private void Update()
@@ -36,7 +35,7 @@ namespace TowerDefence
 
                 // 화살을 이동
                 Vector3 moveDirection = targetDirection.normalized;
-                atkSpeed = towerCharacter.characterinfo.ATK_Speed; //GetComponent<TowerCharacter>().characterinfo.ATK_Speed;
+                
                 rb.velocity = moveDirection * atkSpeed;
             }
             else

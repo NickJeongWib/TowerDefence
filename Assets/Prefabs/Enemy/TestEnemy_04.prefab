@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 7526742649611328502}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -137,7 +137,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a93a33269682584685139b01f9b9276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 10
+  wayPointCount: 0
+  wayPoints: []
+  maxHP: 80
 --- !u!114 &120962486190626164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d1a0c12533807a47ac0753a03ee6504, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 3
   moveDirection: {x: 0, y: 0, z: 0}
   skeletonAnimation: {fileID: 0}
 --- !u!70 &836385126177102198

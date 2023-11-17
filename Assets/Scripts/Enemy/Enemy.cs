@@ -7,21 +7,28 @@ namespace TowerDefence
 {
     public class Enemy : MonoBehaviour
     {
-        private int wayPointCount;          // 이동 경로 개수
-        private Transform[] wayPoints;              // 이동 경로 정보
+        public int wayPointCount;          // 이동 경로 개수
+        public Transform[] wayPoints;              // 이동 경로 정보
         private int currentIndex = 0;       // 현재 목표지점 인덱스
         private EnemyMoveControl enemyMoveControl;       // 오브젝트 이동 제어
 
+        WaveSystem waveSystem;
         [SerializeField]
         private float maxHP;
         private float currentHP;
+
+        Player  player;
 
         public void Awake()
         {
             currentHP = maxHP;
         }
 
-
+        void Start()
+        {
+            player = FindObjectOfType<Player>();
+            waveSystem = FindObjectOfType<WaveSystem>();
+        }
 
         public void Setup(Transform[] wayPoints)
         {
@@ -75,15 +82,17 @@ namespace TowerDefence
             {
                 // 적 오브젝트 삭제
                 Destroy(gameObject);
+                player.TakeDamage();
             }
         }
-        public void TakeDamage(int damage)
+        public void TakeDamage(float damage)
         {
             currentHP -= damage;
 
             if (currentHP <= 0)
             {
                 Destroy(gameObject);
+                waveSystem.KillCount++;
             }
         }
     }
