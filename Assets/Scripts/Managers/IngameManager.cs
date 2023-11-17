@@ -64,12 +64,13 @@ namespace TowerDefence
 
         public void OnClickGoLobby_Btn(GameObject obj)
         {
-            
+            Time.timeScale = 1.0f;
             SceneManager.LoadScene("Lobby");
         }
 
         public void OnClickRePlay_Btn(GameObject obj)
         {
+            Time.timeScale = 1.0f;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
