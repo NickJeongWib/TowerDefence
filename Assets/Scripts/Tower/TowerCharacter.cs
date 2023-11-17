@@ -14,7 +14,7 @@ namespace TowerDefence
         public int Level;
         public float Damage;
         public float Damage_Up_Rate;
-        public float ATK_Speed;
+        public float Char_ATKSpeed;
         public float ATK_Speed_Up_Rate;
         public float ATK_Range;
         public float ATK_Range_Up_Rate;
@@ -58,7 +58,9 @@ namespace TowerDefence
                         // 발사체 생성
                         GameObject newProjectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
 
-                        newProjectile.transform.parent = this.transform;
+                        newProjectile.GetComponent<Arrow>().attackDamage = characterinfo.Damage;
+                        newProjectile.GetComponent<Arrow>().atkSpeed = characterinfo.Char_ATKSpeed;
+
                         // 방향 설정
                         Vector3 direction = (closestEnemy.transform.position - projectileSpawnPoint.position).normalized;
 

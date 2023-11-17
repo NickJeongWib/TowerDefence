@@ -137,7 +137,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a93a33269682584685139b01f9b9276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 10
+  wayPointCount: 0
+  wayPoints: []
+  maxHP: 50
 --- !u!114 &5585691123341011062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d1a0c12533807a47ac0753a03ee6504, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 3
   moveDirection: {x: 0, y: 0, z: 0}
   skeletonAnimation: {fileID: 0}
 --- !u!70 &7050889986053690179

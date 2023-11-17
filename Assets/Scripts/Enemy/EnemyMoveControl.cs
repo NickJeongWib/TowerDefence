@@ -14,10 +14,11 @@ namespace TowerDefence
         public float MoveSpeed => moveSpeed;   //moveSpeed 변수의 프로퍼티(Property) (Get 가능)
         [SerializeField]
         SkeletonAnimation skeletonAnimation;
-
+        
         void Start()
         {
             skeletonAnimation = GetComponent<SkeletonAnimation>();
+           
         }
 
         private void Update()

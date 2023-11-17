@@ -7,8 +7,8 @@ namespace TowerDefence
     [System.Serializable]
     public struct Wave
     {
-        public float        spawnTime;      // 현재 웨이브 적 생성 주기
-        public int          maxEnemyCount;  //현재 웨이브 적 등장 숫자
+        public float spawnTime;      // 현재 웨이브 적 생성 주기
+        public int maxEnemyCount;  //현재 웨이브 적 등장 숫자
         public GameObject[] enemyPrefabs;   // 현재 웨이브 적 등장 종류
     }
 
@@ -19,6 +19,7 @@ namespace TowerDefence
         [SerializeField]
         private EnemySpawner enemySpawner;
         public int currentWaveIndex;
+        public int KillCount;
 
         public void Start()
         {
@@ -27,7 +28,7 @@ namespace TowerDefence
                 enemySpawner.StartWave(wave[currentWaveIndex]);
             }
         }
-        
+
 
     }
 }

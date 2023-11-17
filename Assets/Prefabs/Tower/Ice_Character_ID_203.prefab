@@ -160,7 +160,7 @@ MonoBehaviour:
     Level: 1
     Damage: 60
     Damage_Up_Rate: 10
-    ATK_Speed: 6.5
+    Char_ATKSpeed: 0
     ATK_Speed_Up_Rate: 0
     ATK_Range: 5
     ATK_Range_Up_Rate: 0
@@ -172,7 +172,7 @@ MonoBehaviour:
     isBase_Char: 0
     isExist: 0
   projectileSpawnPoint: {fileID: 1246276109156421821}
-  projectilePrefab: {fileID: 8930298171425269818, guid: 655ef4e1faa45e5468b92d8ccd5c5b47, type: 3}
+  projectilePrefab: {fileID: 1233445776671624020, guid: 2798b48b8116e8d48b294ba0d1bb4274, type: 3}
   attackCooldown: 0.5
   attackRange: 5
 --- !u!114 &-8208682228528168935

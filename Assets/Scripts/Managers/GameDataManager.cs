@@ -13,6 +13,8 @@ namespace TowerDefence
 
         public Stage_Level Stage_Lv;
 
+        public GameObject[] Equip_Char;
+
         public GameObject[] character;
         public GameObject[] quest;
 
@@ -36,7 +38,7 @@ namespace TowerDefence
                 character[i].GetComponent<TowerCharacter>().characterinfo.Damage = (float)Character_Data[i]["Char_Damage"];
                 character[i].GetComponent<TowerCharacter>().characterinfo.Damage_Up_Rate = (float)Character_Data[i]["Char_Up_Damage"];
 
-                character[i].GetComponent<TowerCharacter>().characterinfo.ATK_Speed = (float)Character_Data[i]["Char_ATKSpeed"] / 100.0f;
+                character[i].GetComponent<TowerCharacter>().characterinfo.Char_ATKSpeed = (float)Character_Data[i]["Char_ATKSpeed"] / 100.0f;
                 character[i].GetComponent<TowerCharacter>().characterinfo.ATK_Speed_Up_Rate = (float)Character_Data[i]["Char_Up_ATKSpeed"] / 100.0f;
 
                 character[i].GetComponent<TowerCharacter>().characterinfo.ATK_Range = (float)Character_Data[i]["Char_ATKRange"] / 100.0f;
