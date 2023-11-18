@@ -20,6 +20,11 @@ namespace TowerDefence
         [SerializeField]
         Slider BGM_Slider;
 
+        [SerializeField]
+        Toggle SFXToggle;
+
+        [SerializeField]
+        Toggle BGMToggle;
 
         [Header("----Shop----")]
         [SerializeField]
@@ -69,6 +74,14 @@ namespace TowerDefence
 
         [SerializeField]
         GameObject[] Own_Char_List_Info;
+
+        [SerializeField]
+        GameObject EquipChar_Exist_Panel;
+
+        [Header("----DungeonSelect----")]
+        [SerializeField]
+        GameObject Char_Null_Panel;
+
 
         [SerializeField]
         bool[] is_EmptyEquip_Slots = new bool[5];
@@ -265,6 +278,11 @@ namespace TowerDefence
             // 배열에 존재하는 이펙트 음들의 크기를 조절한다.
             for (int i = 0; i < GameManager.GMInstance.SoundManagerRef.SFXPlayers.Length; i++)
             {
+                // 효과음 음소거 시 실행 취소
+                if (SFXToggle.GetComponent<Toggle>().isOn == false)
+                {
+                    return;
+                }
 
                 GameManager.GMInstance.SoundManagerRef.SFXPlayers[i].volume = volume;
             }
@@ -275,6 +293,11 @@ namespace TowerDefence
             // 배열안에 존재하는 배경음의 크기를 조절한다.
             for (int i = 0; i < GameManager.GMInstance.SoundManagerRef.BGMPlayers.Length; i++)
             {
+                // 배경음 음소거 시 실행 취소
+                if (BGMToggle.GetComponent<Toggle>().isOn == false)
+                {
+                    return;
+                }
                 GameManager.GMInstance.SoundManagerRef.BGMPlayers[i].volume = volume;
             }
         }
@@ -463,9 +486,26 @@ namespace TowerDefence
 
         #region Btn_Fun
 
+        public void Char_Null_Panel_Close(GameObject obj)
+        {
+            obj.SetActive(false);
+        }
+
         #region GameStart_Btn
         public void OnClickGameStart(GameObject obj)
         {
+            // 캐릭터 모두 장착 안할 시 게임 시작 취소
+            for (int i = 0; i < GameManager.GMInstance.gameDataManagerRef.Equip_Char.Length; i++)
+            {
+                if (GameManager.GMInstance.gameDataManagerRef.Equip_Char[i] == null)
+                {
+                    Char_Null_Panel.SetActive(true);
+                    return;
+                }
+                
+            }
+
+
             // 버튼 클릭시 선택 단계 저장
             if (obj.name == "Stage1_GameStart_Button")
             {
@@ -511,8 +551,6 @@ namespace TowerDefence
             SceneManager.LoadScene("InGame");
         }
 
-        #endregion
-
         public void OnClick_None_Touch_Btn()
         {
             Character_Select_PopUp.SetActive(false);
@@ -521,14 +559,31 @@ namespace TowerDefence
 
         #endregion
 
+        #endregion
+
         #region Inventory
         // TODO ## 캐릭터 장착
         public void OnClick_Char_Equip()
         {
+            // 캐릭터 장착 슬롯 남은 칸 검사
             if (is_EmptyEquip_Slots[0] && is_EmptyEquip_Slots[1] && is_EmptyEquip_Slots[2] && is_EmptyEquip_Slots[3] && is_EmptyEquip_Slots[4])
             {
                 Debug.Log("풀칸");
                 return;
+            }
+
+            // 중복 캐릭터 검사
+            for (int i = 0; i < Equip_CharacterList.Length; i++)
+            {
+                if (Equip_CharacterList[i].GetComponent<Equip_Character_Info>().Equip_Character != null)
+                {
+                    if (Equip_CharacterList[i].GetComponent<Equip_Character_Info>().Equip_Character.GetComponent<TowerCharacter>().characterinfo.Character_ID ==
+                        Select_Char.GetComponent<TowerCharacter>().characterinfo.Character_ID)
+                    {
+                        EquipChar_Exist_Panel.SetActive(true);
+                        return;
+                    }
+                }
             }
 
             // 장착 유닛 검사
@@ -584,32 +639,43 @@ namespace TowerDefence
 
         #region Fun
 
+        #region Char_Info
         void Upgrade_PopUP_Refresh()
         {
             if (Select_Char.GetComponent<TowerCharacter>().characterinfo.Charactertype == CharacterType.Fire)
             {
                 // 캐릭터 타입
                 Upgrade_Panel_Text[1].text = "불";
+                // 캐릭터 능력 설명
+                Upgrade_Panel_Text[5].text = "능력 없음";
             }
             else if (Select_Char.GetComponent<TowerCharacter>().characterinfo.Charactertype == CharacterType.Ice)
             {
                 // 캐릭터 타입
                 Upgrade_Panel_Text[1].text = "얼음";
+                // 캐릭터 능력 설명
+                Upgrade_Panel_Text[5].text = Select_Char.GetComponent<TowerCharacter>().characterinfo.Ability_Percent + "% 적 이동속도 감소";
             }
             else if (Select_Char.GetComponent<TowerCharacter>().characterinfo.Charactertype == CharacterType.Grass)
             {
                 // 캐릭터 타입
                 Upgrade_Panel_Text[1].text = "나무";
+                // 캐릭터 능력 설명
+                Upgrade_Panel_Text[5].text = Select_Char.GetComponent<TowerCharacter>().characterinfo.Ability_Percent + "% 가하는 피해 증가";
             }
             else if (Select_Char.GetComponent<TowerCharacter>().characterinfo.Charactertype == CharacterType.Lightning)
             {
                 // 캐릭터 타입
                 Upgrade_Panel_Text[1].text = "전기";
+                // 캐릭터 능력 설명
+                Upgrade_Panel_Text[5].text = Select_Char.GetComponent<TowerCharacter>().characterinfo.Ability_Percent + "데미지의 낙뢰 생성";
             }
             else if (Select_Char.GetComponent<TowerCharacter>().characterinfo.Charactertype == CharacterType.Dark)
             {
                 // 캐릭터 타입
                 Upgrade_Panel_Text[1].text = "어둠";
+                // 캐릭터 능력 설명
+                Upgrade_Panel_Text[5].text = Select_Char.GetComponent<TowerCharacter>().characterinfo.Ability_Percent + "% 몬스터 처형"; 
             }
 
             // 캐릭터 이미지
@@ -623,6 +689,8 @@ namespace TowerDefence
             // 캐릭터 공격 범위
             Upgrade_Panel_Text[4].text = Select_Char.GetComponent<TowerCharacter>().characterinfo.ATK_Range.ToString();
         }
+
+        #endregion
 
         void Empty_Slot_Check()
         {
@@ -639,10 +707,6 @@ namespace TowerDefence
             }
         }
 
-        void Equip_List_Refresh()
-        {
-
-        }
 
         public void Own_Character_Refresh()
         {
@@ -676,6 +740,65 @@ namespace TowerDefence
                 else // 캐릭터가 존재하면
                 {
                     Own_Char_List_UI[i].transform.GetChild(1).GetComponent<Button>().interactable = true;
+                }
+            }
+        }
+
+        public void OnClick_SoundToggle(Toggle obj)
+        {
+            // 효과음 제거 토글
+            if (obj.name == "SFXToggle")
+            {
+                
+                if (obj.isOn == true)
+                {
+                    // 배열에 존재하는 이펙트 음들의 크기를 조절한다.
+                    for (int i = 0; i < GameManager.GMInstance.SoundManagerRef.SFXPlayers.Length; i++)
+                    {
+
+                        GameManager.GMInstance.SoundManagerRef.SFXPlayers[i].volume = SFX_Slider.value;
+                    }
+
+                    SFXToggle.transform.GetChild(0).gameObject.SetActive(false);
+                    SFXToggle.transform.GetChild(1).gameObject.SetActive(true);
+                }
+                else
+                {
+                    // 배열에 존재하는 이펙트 음들의 크기를 조절한다.
+                    for (int i = 0; i < GameManager.GMInstance.SoundManagerRef.SFXPlayers.Length; i++)
+                    {
+
+                        GameManager.GMInstance.SoundManagerRef.SFXPlayers[i].volume = 0.0f;
+                    }
+
+                    SFXToggle.transform.GetChild(0).gameObject.SetActive(true);
+                    SFXToggle.transform.GetChild(1).gameObject.SetActive(false);
+                }
+            }
+            else if (obj.name == "BGMToggle")
+            {
+                if (obj.isOn == true)
+                {
+
+                    // 배열안에 존재하는 배경음의 크기를 조절한다.
+                    for (int i = 0; i < GameManager.GMInstance.SoundManagerRef.BGMPlayers.Length; i++)
+                    {
+                        GameManager.GMInstance.SoundManagerRef.BGMPlayers[i].volume = BGM_Slider.value;
+                    }
+
+                    BGMToggle.transform.GetChild(0).gameObject.SetActive(false);
+                    BGMToggle.transform.GetChild(1).gameObject.SetActive(true);
+                }
+                else
+                {
+                    // 배열안에 존재하는 배경음의 크기를 조절한다.
+                    for (int i = 0; i < GameManager.GMInstance.SoundManagerRef.BGMPlayers.Length; i++)
+                    {
+                        GameManager.GMInstance.SoundManagerRef.BGMPlayers[i].volume = 0;
+                    }
+
+                    BGMToggle.transform.GetChild(0).gameObject.SetActive(true);
+                    BGMToggle.transform.GetChild(1).gameObject.SetActive(false);
                 }
             }
         }
