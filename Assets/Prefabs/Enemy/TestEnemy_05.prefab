@@ -44,7 +44,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7006171927793322175}
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 7196390881372644629, guid: 40ded6d19cb5b724988d30f37fd57762, type: 3}
 --- !u!23 &5795006444091500521
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonDataAsset: {fileID: 11400000, guid: 5a34b75ca8ebf6b4784bfcfbb6cf7f21, type: 2}
-  initialSkinName: Side
+  initialSkinName: Front
   fixPrefabOverrideViaMeshFilter: 0
   initialFlipX: 0
   initialFlipY: 0
@@ -122,7 +122,7 @@ MonoBehaviour:
     materialsInsideMask: []
     materialsOutsideMask: []
   disableRenderingOnOverride: 1
-  _animationName: Side_Idle
+  _animationName: Front_Walk
   loop: 1
   timeScale: 1
 --- !u!114 &8351758199194672587
