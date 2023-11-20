@@ -802,6 +802,28 @@ namespace TowerDefence
                 }
             }
         }
+
+        // TODO ## 캐릭터 구매 ---
+        public void OnClick_Buy_Char(GameObject obj)
+        {
+            // 빈칸 검색 후
+            for (int i = 0; i < GameManager.GMInstance.lobbyManagerRef.Own_Char_List_Info.Length; i++)
+            {
+                // 캐릭터 추가
+                if (GameManager.GMInstance.lobbyManagerRef.Own_Char_List_Info[i] == null)
+                {
+                    GameManager.GMInstance.lobbyManagerRef.Own_Char_List_Info[i] = obj.transform.parent.GetComponent<Shop_Character_List>().Shop_Char_Info;
+                    break;
+                }
+            }
+
+            // 존재하는 캐릭터 구매 버튼 비활성화
+            obj.GetComponent<Button>().interactable = false;
+            // 캐릭터 존재 여부 체크
+            obj.transform.parent.GetComponent<Shop_Character_List>().Shop_Char_Info.GetComponent<TowerCharacter>().characterinfo.isExist = true;
+
+            Own_Character_Refresh();
+        }
         #endregion
     }
 }
