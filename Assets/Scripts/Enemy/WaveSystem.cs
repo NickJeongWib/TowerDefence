@@ -15,20 +15,20 @@ namespace TowerDefence
     public class WaveSystem : MonoBehaviour
     {
         [SerializeField]
-        public Wave[] wave;
+        private Wave[] wave;
         [SerializeField]
         private EnemySpawner enemySpawner;
         public int currentWaveIndex;
+        public int KillCount;
 
         public void Start()
         {
-            
             if (currentWaveIndex < wave.Length)
             {
                 enemySpawner.StartWave(wave[currentWaveIndex]);
             }
         }
-        
+
 
     }
 }

@@ -11,12 +11,7 @@ namespace TowerDefence
         private Vector3 initialTowerPosition; // 타워의 초기 위치
         private Vector3 initialMouseOffset; // 드래그 시작 시 마우스와 타워 위치 간의 오프셋
         private bool isDragging = false;
-        TowerCharacter towerCharacter;
 
-        private void Start()
-        {
-            towerCharacter = FindObjectOfType<TowerCharacter>();
-        }
         private void Update()
         {
             if (Input.GetMouseButtonDown(0))
@@ -30,7 +25,6 @@ namespace TowerDefence
                     initialMouseOffset = draggedTower.transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
                     initialTowerPosition = draggedTower.transform.position; // 초기 위치 기억
                     isDragging = true;
-                    towerCharacter.DragIn = false;
                 }
             }
 
@@ -60,7 +54,6 @@ namespace TowerDefence
                     // 초기 위치로 이동
                     draggedTower.transform.position = new Vector3(initialTowerPosition.x, initialTowerPosition.y, 0);
                     isDragging = false;
-                    towerCharacter.DragIn = true;
                 }
             }
         }

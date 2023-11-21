@@ -38,45 +38,41 @@ namespace TowerDefence
         private float currentCooldown = 0.0f; // 현재 쿨다운 시간
         public float attackRange = 3.0f; // 캐릭터의 공격 범위
         private Enemy closestEnemy;
-        public bool DragIn = true;
 
         private void Update()
         {
-            if (DragIn == true)
+            // 쿨다운 감소
+            currentCooldown -= Time.deltaTime;
+
+            if (currentCooldown <= 0)
             {
-                // 쿨다운 감소
-                currentCooldown -= Time.deltaTime;
+                // 가장 가까운 적을 찾음
+                closestEnemy = FindClosestEnemy();
 
-                if (currentCooldown <= 0)
+                if (closestEnemy != null)
                 {
-                    // 가장 가까운 적을 찾음
-                    closestEnemy = FindClosestEnemy();
+                    float distance = Vector3.Distance(transform.position, closestEnemy.transform.position);
 
-                    if (closestEnemy != null)
+                    if (distance <= attackRange)
                     {
-                        float distance = Vector3.Distance(transform.position, closestEnemy.transform.position);
+                        // 발사체 생성
+                        GameObject newProjectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
 
-                        if (distance <= attackRange)
-                        {
-                            // 발사체 생성
-                            GameObject newProjectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
+                        newProjectile.GetComponent<Arrow>().attackDamage = characterinfo.Damage;
+                        newProjectile.GetComponent<Arrow>().atkSpeed = characterinfo.Char_ATKSpeed;
 
-                            newProjectile.GetComponent<Arrow>().attackDamage = characterinfo.Damage;
-                            newProjectile.GetComponent<Arrow>().atkSpeed = characterinfo.Char_ATKSpeed;
+                        // 방향 설정
+                        Vector3 direction = (closestEnemy.transform.position - projectileSpawnPoint.position).normalized;
 
-                            // 방향 설정
-                            Vector3 direction = (closestEnemy.transform.position - projectileSpawnPoint.position).normalized;
+                        // 회전 설정
+                        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                        newProjectile.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
-                            // 회전 설정
-                            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-                            newProjectile.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+                        // Rigidbody2D 가져오고 방향과 속도 설정
+                        Rigidbody2D rb = newProjectile.GetComponent<Rigidbody2D>();
+                        rb.velocity = direction;
 
-                            // Rigidbody2D 가져오고 방향과 속도 설정
-                            Rigidbody2D rb = newProjectile.GetComponent<Rigidbody2D>();
-                            rb.velocity = direction;
-
-                            currentCooldown = attackCooldown; // 공격 쿨다운 설정
-                        }
+                        currentCooldown = attackCooldown; // 공격 쿨다운 설정
                     }
                 }
             }
