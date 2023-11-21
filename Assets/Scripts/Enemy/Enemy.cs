@@ -2,11 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Spine.Unity;
+using static TowerDefence.Define;
 
 namespace TowerDefence
 {
+    [System.Serializable]
+    public struct MonsterInfo
+    {
+        public int index;
+        public int MonsterID;
+        public string Monster_Name;
+        public float Monster_HP;
+        public float Monster_Speed;
+        public Stage_Level Spawn_Stage;
+
+    }
+
     public class Enemy : MonoBehaviour
     {
+        public MonsterInfo monsterinfo;
+
         public int wayPointCount;          // 이동 경로 개수
         public Transform[] wayPoints;              // 이동 경로 정보
         private int currentIndex = 0;       // 현재 목표지점 인덱스

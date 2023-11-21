@@ -8,6 +8,7 @@ namespace TowerDefence
     [System.Serializable]
     public struct Quest_Info
     {
+        public int Index;
         public int Quest_ID;
         public string Quest_Category;
         public Quest_Category_Type Quest_Type;
