@@ -866,14 +866,6 @@ namespace TowerDefence
         // TODO ## 캐릭터 구매
         public void OnClick_Buy_Char(GameObject obj)
         {
-            // 보유 재화가 캐릭터 가격보다 적으면 실행취소
-            if (obj.transform.parent.GetComponent<Shop_Character_List>().Shop_Char_Info.GetComponent<TowerCharacter>().characterinfo.Price
-                > GameManager.GMInstance.gameDataManagerRef.Gold)
-            {
-                Gold_Lake_Panel.SetActive(true);
-                return;
-            }
-
             // 빈칸 검색 후
             for (int i = 0; i < GameManager.GMInstance.lobbyManagerRef.Own_Char_List_Info.Length; i++)
             {
@@ -884,10 +876,6 @@ namespace TowerDefence
                     break;
                 }
             }
-
-            // 보유 골드에서 캐릭터 가격 만큼 빼준다
-            GameManager.GMInstance.gameDataManagerRef.Gold -=
-                obj.transform.parent.GetComponent<Shop_Character_List>().Shop_Char_Info.GetComponent<TowerCharacter>().characterinfo.Price;
 
             // 존재하는 캐릭터 구매 버튼 비활성화
             obj.GetComponent<Button>().interactable = false;
@@ -904,14 +892,6 @@ namespace TowerDefence
         // TODO ## 캐릭터 강화 --- 재화 소모 재현 필요
         public void OnClick_Upgrade_Char(GameObject obj)
         {
-            // 보유 재화가 캐릭터 강화 가격보다 적으면 실행취소
-            if (Select_Char.GetComponent<TowerCharacter>().characterinfo.Character_Upgrade_Price
-                > GameManager.GMInstance.gameDataManagerRef.Gold)
-            {
-                Gold_Lake_Panel.SetActive(true);
-                return;
-            }
-
             // 캐릭터 공격력 더 해 주기
             Select_Char.GetComponent<TowerCharacter>().characterinfo.Damage += 
                 Select_Char.GetComponent<TowerCharacter>().characterinfo.Damage_Up_Rate;
@@ -928,15 +908,7 @@ namespace TowerDefence
             Select_Char.GetComponent<TowerCharacter>().characterinfo.Char_ATKSpeed += 
                 Select_Char.GetComponent<TowerCharacter>().characterinfo.ATK_Speed_Up_Rate;
 
-            // 강화비용 지불
-            GameManager.GMInstance.gameDataManagerRef.Gold -= Select_Char.GetComponent<TowerCharacter>().characterinfo.Character_Upgrade_Price;
-
             Upgrade_PopUP_Refresh();
-
-            // 저장
-            JsonSerialize.SavePlayerToJson(GameManager.GMInstance.gameDataManagerRef);
-            // 창닫기
-            obj.SetActive(false);
         }
         #endregion
     }
