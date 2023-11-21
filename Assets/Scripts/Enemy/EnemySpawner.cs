@@ -15,7 +15,7 @@ namespace TowerDefence
         [SerializeField]
         private Transform[] wayPoints;      // 현재 스테이지 이동 경로
         [SerializeField]
-        private Wave currentWave;    // 현재 웨이브 정보
+        public Wave currentWave;    // 현재 웨이브 정보
 
         private WaveSystem wavesystem;
 
