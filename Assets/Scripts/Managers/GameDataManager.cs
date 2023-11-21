@@ -17,19 +17,27 @@ namespace TowerDefence
 
         public GameObject[] character;
         public GameObject[] quest;
+        public GameObject[] monster;
 
         List<Dictionary<string, object>> Character_Data;
         List<Dictionary<string, object>> Quest_Data;
+        List<Dictionary<string, object>> Monster_Data;
+
+        public int Gold;
+        public int Gem;
+        public bool isFirstStarter;
 
         void Awake()
         {
             // TODO ## 데이터 테이블 읽어오는 곳
-            Character_Data = CSVReader.Read("Character_DataTable");
-            Quest_Data = CSVReader.Read("Quest_Data");
+            Character_Data = CSVReader.Read("Character_DT");
+            Quest_Data = CSVReader.Read("Quest_DT");
+            Monster_Data = CSVReader.Read("Monster_DT");
 
-            #region Character_DataTable
+            #region DB_Character
             for (int i = 0; i < Character_Data.Count; i++)
             {
+                character[i].GetComponent<TowerCharacter>().characterinfo.Index = (int)Character_Data[i]["Index"];
                 character[i].GetComponent<TowerCharacter>().characterinfo.Character_ID = (int)Character_Data[i]["Char_ID"];
                 character[i].GetComponent<TowerCharacter>().characterinfo.Character_Name = Character_Data[i]["Char_Name"].ToString();
                 character[i].GetComponent<TowerCharacter>().characterinfo.Level = (int)Character_Data[i]["Char_Lv"];
@@ -84,6 +92,7 @@ namespace TowerDefence
             // TODO ## 업적 데이터 테이블 읽어오는 곳
             for (int i = 0; i < Quest_Data.Count; i++)
             {
+                quest[i].GetComponent<Quest>().QuestInfo.Index = (int)Quest_Data[i]["Index"];
                 quest[i].GetComponent<Quest>().QuestInfo.Quest_ID = (int)Quest_Data[i]["Quest_ID"];
                 quest[i].GetComponent<Quest>().QuestInfo.Quest_Category = Quest_Data[i]["Category"].ToString();
                 quest[i].GetComponent<Quest>().QuestInfo.Quest_Type = (Quest_Category_Type)Quest_Data[i]["Category_Type"];
@@ -105,11 +114,26 @@ namespace TowerDefence
                 }
             }
             #endregion
+
+            #region DB_Monster
+            for (int i = 0; i < Monster_Data.Count; i++)
+            {
+                monster[i].GetComponent<Enemy>().monsterinfo.index = (int)Monster_Data[i]["Index"];
+                monster[i].GetComponent<Enemy>().monsterinfo.MonsterID = (int)Monster_Data[i]["Monster_ID"];
+                monster[i].GetComponent<Enemy>().monsterinfo.Monster_Name = Monster_Data[i]["Monster_Name"].ToString();
+                monster[i].GetComponent<Enemy>().monsterinfo.Spawn_Stage = (Stage_Level)((int)Monster_Data[i]["Spawn_Stage"] - 1);
+                monster[i].GetComponent<Enemy>().monsterinfo.Monster_HP = (float)Monster_Data[i]["Monster_Hp"];
+                monster[i].GetComponent<Enemy>().monsterinfo.Monster_Speed = (float)Monster_Data[i]["Monster_Speed"] / 100;
+            }
+
+            #endregion
         }
 
         void Start()
         {
             GameManager.GMInstance.gameDataManagerRef = this;
+
+            JsonSerialize.LoadPlayerFromJson(this);
         }
     }
 }

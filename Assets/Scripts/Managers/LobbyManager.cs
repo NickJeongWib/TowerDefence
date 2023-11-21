@@ -11,7 +11,11 @@ namespace TowerDefence
     public class LobbyManager : MonoBehaviour
     {
         #region Var
-
+        [Header("----UI----")]
+        [SerializeField]
+        TextMeshProUGUI[] Gold_Text;
+        [SerializeField]
+        TextMeshProUGUI[] Gem_Text;
 
         [Header("----Music----")]
         [SerializeField]
@@ -45,11 +49,16 @@ namespace TowerDefence
         [SerializeField]
         GameObject[] Shop_CharacterList;
 
+        [SerializeField]
+        GameObject Gold_Lake_Panel;
+
         [Header("----UpGradePanel----")]
         [SerializeField]
         TextMeshProUGUI[] Upgrade_Panel_Text;
         [SerializeField]
         Image Upgrade_Panel_Image;
+        [SerializeField]
+        TextMeshProUGUI[] Upgrade_Info_Text;
 
         [Header("----Inventory----")]
         [SerializeField]
@@ -68,6 +77,10 @@ namespace TowerDefence
 
         [SerializeField]
         GameObject None_Touch_Btn;
+
+
+        [SerializeField]
+        TextMeshProUGUI Upgrade_Gold_Text;
 
         [SerializeField]
         GameObject[] Own_Char_List_UI;
@@ -124,8 +137,29 @@ namespace TowerDefence
             else if (obj.name == "Character_Upgrade")
             {
                 Upgrade_PopUP_Refresh();
-
                 OnClick_None_Touch_Btn();
+            }
+            else if (obj.name == "Upgrade_Panel")
+            {
+                // 캐릭터 공격력 관련 텍스트 출력
+                Upgrade_Info_Text[0].text = Select_Char.GetComponent<TowerCharacter>().characterinfo.Damage.ToString();
+                Upgrade_Info_Text[1].text = " + " + Select_Char.GetComponent<TowerCharacter>().characterinfo.Damage_Up_Rate.ToString();
+
+                // 캐릭터 능력 관련 텍스트 출력
+                Upgrade_Info_Text[2].text = Select_Char.GetComponent<TowerCharacter>().characterinfo.Ability_Percent.ToString();
+                Upgrade_Info_Text[3].text = " + " + Select_Char.GetComponent<TowerCharacter>().characterinfo.Ability_Percent_Up_Rate.ToString();
+
+                // 캐릭터 공격 범위 관련 텍스트 출력
+                Upgrade_Info_Text[4].text = Select_Char.GetComponent<TowerCharacter>().characterinfo.ATK_Range.ToString();
+                Upgrade_Info_Text[5].text = " + " + Select_Char.GetComponent<TowerCharacter>().characterinfo.ATK_Range_Up_Rate.ToString();
+
+                // 캐릭터 공격 속도 관련 텍스트 출력
+                Upgrade_Info_Text[6].text = Select_Char.GetComponent<TowerCharacter>().characterinfo.Char_ATKSpeed.ToString();
+                Upgrade_Info_Text[7].text = " + " + Select_Char.GetComponent<TowerCharacter>().characterinfo.ATK_Speed_Up_Rate.ToString();
+
+                // 텍스트 강화비용 텍스트로 수정
+                Upgrade_Gold_Text.text =
+                     Select_Char.GetComponent<TowerCharacter>().characterinfo.Character_Upgrade_Price.ToString();
             }
 
             obj.gameObject.SetActive(true);
@@ -459,8 +493,14 @@ namespace TowerDefence
             {
                 Shop_CharacterList[i].GetComponent<Shop_Character_List>().Shop_Char_Info = GameManager.GMInstance.gameDataManagerRef.character[i + 5];
 
+                // 이미지 변경
                 Shop_CharacterList[i].transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite =
                     Shop_CharacterList[i].GetComponent<Shop_Character_List>().Shop_Char_Info.GetComponent<SpriteRenderer>().sprite;
+
+                // 캐릭터 가격 텍스트 수정
+                Shop_CharacterList[i].transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text =
+                     Shop_CharacterList[i].GetComponent<Shop_Character_List>().Shop_Char_Info.GetComponent<TowerCharacter>().characterinfo.Price.ToString();
+
             }
            
             // 게임 데이터테이블의 캐릭터 수만큼 실행
@@ -481,6 +521,8 @@ namespace TowerDefence
 
             Own_Character_Refresh();
             Empty_Slot_Check();
+            Refresh_Gold_Text();
+            Refresh_Gem_Text();
         }
         #endregion
 
@@ -595,7 +637,7 @@ namespace TowerDefence
                     Equip_CharacterList[i].GetComponent<Equip_Character_Info>().Equip_Character = Select_Char;
                     Equip_CharacterList[i].GetComponent<Image>().sprite = Select_Char.GetComponent<SpriteRenderer>().sprite;
                     Equip_CharacterList[i].transform.localScale = Vector3.one;
-                    Debug.Log("장착");
+                    // Debug.Log("장착");
                     break;
                 }
             }
@@ -691,6 +733,24 @@ namespace TowerDefence
         }
 
         #endregion
+
+        public void Refresh_Gold_Text()
+        {
+            // 보유 골드가 표시되는 모든 곳에 텍스트를 바꿔준다.
+            for (int i = 0; i < Gold_Text.Length; i++)
+            {
+                Gold_Text[i].text = GameManager.GMInstance.gameDataManagerRef.Gold.ToString();
+            }
+        }
+
+        public void Refresh_Gem_Text()
+        {
+            // 보유 젬이 표시되는 모든 곳에 텍스트를 바꿔준다.
+            for (int i = 0; i < Gem_Text.Length; i++)
+            {
+                Gem_Text[i].text = GameManager.GMInstance.gameDataManagerRef.Gem.ToString();
+            }
+        }
 
         void Empty_Slot_Check()
         {
@@ -803,9 +863,17 @@ namespace TowerDefence
             }
         }
 
-        // TODO ## 캐릭터 구매 ---
+        // TODO ## 캐릭터 구매
         public void OnClick_Buy_Char(GameObject obj)
         {
+            // 보유 재화가 캐릭터 가격보다 적으면 실행취소
+            if (obj.transform.parent.GetComponent<Shop_Character_List>().Shop_Char_Info.GetComponent<TowerCharacter>().characterinfo.Price
+                > GameManager.GMInstance.gameDataManagerRef.Gold)
+            {
+                Gold_Lake_Panel.SetActive(true);
+                return;
+            }
+
             // 빈칸 검색 후
             for (int i = 0; i < GameManager.GMInstance.lobbyManagerRef.Own_Char_List_Info.Length; i++)
             {
@@ -817,12 +885,58 @@ namespace TowerDefence
                 }
             }
 
+            // 보유 골드에서 캐릭터 가격 만큼 빼준다
+            GameManager.GMInstance.gameDataManagerRef.Gold -=
+                obj.transform.parent.GetComponent<Shop_Character_List>().Shop_Char_Info.GetComponent<TowerCharacter>().characterinfo.Price;
+
             // 존재하는 캐릭터 구매 버튼 비활성화
             obj.GetComponent<Button>().interactable = false;
             // 캐릭터 존재 여부 체크
             obj.transform.parent.GetComponent<Shop_Character_List>().Shop_Char_Info.GetComponent<TowerCharacter>().characterinfo.isExist = true;
 
             Own_Character_Refresh();
+            Refresh_Gold_Text();
+
+            // 소유 골드 저장
+            JsonSerialize.SavePlayerToJson(GameManager.GMInstance.gameDataManagerRef);
+        }
+
+        // TODO ## 캐릭터 강화 --- 재화 소모 재현 필요
+        public void OnClick_Upgrade_Char(GameObject obj)
+        {
+            // 보유 재화가 캐릭터 강화 가격보다 적으면 실행취소
+            if (Select_Char.GetComponent<TowerCharacter>().characterinfo.Character_Upgrade_Price
+                > GameManager.GMInstance.gameDataManagerRef.Gold)
+            {
+                Gold_Lake_Panel.SetActive(true);
+                return;
+            }
+
+            // 캐릭터 공격력 더 해 주기
+            Select_Char.GetComponent<TowerCharacter>().characterinfo.Damage += 
+                Select_Char.GetComponent<TowerCharacter>().characterinfo.Damage_Up_Rate;
+
+            // 캐릭터 능력치 더 해 주기
+            Select_Char.GetComponent<TowerCharacter>().characterinfo.Ability_Percent += 
+                Select_Char.GetComponent<TowerCharacter>().characterinfo.Ability_Percent_Up_Rate;
+
+            // 캐릭터 공격범위 더 해 주기
+            Select_Char.GetComponent<TowerCharacter>().characterinfo.ATK_Range += 
+                Select_Char.GetComponent<TowerCharacter>().characterinfo.ATK_Range_Up_Rate;
+
+            // 캐릭터 공격속도 더 해 주기
+            Select_Char.GetComponent<TowerCharacter>().characterinfo.Char_ATKSpeed += 
+                Select_Char.GetComponent<TowerCharacter>().characterinfo.ATK_Speed_Up_Rate;
+
+            // 강화비용 지불
+            GameManager.GMInstance.gameDataManagerRef.Gold -= Select_Char.GetComponent<TowerCharacter>().characterinfo.Character_Upgrade_Price;
+
+            Upgrade_PopUP_Refresh();
+
+            // 저장
+            JsonSerialize.SavePlayerToJson(GameManager.GMInstance.gameDataManagerRef);
+            // 창닫기
+            obj.SetActive(false);
         }
         #endregion
     }

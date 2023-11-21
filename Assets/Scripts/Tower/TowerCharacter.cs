@@ -8,6 +8,7 @@ namespace TowerDefence
     [System.Serializable]
     public struct CharacterInfo
     {
+        public int Index;
         public int Character_ID;
         public CharacterType Charactertype;
         public string Character_Name;
