@@ -10,12 +10,14 @@ namespace TowerDefence
         [SerializeField]
         private int maxHealth = 3;  // 최대 체력
         private int currentHealth;  // 현재 체력
+        IngameManager ingameManager;
 
         public Image[] heartImages = null;  // 하트 이미지 배열
 
         public void Start()
         {
             currentHealth = maxHealth;
+            ingameManager = FindObjectOfType<IngameManager>();
         }
 
         public void TakeDamage()
@@ -24,8 +26,7 @@ namespace TowerDefence
 
             if (currentHealth <= 0)
             {
-                // 게임 오버 또는 다른 처리를 수행할 수 있음
-                Debug.Log("Game Over");
+                ingameManager.GameOver();
             }
             UpdateHealthUI();
         }

@@ -13,6 +13,7 @@ namespace TowerDefence
         private EnemyMoveControl enemyMoveControl;       // 오브젝트 이동 제어
 
         WaveSystem waveSystem;
+        IngameManager ingameManager;
         [SerializeField]
         private float maxHP;
         private float currentHP;
@@ -28,6 +29,7 @@ namespace TowerDefence
         {
             player = FindObjectOfType<Player>();
             waveSystem = FindObjectOfType<WaveSystem>();
+            ingameManager = FindObjectOfType<IngameManager>();
         }
 
         public void Setup(Transform[] wayPoints)
@@ -83,6 +85,7 @@ namespace TowerDefence
                 // 적 오브젝트 삭제
                 Destroy(gameObject);
                 player.TakeDamage();
+                ingameManager.EnemyKilled();
             }
         }
         public void TakeDamage(float damage)
@@ -92,7 +95,7 @@ namespace TowerDefence
             if (currentHP <= 0)
             {
                 Destroy(gameObject);
-                waveSystem.KillCount++;
+                ingameManager.EnemyKilled();
             }
         }
     }
