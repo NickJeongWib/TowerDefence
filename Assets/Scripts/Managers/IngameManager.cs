@@ -15,7 +15,6 @@ namespace TowerDefence
         TowerSpawner towerSpawner;
         public GameObject gameOverUi;
         public GameObject gameWinUi;
-        EnemySpawner enemySpawner;
         WaveSystem waveSystem;
 
         public int killCount = 0;
@@ -38,8 +37,7 @@ namespace TowerDefence
         private void GainCost()
         {
             currentCost += 1;
-            UpdateCostText();  // UI Text 업데이트
-                               // 여기에 코스트가 획득될 때 수행할 작업을 추가할 수 있습니다.
+            UpdateCostText();
         }
 
         private void UpdateCostText()
@@ -55,15 +53,37 @@ namespace TowerDefence
             // 버튼이 클릭되면 4 코스트를 소모하고 실행
             if (currentCost >= 4)
             {
-                currentCost -= 4;
-                UpdateCostText();  // 코스트 업데이트
-                towerSpawner.SpawnCharacter();  // 버튼 동작 실행
+                if (!AreAllTilesOccupied())
+                {
+                    currentCost -= 4;
+                    UpdateCostText();  // 코스트 업데이트
+                    towerSpawner.SpawnCharacter();  // 버튼 동작 실행
+                }
+                else
+                {
+                    Debug.Log("모든 타일이 가득찼습니다.");
+                }
+
             }
             else
             {
                 Debug.Log("코스트가 부족합니다.");
             }
+
         }
+
+        bool AreAllTilesOccupied()
+        {
+            foreach (Tile tile in towerSpawner.allTiles)
+            {
+                if (!tile.isOccupied)
+                {
+                    return false; // 하나라도 비어 있는 타일이 있다면 false 반환
+                }
+            }
+            return true; // 모든 타일이 차 있으면 true 반환
+        }
+
 
         public void OnClickOpenPopUp_Btn(GameObject obj)
         {

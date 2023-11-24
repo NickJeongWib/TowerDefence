@@ -42,7 +42,6 @@ namespace TowerDefence
 
                 // 선택한 타일이 비어 있을 때만 캐릭터를 소환
                 GameObject newCharacter = Instantiate(characterPrefab[randomCharacterIndex], selectedTile.transform.position, Quaternion.identity);
-                selectedTile.isOccupied = true;
             }
         }
     }
