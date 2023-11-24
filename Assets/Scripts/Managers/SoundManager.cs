@@ -36,6 +36,8 @@ namespace TowerDefence
             Btn_Select,
             PopUp_Close,
             Slide,
+            Fusion_Sound,
+            Hit,
         }
 
 

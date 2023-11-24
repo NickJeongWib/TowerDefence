@@ -66,26 +66,40 @@ namespace TowerDefence
                     {
                         if (hitCollider.CompareTag("Tower") && hitCollider.gameObject != draggedTower && draggedTower.CompareTag("Tower"))
                         {
-                            // 충돌한 타워와 드래그 중인 타워를 삭제
-                            Destroy(hitCollider.gameObject);
-                            Destroy(draggedTower);
+                            GameManager.GMInstance.SoundManagerRef.PlaySFX(SoundManager.SFX.Fusion_Sound);
+
                             int randomCharacterIndex = Random.Range(0, characterPrefabs.Length);
                             GameObject newCharacter = Instantiate(characterPrefabs[randomCharacterIndex], hitCollider.gameObject.transform.position, Quaternion.identity);
                             GameObject newAura = Instantiate(aura, hitCollider.gameObject.transform.position, Quaternion.identity);
                             newCharacter.tag = "Tower2";
                             newAura.transform.parent = newCharacter.transform;
+
+                            newCharacter.transform.parent = hitCollider.gameObject.transform.parent;
+                            newCharacter.transform.parent.GetComponent<Tile>().spawnchar = newCharacter;
+                            newCharacter.transform.parent.GetComponent<Tile>().isOccupied = true;
+
+                            // 충돌한 타워와 드래그 중인 타워를 삭제
+                            Destroy(hitCollider.gameObject);
+                            Destroy(draggedTower);
                             break;
                         }
                         if(hitCollider.CompareTag("Tower2") && hitCollider.gameObject != draggedTower && draggedTower.CompareTag("Tower2"))
                         {
-                            // 충돌한 타워와 드래그 중인 타워를 삭제
-                            Destroy(hitCollider.gameObject);
-                            Destroy(draggedTower);
+                            GameManager.GMInstance.SoundManagerRef.PlaySFX(SoundManager.SFX.Fusion_Sound);
+
                             int randomCharacterIndex = Random.Range(0, characterPrefabs.Length);
                             GameObject newCharacter = Instantiate(characterPrefabs[randomCharacterIndex], hitCollider.gameObject.transform.position, Quaternion.identity);
                             GameObject newAuraParticle = Instantiate(auraParticle, hitCollider.gameObject.transform.position, Quaternion.identity);
                             newCharacter.tag = "Tower3";
                             newAuraParticle.transform.parent = newCharacter.transform;
+
+                            newCharacter.transform.parent = hitCollider.gameObject.transform.parent;
+                            newCharacter.transform.parent.GetComponent<Tile>().spawnchar = newCharacter;
+                            newCharacter.transform.parent.GetComponent<Tile>().isOccupied = true;
+
+                            // 충돌한 타워와 드래그 중인 타워를 삭제
+                            Destroy(hitCollider.gameObject);
+                            Destroy(draggedTower);
                             break;
                         }
                     }

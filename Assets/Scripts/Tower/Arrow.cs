@@ -80,6 +80,7 @@ namespace TowerDefence
             if (!collision.CompareTag("Enemy")) return;
             if (collision.CompareTag("Enemy"))
             {
+                GameManager.GMInstance.SoundManagerRef.PlaySFX(SoundManager.SFX.Hit);
                 Destroy(gameObject);
             }
 
