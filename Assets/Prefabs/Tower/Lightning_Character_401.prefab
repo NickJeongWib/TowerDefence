@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterinfo:
+    Index: 0
     Character_ID: 401
     Charactertype: 4
     Character_Name: Test_Lightning_02
@@ -144,6 +145,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 8930298171425269818, guid: ae06962114141c84cb69bac4d58219de, type: 3}
   attackCooldown: 0.5
   attackRange: 5
+  DragIn: 1
 --- !u!114 &1092058537594195632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,7 +158,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfe01553d4658bc4790da671e3b17e8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CharaterPrefabs: []
+  characterPrefabs: []
+  aura: {fileID: 6754887895479081322, guid: e818d80fd902fac4cb5a85e2e2be9fe6, type: 3}
+  auraParticle: {fileID: 4990503906548871418, guid: eb43efe080488d643ae38caa0943ccb0, type: 3}
 --- !u!50 &6390223734411107098
 Rigidbody2D:
   serializedVersion: 4
