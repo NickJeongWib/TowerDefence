@@ -218,6 +218,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9414b8eb06ea94b249708bc621e9638d, type: 3}
   - {fileID: 8300000, guid: 657a7d73e16c14d63b3e89335a34e4ea, type: 3}
   - {fileID: 8300000, guid: f0f4fcf7032744d76afa967a7ce159d4, type: 3}
+  - {fileID: 8300000, guid: 64795b87003c2324fa0814fbc336066c, type: 3}
+  - {fileID: 8300000, guid: 6b7eaf4532a2f614595ad58d2b86efc4, type: 3}
   SFXChannels: 50
   SFXPlayers: []
   bIsSFXOn: 0
@@ -425,6 +427,7 @@ MonoBehaviour:
   TitleSceneManagerRef: {fileID: 0}
   LobbyManagerRef: {fileID: 0}
   GameDataManagerRef: {fileID: 0}
+  TowerSpawnerRef: {fileID: 0}
   SoundManagerRef: {fileID: 0}
 --- !u!4 &693784492
 Transform:
