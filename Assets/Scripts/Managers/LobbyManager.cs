@@ -533,6 +533,81 @@ namespace TowerDefence
             obj.SetActive(false);
         }
 
+        // TODO ## 联 备涝包访
+        public void OnClick_Buy_Gem(GameObject obj)
+        {
+            if (obj.name == "Buy_Gem_40")
+            {
+               
+                GameManager.GMInstance.gameDataManagerRef.Gem += 40;
+            }
+            else if (obj.name == "Buy_Gem_220")
+            {
+                GameManager.GMInstance.gameDataManagerRef.Gem += 220;
+            }
+            else if (obj.name == "Buy_Gem_480")
+            {
+                // 120 Gem
+                GameManager.GMInstance.gameDataManagerRef.Gem += 480;
+            }
+            else if (obj.name == "Buy_Gem_1200")
+            {
+                // 240 Gem
+                GameManager.GMInstance.gameDataManagerRef.Gem += 1200;
+            }
+            else if (obj.name == "Buy_Gem_2100")
+            {
+                // 490 Gem
+                GameManager.GMInstance.gameDataManagerRef.Gem += 2100;
+            }
+            Refresh_Gem_Text();
+            JsonSerialize.SavePlayerToJson(GameManager.GMInstance.gameDataManagerRef);
+        }
+
+        // TODO ## 榜靛 备概 包访
+        public void OnClick_Buy_Gold(GameObject obj)
+        {
+            if (obj.name == "Buy_Gold_1500")
+            {
+                GameManager.GMInstance.gameDataManagerRef.Gold += 1500;
+
+                // 12 Gem
+                GameManager.GMInstance.gameDataManagerRef.Gem -= 12;
+            }
+            else if (obj.name == "Buy_Gold_4000")
+            {
+                GameManager.GMInstance.gameDataManagerRef.Gold += 4000;
+
+                // 48 Gem
+                GameManager.GMInstance.gameDataManagerRef.Gem -= 48;
+            }
+            else if (obj.name == "Buy_Gold_12000")
+            {
+                GameManager.GMInstance.gameDataManagerRef.Gold += 12000;
+
+                // 120 Gem
+                GameManager.GMInstance.gameDataManagerRef.Gem -= 120;
+            }
+            else if (obj.name == "Buy_Gold_25000")
+            {
+                GameManager.GMInstance.gameDataManagerRef.Gold += 25000;
+
+                // 240 Gem
+                GameManager.GMInstance.gameDataManagerRef.Gem -= 240;
+            }
+            else if (obj.name == "Buy_Gold_60000")
+            {
+                GameManager.GMInstance.gameDataManagerRef.Gold += 60000;
+
+                // 490 Gem
+                GameManager.GMInstance.gameDataManagerRef.Gem -= 490;
+            }
+            Refresh_Gold_Text();
+            Refresh_Gem_Text();
+            JsonSerialize.SavePlayerToJson(GameManager.GMInstance.gameDataManagerRef);
+        }
+
+
         #region GameStart_Btn
         public void OnClickGameStart(GameObject obj)
         {
