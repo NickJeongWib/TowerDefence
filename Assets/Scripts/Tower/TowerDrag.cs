@@ -12,14 +12,12 @@ namespace TowerDefence
         private Vector3 initialMouseOffset; // 드래그 시작 시 마우스와 타워 위치 간의 오프셋
         public bool isDragging = false;
         TowerCharacter towerCharacter;
-        TowerSpawner towerSpawner;
         public GameObject aura;
         public GameObject auraParticle;
 
         private void Start()
         {
             towerCharacter = FindObjectOfType<TowerCharacter>();
-            towerSpawner = FindObjectOfType<TowerSpawner>();
             for (int i = 0; i < GameManager.GMInstance.gameDataManagerRef.Equip_Char.Length; i++)
             {
                 characterPrefabs[i] = GameManager.GMInstance.gameDataManagerRef.Equip_Char[i];
@@ -38,7 +36,7 @@ namespace TowerDefence
                     initialMouseOffset = draggedTower.transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
                     initialTowerPosition = draggedTower.transform.position; // 초기 위치 기억
                     isDragging = true;
-                    towerCharacter.DragIn = false;
+                    hit.collider.gameObject.GetComponent<TowerCharacter>().DragIn = false;
                 }
                 if (hit.collider != null && hit.collider.CompareTag("Tower2"))
                 {
@@ -47,7 +45,7 @@ namespace TowerDefence
                     initialMouseOffset = draggedTower.transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
                     initialTowerPosition = draggedTower.transform.position; // 초기 위치 기억
                     isDragging = true;
-                    towerCharacter.DragIn = false;
+                    hit.collider.gameObject.GetComponent<TowerCharacter>().DragIn = false;
                 }
             }
             // 드래그 중인 타워가 있을 때

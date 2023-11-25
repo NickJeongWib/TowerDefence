@@ -154,13 +154,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterinfo:
+    Index: 6
     Character_ID: 201
     Charactertype: 2
     Character_Name: Test_Ice_02
     Level: 1
     Damage: 40
     Damage_Up_Rate: 10
-    Char_ATKSpeed: 0
+    Char_ATKSpeed: 5.5
     ATK_Speed_Up_Rate: 0
     ATK_Range: 5
     ATK_Range_Up_Rate: 0
@@ -170,11 +171,12 @@ MonoBehaviour:
     Character_Upgrade_Price: 1500
     Price: 1000
     isBase_Char: 0
-    isExist: 0
+    isExist: 1
   projectileSpawnPoint: {fileID: 1246276109156421821}
   projectilePrefab: {fileID: 1233445776671624020, guid: 2798b48b8116e8d48b294ba0d1bb4274, type: 3}
   attackCooldown: 0.5
   attackRange: 5
+  DragIn: 1
 --- !u!114 &-5576692367959136545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,7 +189,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfe01553d4658bc4790da671e3b17e8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CharaterPrefabs: []
+  characterPrefabs:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  isDragging: 0
+  aura: {fileID: 6754887895479081322, guid: e818d80fd902fac4cb5a85e2e2be9fe6, type: 3}
+  auraParticle: {fileID: 4990503906548871418, guid: eb43efe080488d643ae38caa0943ccb0, type: 3}
 --- !u!50 &6451208942193834405
 Rigidbody2D:
   serializedVersion: 4
@@ -222,16 +232,16 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.017004311, y: 0.008502185}
+  m_Offset: {x: 0.0088498, y: 0.040819764}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.56, y: 2.56}
+    oldSize: {x: 5.12, y: 5.12}
     newSize: {x: 5.12, y: 5.12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9956032, y: 1.2166592}
+  m_Size: {x: 1.7453734, y: 2.2637522}
   m_EdgeRadius: 0

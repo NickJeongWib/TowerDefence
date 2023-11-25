@@ -43,7 +43,7 @@ namespace TowerDefence
 
         private void Update()
         {
-            if (DragIn == true)
+            if (this.DragIn == true)
             {
                 // Äð´Ù¿î °¨¼Ò
                 currentCooldown -= Time.deltaTime;
