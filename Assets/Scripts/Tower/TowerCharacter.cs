@@ -40,6 +40,8 @@ namespace TowerDefence
         public float attackRange = 3.0f; // 캐릭터의 공격 범위
         private Enemy closestEnemy;
         public bool DragIn = true;
+        public float matchDamageUp;
+        public float matchDamageUp_2;
 
         private void Update()
         {
@@ -64,6 +66,15 @@ namespace TowerDefence
 
                             newProjectile.GetComponent<Arrow>().attackDamage = characterinfo.Damage;
                             newProjectile.GetComponent<Arrow>().atkSpeed = characterinfo.Char_ATKSpeed;
+
+                            if( gameObject.CompareTag("Tower2"))
+                            {
+                                newProjectile.GetComponent<Arrow>().attackDamage = characterinfo.Damage + matchDamageUp;
+                            }
+                            if (gameObject.CompareTag("Tower3"))
+                            {
+                                newProjectile.GetComponent<Arrow>().attackDamage = characterinfo.Damage + matchDamageUp_2;
+                            }
 
                             // 방향 설정
                             Vector3 direction = (closestEnemy.transform.position - projectileSpawnPoint.position).normalized;

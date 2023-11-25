@@ -140,12 +140,14 @@ MonoBehaviour:
     Character_Upgrade_Price: 1500
     Price: 1000
     isBase_Char: 0
-    isExist: 1
+    isExist: 0
   projectileSpawnPoint: {fileID: 1607197940440731843}
   projectilePrefab: {fileID: 8930298171425269818, guid: ae06962114141c84cb69bac4d58219de, type: 3}
   attackCooldown: 0.5
   attackRange: 5
   DragIn: 1
+  matchDamageUp: 20
+  matchDamageUp_2: 30
 --- !u!114 &1092058537594195632
 MonoBehaviour:
   m_ObjectHideFlags: 0
