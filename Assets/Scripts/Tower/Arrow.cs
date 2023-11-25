@@ -52,6 +52,7 @@ namespace TowerDefence
             Enemy[] enemies = FindObjectsOfType<Enemy>();
             if (enemies.Length == 0)
             {
+                Destroy(gameObject);
                 return; // 적이 없으면 아무 작업도 하지 않음
             }
 
@@ -79,6 +80,7 @@ namespace TowerDefence
             if (!collision.CompareTag("Enemy")) return;
             if (collision.CompareTag("Enemy"))
             {
+                GameManager.GMInstance.SoundManagerRef.PlaySFX(SoundManager.SFX.Hit);
                 Destroy(gameObject);
             }
 

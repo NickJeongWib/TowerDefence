@@ -11,6 +11,8 @@ TagManager:
   - Tile
   - Tower
   - Last_Point
+  - Tower2
+  - Tower3
   layers:
   - Default
   - TransparentFX

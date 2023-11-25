@@ -6,16 +6,24 @@ namespace TowerDefence
 {
     public class TowerDrag : MonoBehaviour
     {
-        public GameObject[] CharaterPrefabs;
+        public GameObject[] characterPrefabs;
         private GameObject draggedTower; // 드래그 중인 타워 오브젝트
         private Vector3 initialTowerPosition; // 타워의 초기 위치
         private Vector3 initialMouseOffset; // 드래그 시작 시 마우스와 타워 위치 간의 오프셋
-        private bool isDragging = false;
+        public bool isDragging = false;
         TowerCharacter towerCharacter;
+        TowerSpawner towerSpawner;
+        public GameObject aura;
+        public GameObject auraParticle;
 
         private void Start()
         {
             towerCharacter = FindObjectOfType<TowerCharacter>();
+            towerSpawner = FindObjectOfType<TowerSpawner>();
+            for (int i = 0; i < GameManager.GMInstance.gameDataManagerRef.Equip_Char.Length; i++)
+            {
+                characterPrefabs[i] = GameManager.GMInstance.gameDataManagerRef.Equip_Char[i];
+            }
         }
         private void Update()
         {
@@ -32,8 +40,16 @@ namespace TowerDefence
                     isDragging = true;
                     towerCharacter.DragIn = false;
                 }
+                if (hit.collider != null && hit.collider.CompareTag("Tower2"))
+                {
+                    // 드래그 시작
+                    draggedTower = hit.collider.gameObject;
+                    initialMouseOffset = draggedTower.transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    initialTowerPosition = draggedTower.transform.position; // 초기 위치 기억
+                    isDragging = true;
+                    towerCharacter.DragIn = false;
+                }
             }
-
             // 드래그 중인 타워가 있을 때
             if (isDragging && draggedTower != null)
             {
@@ -48,19 +64,49 @@ namespace TowerDefence
                     Collider2D[] hitColliders = Physics2D.OverlapCircleAll(draggedTower.transform.position, 0.1f);
                     foreach (Collider2D hitCollider in hitColliders)
                     {
-                        if (hitCollider.CompareTag("Tower") && hitCollider.gameObject != draggedTower)
+                        if (hitCollider.CompareTag("Tower") && hitCollider.gameObject != draggedTower && draggedTower.CompareTag("Tower"))
                         {
+                            GameManager.GMInstance.SoundManagerRef.PlaySFX(SoundManager.SFX.Fusion_Sound);
+
+                            int randomCharacterIndex = Random.Range(0, characterPrefabs.Length);
+                            GameObject newCharacter = Instantiate(characterPrefabs[randomCharacterIndex], hitCollider.gameObject.transform.position, Quaternion.identity);
+                            GameObject newAura = Instantiate(aura, hitCollider.gameObject.transform.position, Quaternion.identity);
+                            newCharacter.tag = "Tower2";
+                            newAura.transform.parent = newCharacter.transform;
+
+                            newCharacter.transform.parent = hitCollider.gameObject.transform.parent;
+                            newCharacter.transform.parent.GetComponent<Tile>().spawnchar = newCharacter;
+                            newCharacter.transform.parent.GetComponent<Tile>().isOccupied = true;
+
+                            // 충돌한 타워와 드래그 중인 타워를 삭제
+                            Destroy(hitCollider.gameObject);
+                            Destroy(draggedTower);
+                            break;
+                        }
+                        if(hitCollider.CompareTag("Tower2") && hitCollider.gameObject != draggedTower && draggedTower.CompareTag("Tower2"))
+                        {
+                            GameManager.GMInstance.SoundManagerRef.PlaySFX(SoundManager.SFX.Fusion_Sound);
+
+                            int randomCharacterIndex = Random.Range(0, characterPrefabs.Length);
+                            GameObject newCharacter = Instantiate(characterPrefabs[randomCharacterIndex], hitCollider.gameObject.transform.position, Quaternion.identity);
+                            GameObject newAuraParticle = Instantiate(auraParticle, hitCollider.gameObject.transform.position, Quaternion.identity);
+                            newCharacter.tag = "Tower3";
+                            newAuraParticle.transform.parent = newCharacter.transform;
+
+                            newCharacter.transform.parent = hitCollider.gameObject.transform.parent;
+                            newCharacter.transform.parent.GetComponent<Tile>().spawnchar = newCharacter;
+                            newCharacter.transform.parent.GetComponent<Tile>().isOccupied = true;
+
                             // 충돌한 타워와 드래그 중인 타워를 삭제
                             Destroy(hitCollider.gameObject);
                             Destroy(draggedTower);
                             break;
                         }
                     }
-
                     // 초기 위치로 이동
                     draggedTower.transform.position = new Vector3(initialTowerPosition.x, initialTowerPosition.y, 0);
                     isDragging = false;
-                    towerCharacter.DragIn = true;
+                    towerCharacter.DragIn = true;  
                 }
             }
         }
