@@ -16,6 +16,9 @@ TagManager:
   - Dark_Arrow
   - Ice_Arrow
   - Grass_Arrow
+  - FxTemporaire
+  - Fire_Arrow
+  - Lightning_Arrow
   layers:
   - Default
   - TransparentFX

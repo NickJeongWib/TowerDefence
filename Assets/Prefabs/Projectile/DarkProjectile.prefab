@@ -140,3 +140,5 @@ MonoBehaviour:
   towerCharacter: {fileID: 0}
   attackDamage: 1
   atkSpeed: 0
+  charaterAbility: 0
+  hitEffect: {fileID: 8405798396617280675, guid: a2fcd0c1e77124d40b4ece88fe4da2bf, type: 3}

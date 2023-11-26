@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1213486942963438197}
   m_Layer: 0
   m_Name: FireProjectile
-  m_TagString: Untagged
+  m_TagString: Fire_Arrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -140,3 +140,5 @@ MonoBehaviour:
   towerCharacter: {fileID: 0}
   attackDamage: 1
   atkSpeed: 0
+  charaterAbility: 0
+  hitEffect: {fileID: 1498127100763527222, guid: e70e01fa7586fb74b86be1ef47245d8d, type: 3}

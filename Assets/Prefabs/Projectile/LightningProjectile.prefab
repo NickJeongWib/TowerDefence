@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4552663003278865253}
   m_Layer: 0
   m_Name: LightningProjectile
-  m_TagString: Untagged
+  m_TagString: Lightning_Arrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -140,3 +140,5 @@ MonoBehaviour:
   towerCharacter: {fileID: 0}
   attackDamage: 1
   atkSpeed: 0
+  charaterAbility: 0
+  hitEffect: {fileID: 9204698543400828744, guid: a99821fc6ce24494b9ef742d890cfa6d, type: 3}

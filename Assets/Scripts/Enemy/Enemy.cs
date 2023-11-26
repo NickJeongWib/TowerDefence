@@ -30,6 +30,7 @@ namespace TowerDefence
         WaveSystem waveSystem;
         [SerializeField]
         private float maxHP;
+        [SerializeField]
         private float currentHP;
 
         bool isgrassDamageUp;
@@ -127,10 +128,15 @@ namespace TowerDefence
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            // Arrow와 충돌했을 때
+            if (collision.CompareTag("Fire_Arrow"))
+            {
+                Instantiate(collision.GetComponent<Arrow>().hitEffect, gameObject.transform.position, Quaternion.identity);
+            }
+
             if (collision.CompareTag("Dark_Arrow"))
             {
-                // 10% 확률로 삭제
+                Instantiate(collision.GetComponent<Arrow>().hitEffect, gameObject.transform.position, Quaternion.identity);
+
                 if (Random.Range(0f, 100f) <= collision.GetComponent<Arrow>().charaterAbility)
                 {
                     Destroy(gameObject);
@@ -141,6 +147,7 @@ namespace TowerDefence
             if(collision.CompareTag("Ice_Arrow"))
             {
                 enemyMoveControl.moveSpeed = enemyMoveControl.moveSpeed - (enemyMoveControl.moveSpeed * ((collision.GetComponent<Arrow>().charaterAbility / 100)));
+                Instantiate(collision.GetComponent<Arrow>().hitEffect, gameObject.transform.position, Quaternion.identity);
             }
 
             if (collision.CompareTag("Grass_Arrow"))
@@ -148,6 +155,12 @@ namespace TowerDefence
                 isgrassDamageUp = true;
 
                 grassDamageUp = collision.GetComponent<Arrow>().charaterAbility;
+                Instantiate(collision.GetComponent<Arrow>().hitEffect, gameObject.transform.position, Quaternion.identity);
+            }
+
+            if (collision.CompareTag("Lightning_Arrow"))
+            {
+                Instantiate(collision.GetComponent<Arrow>().hitEffect, gameObject.transform.position, Quaternion.identity);
             }
 
         }
