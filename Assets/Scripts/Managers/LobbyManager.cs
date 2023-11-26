@@ -492,6 +492,9 @@ namespace TowerDefence
             Dialogue_Parser parser = GetComponent<Dialogue_Parser>();
             Story_Dialogue[] dialogues = parser.Parse(csv_FileName, this);
 
+            // 배경음 변경
+            GameManager.GMInstance.SoundManagerRef.PlayBGM(SoundManager.BGM.Lobby);
+
             // 사운드 관련 초기화
             for (int i = 0; i < GameManager.GMInstance.SoundManagerRef.SFXPlayers.Length; i++)
             {
@@ -612,6 +615,8 @@ namespace TowerDefence
         // TODO ## 젬 구입관련
         public void OnClick_Buy_Gem(GameObject obj)
         {
+            GameManager.GMInstance.SoundManagerRef.PlaySFX(SoundManager.SFX.Shop_Purchase);
+
             if (obj.name == "Buy_Gem_40")
             {
                
@@ -643,6 +648,8 @@ namespace TowerDefence
         // TODO ## 골드 구매 관련
         public void OnClick_Buy_Gold(GameObject obj)
         {
+            GameManager.GMInstance.SoundManagerRef.PlaySFX(SoundManager.SFX.Shop_Purchase);
+
             if (obj.name == "Buy_Gold_1500")
             {
                 GameManager.GMInstance.gameDataManagerRef.Gold += 1500;
@@ -1017,6 +1024,8 @@ namespace TowerDefence
         // TODO ## 캐릭터 구매
         public void OnClick_Buy_Char(GameObject obj)
         {
+            GameManager.GMInstance.SoundManagerRef.PlaySFX(SoundManager.SFX.Shop_Purchase);
+
             // 보유 재화가 캐릭터 가격보다 적으면 실행취소
             if (obj.transform.parent.GetComponent<Shop_Character_List>().Shop_Char_Info.GetComponent<TowerCharacter>().characterinfo.Price
                 > GameManager.GMInstance.gameDataManagerRef.Gold)

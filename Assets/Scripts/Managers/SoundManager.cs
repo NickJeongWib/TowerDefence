@@ -29,6 +29,7 @@ namespace TowerDefence
         {
             Title,
             Lobby,
+            InGame_1,
         }
 
         public enum SFX
@@ -38,6 +39,7 @@ namespace TowerDefence
             Slide,
             Fusion_Sound,
             Hit,
+            Shop_Purchase,
         }
 
 

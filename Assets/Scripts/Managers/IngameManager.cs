@@ -38,6 +38,8 @@ namespace TowerDefence
             waveSystem = FindObjectOfType<WaveSystem>();
             InvokeRepeating("GainCost", 0f, costGainInterval);
 
+            GameManager.GMInstance.SoundManagerRef.PlayBGM(SoundManager.BGM.InGame_1);
+
             // 사운드 관련 초기화
             for (int i = 0; i < GameManager.GMInstance.SoundManagerRef.SFXPlayers.Length; i++)
             {
