@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2712960819134576724}
   m_Layer: 0
   m_Name: IceProjectile
-  m_TagString: Untagged
+  m_TagString: Ice_Arrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -140,3 +140,4 @@ MonoBehaviour:
   towerCharacter: {fileID: 0}
   attackDamage: 1
   atkSpeed: 0
+  charaterAbility: 0

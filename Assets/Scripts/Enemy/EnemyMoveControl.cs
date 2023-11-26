@@ -8,7 +8,7 @@ namespace TowerDefence
     public class EnemyMoveControl : MonoBehaviour
     {
         [SerializeField]
-        private float moveSpeed = 0.0f;
+        public float moveSpeed = 0.0f;
         [SerializeField]
         private Vector3 moveDirection = Vector3.zero;
         public float MoveSpeed => moveSpeed;   //moveSpeed 변수의 프로퍼티(Property) (Get 가능)

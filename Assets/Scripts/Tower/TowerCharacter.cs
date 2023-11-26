@@ -66,8 +66,9 @@ namespace TowerDefence
 
                             newProjectile.GetComponent<Arrow>().attackDamage = characterinfo.Damage;
                             newProjectile.GetComponent<Arrow>().atkSpeed = characterinfo.Char_ATKSpeed;
+                            newProjectile.GetComponent<Arrow>().charaterAbility = characterinfo.Ability_Percent;
 
-                            if( gameObject.CompareTag("Tower2"))
+                            if ( gameObject.CompareTag("Tower2"))
                             {
                                 newProjectile.GetComponent<Arrow>().attackDamage = characterinfo.Damage + matchDamageUp;
                             }
