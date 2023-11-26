@@ -11,6 +11,19 @@ namespace TowerDefence
     public class LobbyManager : MonoBehaviour
     {
         #region Var
+        [Header("----prologue----")]
+        [SerializeField]
+        string csv_FileName;
+        public string[] prologue_Text;
+        [SerializeField]
+        TextMeshProUGUI prologue_Output;
+        [SerializeField]
+        int contextIndex;
+        [SerializeField]
+        bool isTyping;
+        [SerializeField]
+        GameObject prologue_Panel;
+
         [Header("----UI----")]
         [SerializeField]
         TextMeshProUGUI[] Gold_Text;
@@ -112,7 +125,7 @@ namespace TowerDefence
         void Start()
         {
             Init();
-        }
+        }  
 
         // TODO ## 로비화면 팝업 관련 함수
         #region Pop_Up
@@ -476,6 +489,9 @@ namespace TowerDefence
         {
             GameManager.GMInstance.lobbyManagerRef = this;
 
+            Dialogue_Parser parser = GetComponent<Dialogue_Parser>();
+            Story_Dialogue[] dialogues = parser.Parse(csv_FileName, this);
+
             // 사운드 관련 초기화
             for (int i = 0; i < GameManager.GMInstance.SoundManagerRef.SFXPlayers.Length; i++)
             {
@@ -523,10 +539,70 @@ namespace TowerDefence
             Empty_Slot_Check();
             Refresh_Gold_Text();
             Refresh_Gem_Text();
+
+            if (GameManager.GMInstance.gameDataManagerRef.isFirstStarter == true)
+            {
+                prologue_Panel.SetActive(true);
+                StartCoroutine(Typing(prologue_Text[0]));
+            }
+        }
+        #endregion
+
+        #region Prologue
+        // TODO ## 프롤로그
+        IEnumerator Typing(string talk)
+        {
+            // text 빈칸 만들기
+            prologue_Output.text = "";
+            // 인덱스 증가
+            contextIndex++;
+
+            for (int i = 0; i < talk.Length; i++)
+            {
+                // 매개변수로 받은 string값을 하나씩 출력함
+                prologue_Output.text += talk[i];
+
+                // 만약 타입핑된 텍스트값이 적어야할 string값이라면? (입력이 다 되었다면)
+                if (prologue_Output.text == talk)
+                {
+                    isTyping = false;
+                }
+                else// (입력이 하는중이라면)
+                {
+                    isTyping = true;
+                }
+                           
+                // 속도
+                yield return new WaitForSeconds(0.05f);
+            }          
         }
         #endregion
 
         #region Btn_Fun
+        public void OnClick_Next_prologue(GameObject obj)
+        {
+            if (contextIndex >= prologue_Text.Length)
+            {
+                GameManager.GMInstance.gameDataManagerRef.isFirstStarter = false;
+                JsonSerialize.SavePlayerToJson(GameManager.GMInstance.gameDataManagerRef);
+                obj.SetActive(false);
+                return;
+            }
+
+            // 타입핑이 끝난상태라면
+            if (isTyping == false)
+            {
+                StartCoroutine(Typing(prologue_Text[contextIndex]));
+            }
+        }
+
+        public void OnClick_Skip_prologue(GameObject obj)
+        {
+            GameManager.GMInstance.gameDataManagerRef.isFirstStarter = false;
+            JsonSerialize.SavePlayerToJson(GameManager.GMInstance.gameDataManagerRef);
+            obj.SetActive(false);
+        }
+
 
         public void Char_Null_Panel_Close(GameObject obj)
         {
