@@ -32,6 +32,9 @@ namespace TowerDefence
         private float maxHP;
         private float currentHP;
 
+        bool isgrassDamageUp;
+        float grassDamageUp;
+
         Player  player;
         IngameManager ingameManager;
 
@@ -105,7 +108,15 @@ namespace TowerDefence
         }
         public void TakeDamage(float damage)
         {
-            currentHP -= damage;
+            if(isgrassDamageUp == false)
+            {
+                currentHP -= damage;
+            }
+            else if(isgrassDamageUp == true)
+            {
+                currentHP -= damage + (damage * (grassDamageUp / 100));
+            }
+                
 
             if (currentHP <= 0)
             {
@@ -113,6 +124,35 @@ namespace TowerDefence
                 ingameManager.EnemyKilled();
             }
         }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            // Arrow와 충돌했을 때
+            if (collision.CompareTag("Dark_Arrow"))
+            {
+                // 10% 확률로 삭제
+                if (Random.Range(0f, 100f) <= collision.GetComponent<Arrow>().charaterAbility)
+                {
+                    Destroy(gameObject);
+                    ingameManager.EnemyKilled();
+                }
+            }
+
+            if(collision.CompareTag("Ice_Arrow"))
+            {
+                enemyMoveControl.moveSpeed = enemyMoveControl.moveSpeed - (enemyMoveControl.moveSpeed * ((collision.GetComponent<Arrow>().charaterAbility / 100)));
+            }
+
+            if (collision.CompareTag("Grass_Arrow"))
+            {
+                isgrassDamageUp = true;
+
+                grassDamageUp = collision.GetComponent<Arrow>().charaterAbility;
+            }
+
+        }
+
+
     }
 
 }

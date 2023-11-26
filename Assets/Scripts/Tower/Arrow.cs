@@ -16,6 +16,9 @@ namespace TowerDefence
         [SerializeField]
         public float atkSpeed;
 
+        public float charaterAbility;
+
+
 
         private void Start()
         {

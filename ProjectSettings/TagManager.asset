@@ -13,6 +13,9 @@ TagManager:
   - Last_Point
   - Tower2
   - Tower3
+  - Dark_Arrow
+  - Ice_Arrow
+  - Grass_Arrow
   layers:
   - Default
   - TransparentFX
