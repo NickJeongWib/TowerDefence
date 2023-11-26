@@ -160,7 +160,14 @@ namespace TowerDefence
 
             if (collision.CompareTag("Lightning_Arrow"))
             {
-                Instantiate(collision.GetComponent<Arrow>().hitEffect, gameObject.transform.position, Quaternion.identity);
+                if(gameObject.GetComponent<SkeletonAnimation>().initialSkinName == "Side")
+                {
+                    Instantiate(collision.GetComponent<Arrow>().hitEffect, gameObject.transform.position, Quaternion.Euler(0, 0, 90));
+                }
+                else
+                {
+                    Instantiate(collision.GetComponent<Arrow>().hitEffect, gameObject.transform.position, Quaternion.identity);
+                }
             }
 
         }
