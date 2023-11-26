@@ -18,7 +18,7 @@ namespace TowerDefence
 
         public float charaterAbility;
 
-
+        public GameObject hitEffect;
 
         private void Start()
         {

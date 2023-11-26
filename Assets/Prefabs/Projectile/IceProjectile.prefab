@@ -141,3 +141,4 @@ MonoBehaviour:
   attackDamage: 1
   atkSpeed: 0
   charaterAbility: 0
+  hitEffect: {fileID: 6159104938712275260, guid: dbb7b2891c032184986670cd1d6453d8, type: 3}
