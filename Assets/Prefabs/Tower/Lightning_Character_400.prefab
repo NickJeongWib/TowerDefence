@@ -146,6 +146,8 @@ MonoBehaviour:
   attackCooldown: 0.5
   attackRange: 5
   DragIn: 1
+  matchDamageUp: 20
+  matchDamageUp_2: 30
 --- !u!114 &-6340637711928809180
 MonoBehaviour:
   m_ObjectHideFlags: 0
