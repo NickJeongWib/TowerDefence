@@ -14,6 +14,7 @@ namespace TowerDefence
         TowerCharacter towerCharacter;
         public GameObject aura;
         public GameObject auraParticle;
+        public GameObject mixEffect;
 
         private void Start()
         {
@@ -62,13 +63,16 @@ namespace TowerDefence
                     Collider2D[] hitColliders = Physics2D.OverlapCircleAll(draggedTower.transform.position, 0.1f);
                     foreach (Collider2D hitCollider in hitColliders)
                     {
-                        if (hitCollider.CompareTag("Tower") && hitCollider.gameObject != draggedTower && draggedTower.CompareTag("Tower"))
+                        if (hitCollider.CompareTag("Tower") && hitCollider.gameObject != draggedTower && draggedTower.CompareTag("Tower")
+                             && draggedTower.GetComponent<TowerCharacter>().characterinfo.Charactertype == hitCollider.GetComponent<TowerCharacter>().characterinfo.Charactertype)
                         {
+
                             GameManager.GMInstance.SoundManagerRef.PlaySFX(SoundManager.SFX.Fusion_Sound);
 
                             int randomCharacterIndex = Random.Range(0, characterPrefabs.Length);
                             GameObject newCharacter = Instantiate(characterPrefabs[randomCharacterIndex], hitCollider.gameObject.transform.position, Quaternion.identity);
                             GameObject newAura = Instantiate(aura, hitCollider.gameObject.transform.position, Quaternion.identity);
+                            GameObject newMixEffect = Instantiate(mixEffect, hitCollider.gameObject.transform.position, Quaternion.identity);
                             newCharacter.tag = "Tower2";
                             newAura.transform.parent = newCharacter.transform;
 
@@ -81,13 +85,15 @@ namespace TowerDefence
                             Destroy(draggedTower);
                             break;
                         }
-                        if(hitCollider.CompareTag("Tower2") && hitCollider.gameObject != draggedTower && draggedTower.CompareTag("Tower2"))
+                        if(hitCollider.CompareTag("Tower2") && hitCollider.gameObject != draggedTower && draggedTower.CompareTag("Tower2")
+                            && draggedTower.GetComponent<TowerCharacter>().characterinfo.Charactertype == hitCollider.GetComponent<TowerCharacter>().characterinfo.Charactertype)
                         {
                             GameManager.GMInstance.SoundManagerRef.PlaySFX(SoundManager.SFX.Fusion_Sound);
 
                             int randomCharacterIndex = Random.Range(0, characterPrefabs.Length);
                             GameObject newCharacter = Instantiate(characterPrefabs[randomCharacterIndex], hitCollider.gameObject.transform.position, Quaternion.identity);
                             GameObject newAuraParticle = Instantiate(auraParticle, hitCollider.gameObject.transform.position, Quaternion.identity);
+                            GameObject newMixEffect = Instantiate(mixEffect, hitCollider.gameObject.transform.position, Quaternion.identity);
                             newCharacter.tag = "Tower3";
                             newAuraParticle.transform.parent = newCharacter.transform;
 

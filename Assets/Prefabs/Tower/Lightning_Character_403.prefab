@@ -169,6 +169,7 @@ MonoBehaviour:
   isDragging: 0
   aura: {fileID: 6754887895479081322, guid: e818d80fd902fac4cb5a85e2e2be9fe6, type: 3}
   auraParticle: {fileID: 4990503906548871418, guid: eb43efe080488d643ae38caa0943ccb0, type: 3}
+  mixEffect: {fileID: 3231903775656791719, guid: c8f70689aaaec08489be42f7631fdae6, type: 3}
 --- !u!50 &4575165890470989707
 Rigidbody2D:
   serializedVersion: 4
