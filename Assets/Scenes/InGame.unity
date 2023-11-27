@@ -3548,6 +3548,12 @@ MonoBehaviour:
   gameOverUi: {fileID: 875212368}
   gameWinUi: {fileID: 826432507}
   killCount: 0
+  Char_Img:
+  - {fileID: 1417584157}
+  - {fileID: 407985557}
+  - {fileID: 1015245510}
+  - {fileID: 1508380011}
+  - {fileID: 1930169102}
   SFX_Slider: {fileID: 1285810142}
   BGM_Slider: {fileID: 1215715524}
   SFXToggle: {fileID: 1223330184}
@@ -4524,9 +4530,9 @@ RectTransform:
   m_Father: {fileID: 204113599}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 450, y: 850}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -75, y: -75}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &666856547

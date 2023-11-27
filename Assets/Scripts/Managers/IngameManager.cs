@@ -19,6 +19,9 @@ namespace TowerDefence
 
         public int killCount = 0;
 
+        [SerializeField]
+        GameObject[] Char_Img;
+
         [Header("----Music----")]
         [SerializeField]
         Slider SFX_Slider;
@@ -40,6 +43,11 @@ namespace TowerDefence
 
             GameManager.GMInstance.SoundManagerRef.PlayBGM(SoundManager.BGM.InGame_1);
 
+            for (int i = 0; i < Char_Img.Length; i++)
+            {
+                Char_Img[i].GetComponent<Image>().sprite = GameManager.GMInstance.gameDataManagerRef.Equip_Char[i].GetComponent<SpriteRenderer>().sprite;
+            }
+         
             // 사운드 관련 초기화
             for (int i = 0; i < GameManager.GMInstance.SoundManagerRef.SFXPlayers.Length; i++)
             {
