@@ -137,9 +137,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a93a33269682584685139b01f9b9276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monsterinfo:
+    index: 13
+    MonsterID: 613
+    Monster_Name: 3_4 Monster
+    Monster_HP: 100
+    Monster_Speed: 5
+    Spawn_Stage: 2
   wayPointCount: 0
   wayPoints: []
-  maxHP: 0
+  currentHP: 0
 --- !u!114 &564464223671564604
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -146,7 +146,7 @@ MonoBehaviour:
     Spawn_Stage: 0
   wayPointCount: 0
   wayPoints: []
-  maxHP: 300
+  currentHP: 0
 --- !u!114 &5585691123341011062
 MonoBehaviour:
   m_ObjectHideFlags: 0

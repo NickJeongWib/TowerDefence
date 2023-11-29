@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2117632779120041232}
   - component: {fileID: 771873663712556282}
   - component: {fileID: 7645406564675193090}
+  - component: {fileID: -3826233411003274967}
   m_Layer: 0
   m_Name: TestEnemy_49
   m_TagString: Enemy
@@ -136,9 +137,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a93a33269682584685139b01f9b9276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monsterinfo:
+    index: 48
+    MonsterID: 648
+    Monster_Name: 10_4 Monster
+    Monster_HP: 170
+    Monster_Speed: 5
+    Spawn_Stage: 9
   wayPointCount: 0
   wayPoints: []
-  maxHP: 0
+  currentHP: 0
 --- !u!114 &7645406564675193090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,3 +162,29 @@ MonoBehaviour:
   moveSpeed: 3
   moveDirection: {x: 0, y: 0, z: 0}
   skeletonAnimation: {fileID: 0}
+--- !u!61 &-3826233411003274967
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2276973485290471555}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.057555914, y: 1.3583554}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.9684746, y: 3.0928385}
+  m_EdgeRadius: 0

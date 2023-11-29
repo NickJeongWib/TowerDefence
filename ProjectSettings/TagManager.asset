@@ -19,6 +19,7 @@ TagManager:
   - FxTemporaire
   - Fire_Arrow
   - Lightning_Arrow
+  - Go_Left
   layers:
   - Default
   - TransparentFX

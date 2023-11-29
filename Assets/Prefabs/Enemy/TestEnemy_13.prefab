@@ -137,9 +137,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a93a33269682584685139b01f9b9276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monsterinfo:
+    index: 12
+    MonsterID: 612
+    Monster_Name: 3_3 Monster
+    Monster_HP: 90
+    Monster_Speed: 5
+    Spawn_Stage: 2
   wayPointCount: 0
   wayPoints: []
-  maxHP: 0
+  currentHP: 0
 --- !u!114 &4624359629436513624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,7 +175,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.15830827, y: 1.991402}
+  m_Offset: {x: -0.35304594, y: 1.9914019}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -179,5 +186,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.705762, y: 4.974426}
+  m_Size: {x: 3.6931276, y: 4.974426}
   m_EdgeRadius: 0
