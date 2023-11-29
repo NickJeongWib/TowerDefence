@@ -64,8 +64,7 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 687dc1d8496b1e347ad372642abc8de3, type: 2}
+  m_Materials: []
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -100,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonDataAsset: {fileID: 11400000, guid: bb67b327257963647b330d98d0428586, type: 2}
-  initialSkinName: Front
+  initialSkinName: Side
   fixPrefabOverrideViaMeshFilter: 0
   initialFlipX: 0
   initialFlipY: 0
@@ -122,7 +121,7 @@ MonoBehaviour:
     materialsInsideMask: []
     materialsOutsideMask: []
   disableRenderingOnOverride: 1
-  _animationName: Front_Walk
+  _animationName: Side_Walk
   loop: 1
   timeScale: 1
 --- !u!114 &3330199992532738776
@@ -137,9 +136,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a93a33269682584685139b01f9b9276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monsterinfo:
+    index: 9
+    MonsterID: 609
+    Monster_Name: 2_5 Monster
+    Monster_HP: 100
+    Monster_Speed: 5
+    Spawn_Stage: 1
   wayPointCount: 0
   wayPoints: []
   maxHP: 0
+  currentHP: 0
 --- !u!114 &3687885012147812152
 MonoBehaviour:
   m_ObjectHideFlags: 0
