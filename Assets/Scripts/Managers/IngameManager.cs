@@ -4,9 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using static TowerDefence.Define;
 
 namespace TowerDefence
 {
+
     public class IngameManager : MonoBehaviour
     {
         public int currentCost;  // 현재 코스트
@@ -16,11 +18,16 @@ namespace TowerDefence
         public GameObject gameOverUi;
         public GameObject gameWinUi;
         WaveSystem waveSystem;
+        [SerializeField]
+        public SpawnPoints[] spawnPoints;
 
         public int killCount = 0;
 
         [SerializeField]
         GameObject[] Char_Img;
+
+        [SerializeField]
+        public GameObject[] Stage_Lv;
 
         [Header("----Music----")]
         [SerializeField]
@@ -34,7 +41,6 @@ namespace TowerDefence
 
         [SerializeField]
         Toggle BGMToggle;
-
         private void Start()
         {
             towerSpawner = FindObjectOfType<TowerSpawner>();
@@ -42,6 +48,47 @@ namespace TowerDefence
             InvokeRepeating("GainCost", 0f, costGainInterval);
 
             GameManager.GMInstance.SoundManagerRef.PlayBGM(SoundManager.BGM.InGame_1);
+
+            if (GameManager.GMInstance.gameDataManagerRef.Stage_Lv == Stage_Level.Stage_1)
+            {
+                Stage_Lv[0].SetActive(true);
+            }
+            else if (GameManager.GMInstance.gameDataManagerRef.Stage_Lv == Stage_Level.Stage_2)
+            {
+                Stage_Lv[1].SetActive(true);
+            }
+            else if (GameManager.GMInstance.gameDataManagerRef.Stage_Lv == Stage_Level.Stage_3)
+            {
+                Stage_Lv[2].SetActive(true);
+            }
+            else if (GameManager.GMInstance.gameDataManagerRef.Stage_Lv == Stage_Level.Stage_4)
+            {
+                Stage_Lv[3].SetActive(true);
+            }
+            else if (GameManager.GMInstance.gameDataManagerRef.Stage_Lv == Stage_Level.Stage_5)
+            {
+                Stage_Lv[4].SetActive(true);
+            }
+            else if (GameManager.GMInstance.gameDataManagerRef.Stage_Lv == Stage_Level.Stage_6)
+            {
+                Stage_Lv[5].SetActive(true);
+            }
+            else if (GameManager.GMInstance.gameDataManagerRef.Stage_Lv == Stage_Level.Stage_7)
+            {
+                Stage_Lv[6].SetActive(true);
+            }
+            else if (GameManager.GMInstance.gameDataManagerRef.Stage_Lv == Stage_Level.Stage_8)
+            {
+                Stage_Lv[7].SetActive(true);
+            }
+            else if (GameManager.GMInstance.gameDataManagerRef.Stage_Lv == Stage_Level.Stage_9)
+            {
+                Stage_Lv[8].SetActive(true);
+            }
+            else if (GameManager.GMInstance.gameDataManagerRef.Stage_Lv == Stage_Level.Stage_10)
+            {
+                Stage_Lv[9].SetActive(true);
+            }
 
             for (int i = 0; i < Char_Img.Length; i++)
             {
@@ -108,7 +155,7 @@ namespace TowerDefence
 
         bool AreAllTilesOccupied()
         {
-            foreach (Tile tile in towerSpawner.allTiles)
+            foreach (Tile tile in spawnPoints[(int)GameManager.GMInstance.gameDataManagerRef.Stage_Lv].allTiles)
             {
                 if (!tile.isOccupied)
                 {
@@ -135,6 +182,7 @@ namespace TowerDefence
         {
             Time.timeScale = 1.0f;
             SceneManager.LoadScene("Lobby");
+            Stage_Lv[(int)GameManager.GMInstance.gameDataManagerRef.Stage_Lv].SetActive(false);
         }
 
         public void OnClickRePlay_Btn(GameObject obj)
@@ -150,6 +198,8 @@ namespace TowerDefence
                 Time.timeScale = 0.0f;
                 gameWinUi.SetActive(true);
                 killCount = 0;
+                GameManager.GMInstance.gameDataManagerRef.isClearStage[(int)GameManager.GMInstance.gameDataManagerRef.Stage_Lv]
+                    = true;
             }
         }
         public void GameOver()

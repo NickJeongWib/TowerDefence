@@ -5,11 +5,16 @@ using UnityEngine.UI;
 
 namespace TowerDefence
 {
+    [System.Serializable]
+    public struct SpawnPoints
+    {
+        public Tile[] allTiles; // 모든 타일 배열
+    }
     public class TowerSpawner : MonoBehaviour
     {
         public GameObject[] characterPrefab; // 캐릭터 프리팹
-        public Tile[] allTiles; // 모든 타일 배열
-
+        [SerializeField] 
+        public SpawnPoints[] spawnPoints;
 
         private void Start()
         {
@@ -35,17 +40,18 @@ namespace TowerDefence
 
             while(true)
             {
-                int randomIndex = Random.Range(0, allTiles.Length);
+                int randomIndex = Random.Range(0, spawnPoints[(int)GameManager.GMInstance.gameDataManagerRef.Stage_Lv].allTiles.Length);
 
-                if (allTiles[randomIndex].isOccupied == false)
+                if (spawnPoints[(int)GameManager.GMInstance.gameDataManagerRef.Stage_Lv].allTiles[randomIndex].isOccupied == false)
                 {
                     int randomCharacterIndex = Random.Range(0, characterPrefab.Length);
 
                     // 선택한 타일이 비어 있을 때만 캐릭터를 소환
-                    GameObject newCharacter = Instantiate(characterPrefab[randomCharacterIndex], allTiles[randomIndex].transform.position, Quaternion.identity);
-                    allTiles[randomIndex].isOccupied = true;
-                    allTiles[randomIndex].spawnchar = newCharacter;
-                    newCharacter.transform.parent = allTiles[randomIndex].transform;
+                    GameObject newCharacter = Instantiate(characterPrefab[randomCharacterIndex], 
+                        spawnPoints[(int)GameManager.GMInstance.gameDataManagerRef.Stage_Lv].allTiles[randomIndex].transform.position, Quaternion.identity);
+                    spawnPoints[(int)GameManager.GMInstance.gameDataManagerRef.Stage_Lv].allTiles[randomIndex].isOccupied = true;
+                    spawnPoints[(int)GameManager.GMInstance.gameDataManagerRef.Stage_Lv].allTiles[randomIndex].spawnchar = newCharacter;
+                    newCharacter.transform.parent = spawnPoints[(int)GameManager.GMInstance.gameDataManagerRef.Stage_Lv].allTiles[randomIndex].transform;
                     break;
                 }
             }

@@ -13,8 +13,6 @@ namespace TowerDefence
         //private float spawnTime;      // 적 생성 주기
 
         [SerializeField]
-        private Transform[] wayPoints;      // 현재 스테이지 이동 경로
-        [SerializeField]
         private Wave currentWave;    // 현재 웨이브 정보
         [SerializeField]
         private WaveSystem wavesystem;
@@ -43,7 +41,7 @@ namespace TowerDefence
         {
             while (spawnEnemyCount < currentWave.maxEnemyCount)
             {
-                GameObject clone = Instantiate(currentWave.enemyPrefabs[wavesystem.currentWaveIndex], wayPoints[0]);        // 적 오브젝트 생성               
+                GameObject clone = Instantiate(currentWave.enemyPrefabs[wavesystem.currentWaveIndex], currentWave.wayPoints[0]);        // 적 오브젝트 생성               
                 Enemy enemy = clone.GetComponent<Enemy>();  // 방금 생성된 적의 Enemy 컴포넌트
                 spawnEnemyCount++;
                 if (spawnEnemyCount == currentWave.maxEnemyCount)
@@ -56,7 +54,7 @@ namespace TowerDefence
                         currentWave.maxEnemyCount = 0;
                     }
                 }
-                enemy.Setup(wayPoints);                             // wayPoint 정보를 매개변수로 Setup() 호출
+                enemy.Setup(currentWave.wayPoints);                             // wayPoint 정보를 매개변수로 Setup() 호출
                 yield return new WaitForSeconds(currentWave.spawnTime);         // spawnTime 시간 동안 대기
             }
         }
