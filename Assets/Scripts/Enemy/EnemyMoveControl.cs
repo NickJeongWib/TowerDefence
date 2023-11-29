@@ -7,6 +7,7 @@ namespace TowerDefence
 {
     public class EnemyMoveControl : MonoBehaviour
     {
+        MonsterInfo monsterInfo;
         [SerializeField]
         public float moveSpeed = 0.0f;
         [SerializeField]
@@ -18,7 +19,7 @@ namespace TowerDefence
         void Start()
         {
             skeletonAnimation = GetComponent<SkeletonAnimation>();
-           
+            moveSpeed = GetComponent<Enemy>().monsterinfo.Monster_Speed;
         }
 
         private void Update()
@@ -40,6 +41,8 @@ namespace TowerDefence
                 skeletonAnimation.initialSkinName = "Side";
                 skeletonAnimation.AnimationName = "Side_Walk";
                 skeletonAnimation.Initialize(true);
+
+                gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
             }
 
             if (collision.CompareTag("Go_Up"))
@@ -47,6 +50,7 @@ namespace TowerDefence
                 skeletonAnimation.initialSkinName = "Back";
                 skeletonAnimation.AnimationName = "Back_Walk";
                 skeletonAnimation.Initialize(true);
+                gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
             }
 
             if (collision.CompareTag("Go_Front"))
@@ -54,6 +58,17 @@ namespace TowerDefence
                 skeletonAnimation.initialSkinName = "Front";
                 skeletonAnimation.AnimationName = "Front_Walk";
                 skeletonAnimation.Initialize(true);
+
+                gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+
+            if (collision.CompareTag("Go_Left"))
+            {
+                skeletonAnimation.initialSkinName = "Side";
+                skeletonAnimation.AnimationName = "Side_Walk";
+                skeletonAnimation.Initialize(true);
+
+                gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
             }
         }
     }
