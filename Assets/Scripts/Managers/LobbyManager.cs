@@ -543,11 +543,14 @@ namespace TowerDefence
             Refresh_Gold_Text();
             Refresh_Gem_Text();
 
-            if (GameManager.GMInstance.gameDataManagerRef.isFirstStarter == true)
-            {
-                prologue_Panel.SetActive(true);
-                StartCoroutine(Typing(prologue_Text[0]));
-            }
+            // TODO ## JSON 저장 여부로 인한 프롤로그 스킵
+            //if (GameManager.GMInstance.gameDataManagerRef.isFirstStarter == true)
+            //{
+            //    prologue_Panel.SetActive(true);
+            //    StartCoroutine(Typing(prologue_Text[0]));
+            //}
+            prologue_Panel.SetActive(true);
+            StartCoroutine(Typing(prologue_Text[0]));
         }
         #endregion
 
