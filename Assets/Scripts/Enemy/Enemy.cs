@@ -28,8 +28,7 @@ namespace TowerDefence
         private EnemyMoveControl enemyMoveControl;       // 오브젝트 이동 제어
 
         WaveSystem waveSystem;
-        [SerializeField]
-        private float maxHP;
+
         [SerializeField]
         private float currentHP;
 
@@ -41,7 +40,7 @@ namespace TowerDefence
 
         public void Awake()
         {
-            currentHP = maxHP;
+            currentHP = monsterinfo.Monster_HP;
         }
 
         void Start()

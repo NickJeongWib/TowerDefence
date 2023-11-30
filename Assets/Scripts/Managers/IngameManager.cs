@@ -193,7 +193,8 @@ namespace TowerDefence
 
         public void GameWin()
         {
-            if (killCount == (waveSystem.wave[0].maxEnemyCount * waveSystem.wave[0].enemyPrefabs.Length))
+            if (killCount >= (waveSystem.wave[(int)GameManager.GMInstance.gameDataManagerRef.Stage_Lv].maxEnemyCount 
+                * waveSystem.wave[(int)GameManager.GMInstance.gameDataManagerRef.Stage_Lv].enemyPrefabs.Length))
             {
                 Time.timeScale = 0.0f;
                 gameWinUi.SetActive(true);

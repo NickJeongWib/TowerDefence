@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2313230327931724550}
   - component: {fileID: 8102043208282595656}
   - component: {fileID: 1230715490750261398}
+  - component: {fileID: -4761972912555871552}
   m_Layer: 0
   m_Name: TestEnemy_42
   m_TagString: Enemy
@@ -28,14 +29,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4496997011763605995}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &4104354546430993870
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -99,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonDataAsset: {fileID: 11400000, guid: 63b9461c7a965064e908200d09c94111, type: 2}
-  initialSkinName: Front
+  initialSkinName: Side
   fixPrefabOverrideViaMeshFilter: 0
   initialFlipX: 0
   initialFlipY: 0
@@ -121,7 +122,7 @@ MonoBehaviour:
     materialsInsideMask: []
     materialsOutsideMask: []
   disableRenderingOnOverride: 1
-  _animationName: Front_Walk
+  _animationName: Side_Walk
   loop: 1
   timeScale: 1
 --- !u!114 &8102043208282595656
@@ -136,9 +137,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a93a33269682584685139b01f9b9276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monsterinfo:
+    index: 41
+    MonsterID: 641
+    Monster_Name: 9_2 Monster
+    Monster_HP: 140
+    Monster_Speed: 5
+    Spawn_Stage: 8
   wayPointCount: 0
   wayPoints: []
-  maxHP: 0
+  currentHP: 0
 --- !u!114 &1230715490750261398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,3 +162,29 @@ MonoBehaviour:
   moveSpeed: 3
   moveDirection: {x: 0, y: 0, z: 0}
   skeletonAnimation: {fileID: 0}
+--- !u!61 &-4761972912555871552
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4496997011763605995}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.18724185, y: 1.7527122}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.935234, y: 2.935938}
+  m_EdgeRadius: 0

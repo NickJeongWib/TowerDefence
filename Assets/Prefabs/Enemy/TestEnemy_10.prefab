@@ -64,7 +64,8 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
-  m_Materials: []
+  m_Materials:
+  - {fileID: 2100000, guid: 687dc1d8496b1e347ad372642abc8de3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -145,7 +146,6 @@ MonoBehaviour:
     Spawn_Stage: 1
   wayPointCount: 0
   wayPoints: []
-  maxHP: 0
   currentHP: 0
 --- !u!114 &3687885012147812152
 MonoBehaviour:
