@@ -24,6 +24,7 @@ namespace TowerDefence
         TowerSpawner TowerSpawnerRef;
         public TowerSpawner towerspawnerRef { get { return TowerSpawnerRef; } set { TowerSpawnerRef = value; } }
 
+
         // ΩÃ±€≈Ê
         public static GameManager GMInstance;
 

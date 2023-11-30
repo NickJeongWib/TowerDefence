@@ -43,12 +43,25 @@ namespace TowerDefence
         Toggle BGMToggle;
         private void Start()
         {
+            GameManager.GMInstance.SoundManagerRef.PlayBGM(SoundManager.BGM.InGame_1);
+
+            // 사운드 관련 초기화
+            for (int i = 0; i < GameManager.GMInstance.SoundManagerRef.SFXPlayers.Length; i++)
+            {
+                SFX_Slider.value = GameManager.GMInstance.SoundManagerRef.SFXPlayers[i].volume;
+            }
+
+            for (int i = 0; i < GameManager.GMInstance.SoundManagerRef.BGMPlayers.Length; i++)
+            {
+                BGM_Slider.value = GameManager.GMInstance.SoundManagerRef.BGMPlayers[i].volume;
+            }
+
+
             towerSpawner = FindObjectOfType<TowerSpawner>();
             waveSystem = FindObjectOfType<WaveSystem>();
             InvokeRepeating("GainCost", 0f, costGainInterval);
 
-            GameManager.GMInstance.SoundManagerRef.PlayBGM(SoundManager.BGM.InGame_1);
-
+      
             if (GameManager.GMInstance.gameDataManagerRef.Stage_Lv == Stage_Level.Stage_1)
             {
                 Stage_Lv[0].SetActive(true);
@@ -93,17 +106,6 @@ namespace TowerDefence
             for (int i = 0; i < Char_Img.Length; i++)
             {
                 Char_Img[i].GetComponent<Image>().sprite = GameManager.GMInstance.gameDataManagerRef.Equip_Char[i].GetComponent<SpriteRenderer>().sprite;
-            }
-         
-            // 사운드 관련 초기화
-            for (int i = 0; i < GameManager.GMInstance.SoundManagerRef.SFXPlayers.Length; i++)
-            {
-                SFX_Slider.value = GameManager.GMInstance.SoundManagerRef.SFXPlayers[i].volume;
-            }
-
-            for (int i = 0; i < GameManager.GMInstance.SoundManagerRef.BGMPlayers.Length; i++)
-            {
-                BGM_Slider.value = GameManager.GMInstance.SoundManagerRef.BGMPlayers[i].volume;
             }
 
         }
