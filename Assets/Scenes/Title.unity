@@ -2011,6 +2011,7 @@ MonoBehaviour:
   Gold: 10000
   Gem: 10000
   isFirstStarter: 1
+  isFirstEnter: 1
 --- !u!1 &2116769384
 GameObject:
   m_ObjectHideFlags: 0

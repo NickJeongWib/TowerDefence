@@ -65,6 +65,12 @@ namespace TowerDefence
         [SerializeField]
         GameObject Gold_Lake_Panel;
 
+        [SerializeField]
+        RewardedAdsButton AD_Gem_Btn;
+
+        [SerializeField]
+        RewardedAdsButton AD_Gold_Btn;
+
         [Header("----UpGradePanel----")]
         [SerializeField]
         TextMeshProUGUI[] Upgrade_Panel_Text;
@@ -189,7 +195,7 @@ namespace TowerDefence
 
             if (obj.name == "Gold_Add_Btn")
             {
-                Shop_PopUp.gameObject.SetActive(true);
+                Shop_PopUp.transform.localScale = Vector3.one;
 
                 Shop_Index = 2;
 
@@ -202,13 +208,13 @@ namespace TowerDefence
                     if (i == Shop_Index)
                     {
                         Shop_Menu_Text[i].color = Color.white;
-                        Shop_PopUps[i].gameObject.SetActive(true);
+                        Shop_PopUps[i].gameObject.transform.localScale = Vector3.one;
                     }
                     else
                     {
                         // 인덱스가 아닌것들은 비활성화
                         Shop_Menu_Text[i].color = Color.gray;
-                        Shop_PopUps[i].gameObject.SetActive(false);
+                        Shop_PopUps[i].gameObject.transform.localScale = Vector3.zero;
                     }
                 }
 
@@ -219,39 +225,44 @@ namespace TowerDefence
                 Shop_Focus.transform.position = new Vector3(Shop_PopUp.transform.GetChild(1).GetChild(4).position.x, Shop_Focus.transform.position.y, 0);
             }
             else if (obj.name == "Gem_Add_Btn")
-            {
-                Shop_PopUp.gameObject.SetActive(true);
+            { 
+                Shop_PopUp.transform.localScale = Vector3.one;
+
+
+                // 상점 재화 창 스크롤 value 값 초기화 - 스크롤 최상단으로 변경
+                if (Shop_PopUp.transform.GetChild(7).GetChild(1).GetComponent<Scrollbar>().value != 1.0f)
+                {
+                    Shop_PopUp.transform.GetChild(7).GetChild(1).GetComponent<Scrollbar>().value = 1.0f;
+                }
+                // 포커스 위치 조정
+                Shop_Focus.transform.position = new Vector3(Shop_PopUp.transform.GetChild(1).GetChild(4).position.x, Shop_Focus.transform.position.y, 0);
+
 
                 Shop_Index = 2;
 
                 //Debug.Log(1);
                 // 해당사항 메뉴 흰색으로 표시
-
                 for (int i = 0; i < Shop_Menu_Text.Length; i++)
                 {
                     // 설정한 인덱스가 맞으면 활성화
                     if (i == Shop_Index)
                     {
                         Shop_Menu_Text[i].color = Color.white;
-                        Shop_PopUps[i].gameObject.SetActive(true);
+                        Shop_PopUps[i].gameObject.transform.localScale = Vector3.one;
                     }
                     else
                     {
                         // 인덱스가 아닌것들은 비활성화
                         Shop_Menu_Text[i].color = Color.gray;
-                        Shop_PopUps[i].gameObject.SetActive(false);
+                        Shop_PopUps[i].gameObject.transform.localScale = Vector3.zero;
                     }
                 }
 
-
-                // 상점 재화 창 스크롤 value 값 초기화 - 스크롤 최상단으로 변경
-                Shop_PopUp.transform.GetChild(7).GetChild(1).GetComponent<Scrollbar>().value = 1.0f;
-                // 포커스 위치 조정
-                Shop_Focus.transform.position = new Vector3(Shop_PopUp.transform.GetChild(1).GetChild(4).position.x, Shop_Focus.transform.position.y, 0);
+                
             }
             else if (obj.name == "Button_Shop")
             {
-                Shop_PopUp.gameObject.SetActive(true);
+                Shop_PopUp.transform.localScale = Vector3.one;
 
                 Shop_Index = 0;
 
@@ -264,13 +275,13 @@ namespace TowerDefence
                     if (i == Shop_Index)
                     {
                         Shop_Menu_Text[i].color = Color.white;
-                        Shop_PopUps[i].gameObject.SetActive(true);
+                        Shop_PopUps[i].gameObject.transform.localScale = Vector3.one;
                     }
                     else
                     {
                         // 인덱스가 아닌것들은 비활성화
                         Shop_Menu_Text[i].color = Color.gray;
-                        Shop_PopUps[i].gameObject.SetActive(false);
+                        Shop_PopUps[i].gameObject.transform.localScale = Vector3.zero;
                     }
                 }
 
@@ -303,6 +314,8 @@ namespace TowerDefence
                 Shop_Character_Vertical_Value.GetComponent<Scrollbar>().value = 1.0f;
 
                 Shop_PopUp.transform.GetChild(7).GetChild(1).GetComponent<Scrollbar>().value = 1.0f;
+                Shop_PopUp.transform.localScale = Vector3.zero;
+                return;
             }
 
             // 인벤토리 관련 닫기 버튼
@@ -310,9 +323,8 @@ namespace TowerDefence
             {
                 Inventory_Vertical_Value.GetComponent<Scrollbar>().value = 1.0f;
                 OnClick_None_Touch_Btn();
+                obj.transform.parent.gameObject.SetActive(false);
             }
-
-
 
             obj.transform.parent.gameObject.SetActive(false);
         }
@@ -370,13 +382,13 @@ namespace TowerDefence
                     if (i == Shop_Index)
                     {
                         Shop_Menu_Text[i].color = Color.white;
-                        Shop_PopUps[i].gameObject.SetActive(true);
+                        Shop_PopUps[i].gameObject.transform.localScale = Vector3.one;
                     }
                     else
                     {
                         // 인덱스가 아닌것들은 비활성화
                         Shop_Menu_Text[i].color = Color.gray;
-                        Shop_PopUps[i].gameObject.SetActive(false);
+                        Shop_PopUps[i].gameObject.transform.localScale = Vector3.zero;
                     }
                 }
 
@@ -401,13 +413,13 @@ namespace TowerDefence
                     if (i == Shop_Index)
                     {
                         Shop_Menu_Text[i].color = Color.white;
-                        Shop_PopUps[i].gameObject.SetActive(true);
+                        Shop_PopUps[i].gameObject.transform.localScale = Vector3.one;
                     }
                     else
                     {
                         // 인덱스가 아닌것들은 비활성화
                         Shop_Menu_Text[i].color = Color.gray;
-                        Shop_PopUps[i].gameObject.SetActive(false);
+                        Shop_PopUps[i].gameObject.transform.localScale = Vector3.zero;
                     }
                 }
 
@@ -429,13 +441,13 @@ namespace TowerDefence
                     if (i == Shop_Index)
                     {
                         Shop_Menu_Text[i].color = Color.white;
-                        Shop_PopUps[i].gameObject.SetActive(true);
+                        Shop_PopUps[i].gameObject.transform.localScale = Vector3.one;
                     }
                     else
                     {
                         // 인덱스가 아닌것들은 비활성화
                         Shop_Menu_Text[i].color = Color.gray;
-                        Shop_PopUps[i].gameObject.SetActive(false);
+                        Shop_PopUps[i].gameObject.transform.localScale = Vector3.zero;
                     }
                 }
                 //Debug.Log(3);
@@ -491,6 +503,13 @@ namespace TowerDefence
 
             Dialogue_Parser parser = GetComponent<Dialogue_Parser>();
             Story_Dialogue[] dialogues = parser.Parse(csv_FileName, this);
+
+            if (GameManager.GMInstance.gameDataManagerRef.isFirstEnter == true)
+            {
+                GameManager.GMInstance.gameDataManagerRef.isFirstEnter = false;
+                prologue_Panel.SetActive(true);
+                StartCoroutine(Typing(prologue_Text[0]));
+            }
 
             // 배경음 변경
             GameManager.GMInstance.SoundManagerRef.PlayBGM(SoundManager.BGM.Lobby);
@@ -549,8 +568,7 @@ namespace TowerDefence
             //    prologue_Panel.SetActive(true);
             //    StartCoroutine(Typing(prologue_Text[0]));
             //}
-            prologue_Panel.SetActive(true);
-            StartCoroutine(Typing(prologue_Text[0]));
+            
         }
         #endregion
 
@@ -707,7 +725,6 @@ namespace TowerDefence
                 }
                 
             }
-
 
             // 버튼 클릭시 선택 단계 저장
             if (obj.name == "Stage1_GameStart_Button")
@@ -1096,6 +1113,7 @@ namespace TowerDefence
 
             Upgrade_PopUP_Refresh();
 
+            Refresh_Gold_Text();
             // 저장
             JsonSerialize.SavePlayerToJson(GameManager.GMInstance.gameDataManagerRef);
             // 창닫기

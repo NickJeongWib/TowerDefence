@@ -54842,7 +54842,7 @@ MonoBehaviour:
       - m_Target: {fileID: 631838933}
         m_TargetAssemblyTypeName: TowerDefence.IngameManager, Assembly-CSharp
         m_MethodName: SetBGMVolume
-        m_Mode: 4
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -56497,7 +56497,7 @@ MonoBehaviour:
       - m_Target: {fileID: 631838933}
         m_TargetAssemblyTypeName: TowerDefence.IngameManager, Assembly-CSharp
         m_MethodName: SetSFXVolume
-        m_Mode: 4
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

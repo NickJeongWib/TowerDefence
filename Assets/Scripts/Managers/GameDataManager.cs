@@ -26,6 +26,7 @@ namespace TowerDefence
         public int Gold;
         public int Gem;
         public bool isFirstStarter;
+        public bool isFirstEnter;
 
         void Awake()
         {
