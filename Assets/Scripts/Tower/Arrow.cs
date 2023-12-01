@@ -92,7 +92,7 @@ namespace TowerDefence
                         Destroy(gameObject);
                         Destroy(collision.gameObject);
                         ingameManager.EnemyKilled();
-                        Debug.Log(0);
+                        // Debug.Log(0);
                     }
                     else
                     {
