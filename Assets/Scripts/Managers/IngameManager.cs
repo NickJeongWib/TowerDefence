@@ -14,10 +14,14 @@ namespace TowerDefence
         public int currentCost;  // 현재 코스트
         public float costGainInterval = 2f;  // 코스트 획득 간격 (초)
         public TextMeshProUGUI costText;  // 연결할 UI Text
+        public TextMeshProUGUI winGold_Text;
+        public TextMeshProUGUI overGold_Text;
+        public int addGold;
         TowerSpawner towerSpawner;
         public GameObject gameOverUi;
         public GameObject gameWinUi;
         WaveSystem waveSystem;
+        GameDataManager gameDataManager;
         [SerializeField]
         public SpawnPoints[] spawnPoints;
 
@@ -200,6 +204,9 @@ namespace TowerDefence
             {
                 Time.timeScale = 0.0f;
                 gameWinUi.SetActive(true);
+                GameWinGoldAdd();
+                Win_Gold_Text();
+
                 killCount = 0;
                 GameManager.GMInstance.gameDataManagerRef.isClearStage[(int)GameManager.GMInstance.gameDataManagerRef.Stage_Lv]
                     = true;
@@ -209,6 +216,8 @@ namespace TowerDefence
         {
             Time.timeScale = 0.0f;
             gameOverUi.SetActive(true);
+            GameOverGoldAdd();
+            Over_Gold_Text();
         }
 
         // TODO ## 로비화면 환경설정 사운드 조절 함수
@@ -301,5 +310,189 @@ namespace TowerDefence
             }
         }
         #endregion
+
+        // TODO ## 게임 승리시 획득 골드 함수
+        public void GameWinGoldAdd()
+        {
+            if(GameManager.GMInstance.gameDataManagerRef.isClearStage[(int)GameManager.GMInstance.gameDataManagerRef.Stage_Lv] == false)
+            {
+                if (GameManager.GMInstance.gameDataManagerRef.Stage_Lv == Stage_Level.Stage_1)
+                {
+                    addGold = 30;
+                    GameManager.GMInstance.gameDataManagerRef.Gold = GameManager.GMInstance.gameDataManagerRef.Gold + addGold;
+                }
+                else if (GameManager.GMInstance.gameDataManagerRef.Stage_Lv == Stage_Level.Stage_2)
+                {
+                    addGold = 60;
+                    GameManager.GMInstance.gameDataManagerRef.Gold = GameManager.GMInstance.gameDataManagerRef.Gold + addGold;
+                }
+                else if (GameManager.GMInstance.gameDataManagerRef.Stage_Lv == Stage_Level.Stage_3)
+                {
+                    addGold = 90;
+                    GameManager.GMInstance.gameDataManagerRef.Gold = GameManager.GMInstance.gameDataManagerRef.Gold + addGold;
+                }
+                else if (GameManager.GMInstance.gameDataManagerRef.Stage_Lv == Stage_Level.Stage_4)
+                {
+                    addGold = 120;
+                    GameManager.GMInstance.gameDataManagerRef.Gold = GameManager.GMInstance.gameDataManagerRef.Gold + addGold;
+                }
+                else if (GameManager.GMInstance.gameDataManagerRef.Stage_Lv == Stage_Level.Stage_5)
+                {
+                    addGold = 150;
+                    GameManager.GMInstance.gameDataManagerRef.Gold = GameManager.GMInstance.gameDataManagerRef.Gold + addGold;
+                }
+                else if (GameManager.GMInstance.gameDataManagerRef.Stage_Lv == Stage_Level.Stage_6)
+                {
+                    addGold = 180;
+                    GameManager.GMInstance.gameDataManagerRef.Gold = GameManager.GMInstance.gameDataManagerRef.Gold + addGold;
+                }
+                else if (GameManager.GMInstance.gameDataManagerRef.Stage_Lv == Stage_Level.Stage_7)
+                {
+                    addGold = 210;
+                    GameManager.GMInstance.gameDataManagerRef.Gold = GameManager.GMInstance.gameDataManagerRef.Gold + addGold;
+                }
+                else if (GameManager.GMInstance.gameDataManagerRef.Stage_Lv == Stage_Level.Stage_8)
+                {
+                    addGold = 240;
+                    GameManager.GMInstance.gameDataManagerRef.Gold = GameManager.GMInstance.gameDataManagerRef.Gold + addGold;
+                }
+                else if (GameManager.GMInstance.gameDataManagerRef.Stage_Lv == Stage_Level.Stage_9)
+                {
+                    addGold = 270;
+                    GameManager.GMInstance.gameDataManagerRef.Gold = GameManager.GMInstance.gameDataManagerRef.Gold + addGold;
+                }
+                else if (GameManager.GMInstance.gameDataManagerRef.Stage_Lv == Stage_Level.Stage_10)
+                {
+                    addGold = 300;
+                    GameManager.GMInstance.gameDataManagerRef.Gold = GameManager.GMInstance.gameDataManagerRef.Gold + addGold;
+                }
+            }
+
+            if (GameManager.GMInstance.gameDataManagerRef.isClearStage[(int)GameManager.GMInstance.gameDataManagerRef.Stage_Lv] == true)
+            {
+                if (GameManager.GMInstance.gameDataManagerRef.Stage_Lv == Stage_Level.Stage_1)
+                {
+                    addGold = 10;
+                    GameManager.GMInstance.gameDataManagerRef.Gold = GameManager.GMInstance.gameDataManagerRef.Gold + addGold;
+                }
+                else if (GameManager.GMInstance.gameDataManagerRef.Stage_Lv == Stage_Level.Stage_2)
+                {
+                    addGold = 20;
+                    GameManager.GMInstance.gameDataManagerRef.Gold = GameManager.GMInstance.gameDataManagerRef.Gold + addGold;
+                }
+                else if (GameManager.GMInstance.gameDataManagerRef.Stage_Lv == Stage_Level.Stage_3)
+                {
+                    addGold = 30;
+                    GameManager.GMInstance.gameDataManagerRef.Gold = GameManager.GMInstance.gameDataManagerRef.Gold + addGold;
+                }
+                else if (GameManager.GMInstance.gameDataManagerRef.Stage_Lv == Stage_Level.Stage_4)
+                {
+                    addGold = 40;
+                    GameManager.GMInstance.gameDataManagerRef.Gold = GameManager.GMInstance.gameDataManagerRef.Gold + addGold;
+                }
+                else if (GameManager.GMInstance.gameDataManagerRef.Stage_Lv == Stage_Level.Stage_5)
+                {
+                    addGold = 50;
+                    GameManager.GMInstance.gameDataManagerRef.Gold = GameManager.GMInstance.gameDataManagerRef.Gold + addGold;
+                }
+                else if (GameManager.GMInstance.gameDataManagerRef.Stage_Lv == Stage_Level.Stage_6)
+                {
+                    addGold = 60;
+                    GameManager.GMInstance.gameDataManagerRef.Gold = GameManager.GMInstance.gameDataManagerRef.Gold + addGold;
+                }
+                else if (GameManager.GMInstance.gameDataManagerRef.Stage_Lv == Stage_Level.Stage_7)
+                {
+                    addGold = 70;
+                    GameManager.GMInstance.gameDataManagerRef.Gold = GameManager.GMInstance.gameDataManagerRef.Gold + addGold;
+                }
+                else if (GameManager.GMInstance.gameDataManagerRef.Stage_Lv == Stage_Level.Stage_8)
+                {
+                    addGold = 80;
+                    GameManager.GMInstance.gameDataManagerRef.Gold = GameManager.GMInstance.gameDataManagerRef.Gold + addGold;
+                }
+                else if (GameManager.GMInstance.gameDataManagerRef.Stage_Lv == Stage_Level.Stage_9)
+                {
+                    addGold = 90;
+                    GameManager.GMInstance.gameDataManagerRef.Gold = GameManager.GMInstance.gameDataManagerRef.Gold + addGold;
+                }
+                else if (GameManager.GMInstance.gameDataManagerRef.Stage_Lv == Stage_Level.Stage_10)
+                {
+                    addGold = 100;
+                    GameManager.GMInstance.gameDataManagerRef.Gold = GameManager.GMInstance.gameDataManagerRef.Gold + addGold;
+                }
+            }
+        }
+
+        // TODO ## 게임 오버시 획득 골드 함수
+        public void GameOverGoldAdd()
+        {
+            if (GameManager.GMInstance.gameDataManagerRef.isClearStage[(int)GameManager.GMInstance.gameDataManagerRef.Stage_Lv] == false)
+            {
+                if (waveSystem.currentWaveIndex == 0)
+                {
+                    addGold = 5;
+                    GameManager.GMInstance.gameDataManagerRef.Gold = GameManager.GMInstance.gameDataManagerRef.Gold + addGold;
+                }
+                else if (waveSystem.currentWaveIndex == 1)
+                {
+                    addGold = 10;
+                    GameManager.GMInstance.gameDataManagerRef.Gold = GameManager.GMInstance.gameDataManagerRef.Gold + addGold;
+                }
+                else if (waveSystem.currentWaveIndex == 2)
+                {
+                    addGold = 15;
+                    GameManager.GMInstance.gameDataManagerRef.Gold = GameManager.GMInstance.gameDataManagerRef.Gold + addGold;
+                }
+                else if (waveSystem.currentWaveIndex == 3)
+                {
+                    addGold = 20;
+                    GameManager.GMInstance.gameDataManagerRef.Gold = GameManager.GMInstance.gameDataManagerRef.Gold + addGold;
+                }
+                else if (waveSystem.currentWaveIndex >= 4)
+                {
+                    addGold = 25;
+                    GameManager.GMInstance.gameDataManagerRef.Gold = GameManager.GMInstance.gameDataManagerRef.Gold + addGold;
+                }
+
+            }
+
+            if (GameManager.GMInstance.gameDataManagerRef.isClearStage[(int)GameManager.GMInstance.gameDataManagerRef.Stage_Lv] == true)
+            {
+                if (waveSystem.currentWaveIndex == 0)
+                {
+                    addGold = 1;
+                    GameManager.GMInstance.gameDataManagerRef.Gold = GameManager.GMInstance.gameDataManagerRef.Gold + addGold;
+                }
+                else if (waveSystem.currentWaveIndex == 1)
+                {
+                    addGold = 2;
+                    GameManager.GMInstance.gameDataManagerRef.Gold = GameManager.GMInstance.gameDataManagerRef.Gold + addGold;
+                }
+                else if (waveSystem.currentWaveIndex == 2)
+                {
+                    addGold = 3;
+                    GameManager.GMInstance.gameDataManagerRef.Gold = GameManager.GMInstance.gameDataManagerRef.Gold + addGold;
+                }
+                else if (waveSystem.currentWaveIndex == 3)
+                {
+                    addGold = 4;
+                    GameManager.GMInstance.gameDataManagerRef.Gold = GameManager.GMInstance.gameDataManagerRef.Gold + addGold;
+                }
+                else if (waveSystem.currentWaveIndex >= 4)
+                {
+                    addGold = 5;
+                    GameManager.GMInstance.gameDataManagerRef.Gold = GameManager.GMInstance.gameDataManagerRef.Gold + addGold;
+                }
+            }
+        }
+
+        public void Win_Gold_Text()
+        {
+            winGold_Text.text = addGold.ToString();
+        }
+        public void Over_Gold_Text()
+        {
+            overGold_Text.text = addGold.ToString();
+        }
     }
 }
