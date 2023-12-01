@@ -19,10 +19,12 @@ namespace TowerDefence
         public float charaterAbility;
 
         public GameObject hitEffect;
+        IngameManager ingameManager;
 
         private void Start()
         {
             rb = GetComponent<Rigidbody2D>();
+            ingameManager = FindObjectOfType<IngameManager>();
             FindClosestEnemy(); // 가장 가까운 적 찾기
         }
 
@@ -83,12 +85,29 @@ namespace TowerDefence
             if (!collision.CompareTag("Enemy")) return;
             if (collision.CompareTag("Enemy"))
             {
-                GameManager.GMInstance.SoundManagerRef.PlaySFX(SoundManager.SFX.Hit);
-                Destroy(gameObject);
+                if(this.CompareTag("Dark_Arrow"))
+                {
+                    if (Random.Range(0f, 100f) <= charaterAbility)
+                    {
+                        Destroy(gameObject);
+                        Destroy(collision.gameObject);
+                        ingameManager.EnemyKilled();
+                        Debug.Log(0);
+                    }
+                    else
+                    {
+                        GameManager.GMInstance.SoundManagerRef.PlaySFX(SoundManager.SFX.Hit);
+                        collision.GetComponent<Enemy>().TakeDamage(attackDamage);
+                        Destroy(gameObject);
+                    }
+                }
+                else
+                {
+                    GameManager.GMInstance.SoundManagerRef.PlaySFX(SoundManager.SFX.Hit);
+                    collision.GetComponent<Enemy>().TakeDamage(attackDamage);
+                    Destroy(gameObject);
+                }
             }
-
-            collision.GetComponent<Enemy>().TakeDamage(attackDamage);
-            Destroy(gameObject);
         }
     }
 }

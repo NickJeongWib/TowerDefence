@@ -7,7 +7,6 @@ namespace TowerDefence
 {
     public class EnemyMoveControl : MonoBehaviour
     {
-        MonsterInfo monsterInfo;
         [SerializeField]
         public float moveSpeed = 0.0f;
         [SerializeField]

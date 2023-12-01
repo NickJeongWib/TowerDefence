@@ -24,7 +24,6 @@ namespace TowerDefence
 
         public void Start()
         {
-
             if (currentWaveIndex < wave.Length)
             {
                 enemySpawner.StartWave(wave[(int)GameManager.GMInstance.gameDataManagerRef.Stage_Lv]);

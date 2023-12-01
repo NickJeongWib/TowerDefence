@@ -16,12 +16,16 @@ namespace TowerDefence
         public TextMeshProUGUI costText;  // 연결할 UI Text
         public TextMeshProUGUI winGold_Text;
         public TextMeshProUGUI overGold_Text;
+        public TextMeshProUGUI currentWaveScoreText;
+        public TextMeshProUGUI maxWaveScoreText;
+        public TextMeshProUGUI timerText;
+        public float currentTime;
         public int addGold;
+        public int currentWaveScore;
         TowerSpawner towerSpawner;
         public GameObject gameOverUi;
         public GameObject gameWinUi;
         WaveSystem waveSystem;
-        GameDataManager gameDataManager;
         [SerializeField]
         public SpawnPoints[] spawnPoints;
 
@@ -65,7 +69,9 @@ namespace TowerDefence
             waveSystem = FindObjectOfType<WaveSystem>();
             InvokeRepeating("GainCost", 0f, costGainInterval);
 
-      
+            MaxWaveScoreText();
+            
+
             if (GameManager.GMInstance.gameDataManagerRef.Stage_Lv == Stage_Level.Stage_1)
             {
                 Stage_Lv[0].SetActive(true);
@@ -116,6 +122,9 @@ namespace TowerDefence
         private void Update()
         {
             GameWin();
+            currentWaveScore = waveSystem.currentWaveIndex + 1;
+            CurrentWaveScoreText();
+            TimeUp();
         }
         public void EnemyKilled()
         {
@@ -199,7 +208,7 @@ namespace TowerDefence
 
         public void GameWin()
         {
-            if (killCount >= (waveSystem.wave[(int)GameManager.GMInstance.gameDataManagerRef.Stage_Lv].maxEnemyCount 
+            if (killCount == (waveSystem.wave[(int)GameManager.GMInstance.gameDataManagerRef.Stage_Lv].maxEnemyCount 
                 * waveSystem.wave[(int)GameManager.GMInstance.gameDataManagerRef.Stage_Lv].enemyPrefabs.Length))
             {
                 Time.timeScale = 0.0f;
@@ -220,9 +229,9 @@ namespace TowerDefence
             Over_Gold_Text();
         }
 
-        // TODO ## 로비화면 환경설정 사운드 조절 함수
-        #region Sound BGM / SFX
-        public void SetSFXVolume(float volume)
+            // TODO ## 로비화면 환경설정 사운드 조절 함수
+            #region Sound BGM / SFX
+            public void SetSFXVolume(float volume)
         {
             // 배열에 존재하는 이펙트 음들의 크기를 조절한다.
             for (int i = 0; i < GameManager.GMInstance.SoundManagerRef.SFXPlayers.Length; i++)
@@ -493,6 +502,24 @@ namespace TowerDefence
         public void Over_Gold_Text()
         {
             overGold_Text.text = addGold.ToString();
+        }
+        public void CurrentWaveScoreText()
+        {
+            currentWaveScoreText.text = currentWaveScore.ToString();
+        }
+        public void MaxWaveScoreText()
+        {
+            int maxWaveScore = waveSystem.wave[(int)GameManager.GMInstance.gameDataManagerRef.Stage_Lv].enemyPrefabs.Length;
+            maxWaveScoreText.text = maxWaveScore.ToString();
+        }
+        public void TimeUp()
+        {
+            currentTime += Time.deltaTime;
+
+            string minutes = Mathf.Floor(currentTime / 60).ToString("00");
+            string seconds = (currentTime % 60).ToString("00");
+
+            timerText.text = $"{minutes}:{seconds}";
         }
     }
 }

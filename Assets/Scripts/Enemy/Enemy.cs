@@ -135,12 +135,6 @@ namespace TowerDefence
             if (collision.CompareTag("Dark_Arrow"))
             {
                 Instantiate(collision.GetComponent<Arrow>().hitEffect, gameObject.transform.position, Quaternion.identity);
-
-                if (Random.Range(0f, 100f) <= collision.GetComponent<Arrow>().charaterAbility)
-                {
-                    Destroy(gameObject);
-                    ingameManager.EnemyKilled();
-                }
             }
 
             if(collision.CompareTag("Ice_Arrow"))
