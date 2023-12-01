@@ -97,6 +97,8 @@ namespace TowerDefence
         [SerializeField]
         GameObject None_Touch_Btn;
 
+        [SerializeField]
+        GameObject Select_Char_UI;
 
         [SerializeField]
         TextMeshProUGUI Upgrade_Gold_Text;
@@ -150,6 +152,8 @@ namespace TowerDefence
                 Character_Select_PopUp.gameObject.SetActive(true);
                 None_Touch_Btn.gameObject.SetActive(true);
                 Character_Select_PopUp.transform.position = new Vector3(obj.transform.parent.position.x, obj.transform.parent.position.y + 100.0f, 0);
+
+                Select_Char_UI = obj;
 
                 Select_Char = obj.transform.parent.GetComponent<Own_Char>().OwnChar;
             }
@@ -561,6 +565,7 @@ namespace TowerDefence
             Empty_Slot_Check();
             Refresh_Gold_Text();
             Refresh_Gem_Text();
+            Refresh_Equip_Label();
 
             // TODO ## JSON ÀúÀå ¿©ºÎ·Î ÀÎÇÑ ÇÁ·Ñ·Î±× ½ºÅµ
             //if (GameManager.GMInstance.gameDataManagerRef.isFirstStarter == true)
@@ -568,7 +573,7 @@ namespace TowerDefence
             //    prologue_Panel.SetActive(true);
             //    StartCoroutine(Typing(prologue_Text[0]));
             //}
-            
+
         }
         #endregion
 
@@ -788,7 +793,7 @@ namespace TowerDefence
             // Ä³¸¯ÅÍ ÀåÂø ½½·Ô ³²Àº Ä­ °Ë»ç
             if (is_EmptyEquip_Slots[0] && is_EmptyEquip_Slots[1] && is_EmptyEquip_Slots[2] && is_EmptyEquip_Slots[3] && is_EmptyEquip_Slots[4])
             {
-                Debug.Log("Ç®Ä­");
+                // Debug.Log("Ç®Ä­");
                 return;
             }
 
@@ -805,6 +810,7 @@ namespace TowerDefence
                     }
                 }
             }
+
 
             // ÀåÂø À¯´Ö °Ë»ç
             for (int i = 0; i < Equip_CharacterList.Length; i++)
@@ -825,6 +831,8 @@ namespace TowerDefence
                 GameManager.GMInstance.gameDataManagerRef.Equip_Char[i] = Equip_CharacterList[i].GetComponent<Equip_Character_Info>().Equip_Character;
             }
 
+            
+            Refresh_Equip_Label();
             Empty_Slot_Check();
         }
 
@@ -852,6 +860,7 @@ namespace TowerDefence
                 GameManager.GMInstance.gameDataManagerRef.Equip_Char[i] = Equip_CharacterList[i].GetComponent<Equip_Character_Info>().Equip_Character;
             }
 
+            Refresh_UnEquip_Label();
             Empty_Slot_Check();
         }
         #endregion
@@ -911,6 +920,35 @@ namespace TowerDefence
         }
 
         #endregion
+
+        void Refresh_Equip_Label()
+        {
+            // ÀåÂø ¿©ºÎ ¶óº§
+            for (int i = 0; i < Equip_CharacterList.Length; i++)
+            {
+                if (Equip_CharacterList[i].GetComponent<Equip_Character_Info>().Equip_Character != null)
+                {
+                    for (int j = 0; j < Own_Char_List_UI.Length; j++)
+                    {
+                        if (Own_Char_List_UI[j].GetComponent<Own_Char>().OwnChar == null)
+                        {
+                            break;
+                        }
+
+                        if (Equip_CharacterList[i].GetComponent<Equip_Character_Info>().Equip_Character.GetComponent<TowerCharacter>().characterinfo.Character_ID ==
+                            Own_Char_List_UI[j].GetComponent<Own_Char>().OwnChar.GetComponent<TowerCharacter>().characterinfo.Character_ID)
+                        {
+                            Own_Char_List_UI[j].transform.GetChild(2).gameObject.SetActive(true);
+                        }
+                    }
+                }
+            }
+        }
+
+        void Refresh_UnEquip_Label()
+        {
+            Select_Char_UI.transform.parent.GetChild(2).gameObject.SetActive(false);
+        }
 
         public void Refresh_Gold_Text()
         {
