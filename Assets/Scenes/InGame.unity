@@ -118417,7 +118417,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wave:
-  - spawnTime: 0.5
+  - spawnTime: 2
     maxEnemyCount: 40
     enemyPrefabs:
     - {fileID: 4803848294983315011, guid: a154111b6fa9aa847a46041dd8eaae01, type: 3}

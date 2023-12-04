@@ -30,13 +30,14 @@ namespace TowerDefence
         WaveSystem waveSystem;
 
         [SerializeField]
-        private float currentHP;
+        public float currentHP;
 
         bool isgrassDamageUp;
         float grassDamageUp;
 
         Player  player;
         IngameManager ingameManager;
+        SkeletonAnimation skeletonAnimation;
 
         public void Awake()
         {
@@ -48,6 +49,7 @@ namespace TowerDefence
             player = FindObjectOfType<Player>();
             waveSystem = FindObjectOfType<WaveSystem>();
             ingameManager = FindObjectOfType<IngameManager>();
+            skeletonAnimation = GetComponent<SkeletonAnimation>();
         }
 
         public void Setup(Transform[] wayPoints)
@@ -116,10 +118,39 @@ namespace TowerDefence
             {
                 currentHP -= damage + (damage * (grassDamageUp / 100));
             }
-                
+
 
             if (currentHP <= 0)
             {
+                StartCoroutine(DieAnimation());
+            }
+
+            IEnumerator DieAnimation()
+            {
+                string initialSkinName = this.GetComponent<SkeletonAnimation>().initialSkinName;
+
+                switch (initialSkinName)
+                {
+                    case "Side":
+                        skeletonAnimation.AnimationName = "Side_Death";
+                        break;
+
+                    case "Front":
+                        skeletonAnimation.AnimationName = "Front_Death";
+                        break;
+
+                    case "Back":
+                        skeletonAnimation.AnimationName = "Back_Death";
+                        break;
+
+                    default:
+                        break;
+                }
+                enemyMoveControl.moveSpeed = 0f;
+                GetComponent<Collider2D>().enabled = false;
+                skeletonAnimation.Initialize(true);
+                yield return new WaitForSeconds(2f);
+
                 Destroy(gameObject);
                 ingameManager.EnemyKilled();
             }
