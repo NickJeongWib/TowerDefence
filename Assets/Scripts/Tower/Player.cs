@@ -24,7 +24,7 @@ namespace TowerDefence
         {
             currentHealth--;
 
-            if (currentHealth <= 0)
+            if (currentHealth == 0)
             {
                 ingameManager.GameOver();
             }

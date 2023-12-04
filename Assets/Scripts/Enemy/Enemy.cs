@@ -122,11 +122,13 @@ namespace TowerDefence
 
             if (currentHP <= 0)
             {
+                GetComponent<Collider2D>().enabled = false;
                 StartCoroutine(DieAnimation());
             }
 
             IEnumerator DieAnimation()
             {
+                
                 string initialSkinName = this.GetComponent<SkeletonAnimation>().initialSkinName;
 
                 switch (initialSkinName)
@@ -147,9 +149,9 @@ namespace TowerDefence
                         break;
                 }
                 enemyMoveControl.moveSpeed = 0f;
-                GetComponent<Collider2D>().enabled = false;
+                
                 skeletonAnimation.Initialize(true);
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(1f);
 
                 Destroy(gameObject);
                 ingameManager.EnemyKilled();

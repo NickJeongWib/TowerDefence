@@ -43,9 +43,8 @@ namespace TowerDefence
                 
                 rb.velocity = moveDirection * atkSpeed;
             }
-            if( target.GetComponent<Enemy>().currentHP <= 0F)
+            else
             {
-                // 목표가 없으면 다시 가장 가까운 적을 찾음
                 Destroy(gameObject);
             }
 
@@ -56,13 +55,6 @@ namespace TowerDefence
             // 모든 활성화된 적(Enemy)을 찾음
             Enemy[] enemies = FindObjectsOfType<Enemy>();
             
-            
-            if (enemies.Length == 0)
-            {
-                Destroy(gameObject);
-                return; // 적이 없으면 아무 작업도 하지 않음
-            }
-
             Transform closestEnemy = enemies[0].transform;
             float closestDistance = Vector3.Distance(transform.position, closestEnemy.position);
             
@@ -84,12 +76,11 @@ namespace TowerDefence
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (!collision.CompareTag("Enemy")) return;
             if (collision.CompareTag("Enemy"))
             {
                 if(this.CompareTag("Dark_Arrow"))
                 {
-                    if (Random.Range(0f, 100f) <= charaterAbility)
+                    if (Random.Range(0f, 100f) <= charaterAbility && collision.GetComponent<Enemy>().currentHP > attackDamage)
                     {
                         Destroy(gameObject);
                         Destroy(collision.gameObject);

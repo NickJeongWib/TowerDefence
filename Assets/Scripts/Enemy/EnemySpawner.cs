@@ -21,6 +21,7 @@ namespace TowerDefence
         // 현재 웨이브에서 생성한 적 숫자
         private int spawnEnemyCount = 0;
 
+        public bool gameEND_Count = false;
         private void Start()
         {
             wavesystem = GetComponent<WaveSystem>();
@@ -42,7 +43,7 @@ namespace TowerDefence
                 GameObject clone = Instantiate(currentWave.enemyPrefabs[wavesystem.currentWaveIndex], currentWave.wayPoints[0]);        // 적 오브젝트 생성               
                 Enemy enemy = clone.GetComponent<Enemy>();  // 방금 생성된 적의 Enemy 컴포넌트
                 spawnEnemyCount++;
-                
+                enemy.Setup(currentWave.wayPoints);
                 if (spawnEnemyCount == currentWave.maxEnemyCount)
                 {
                     wavesystem.currentWaveIndex++;
@@ -51,9 +52,12 @@ namespace TowerDefence
                     if (wavesystem.currentWaveIndex == currentWave.enemyPrefabs.Length)
                     {
                         currentWave.maxEnemyCount = 0;
+                        wavesystem.currentWaveIndex = 4;
+                        gameEND_Count = true;
+                        break;
                     }
                 }
-                enemy.Setup(currentWave.wayPoints);                             // wayPoint 정보를 매개변수로 Setup() 호출
+                                           // wayPoint 정보를 매개변수로 Setup() 호출
                 yield return new WaitForSeconds(currentWave.spawnTime);         // spawnTime 시간 동안 대기
             }
         }
