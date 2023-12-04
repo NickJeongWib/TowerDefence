@@ -43,10 +43,10 @@ namespace TowerDefence
                 
                 rb.velocity = moveDirection * atkSpeed;
             }
-            else
+            if( target.GetComponent<Enemy>().currentHP <= 0F)
             {
                 // 목표가 없으면 다시 가장 가까운 적을 찾음
-                FindClosestEnemy();
+                Destroy(gameObject);
             }
 
         }
@@ -55,6 +55,8 @@ namespace TowerDefence
         {
             // 모든 활성화된 적(Enemy)을 찾음
             Enemy[] enemies = FindObjectsOfType<Enemy>();
+            
+            
             if (enemies.Length == 0)
             {
                 Destroy(gameObject);
@@ -63,7 +65,7 @@ namespace TowerDefence
 
             Transform closestEnemy = enemies[0].transform;
             float closestDistance = Vector3.Distance(transform.position, closestEnemy.position);
-
+            
             foreach (Enemy enemy in enemies)
             {
                 // 현재 화살 위치에서 적까지의 거리 계산
@@ -72,7 +74,7 @@ namespace TowerDefence
                 if (distance < closestDistance)
                 {
                     closestDistance = distance;
-                    closestEnemy = enemy.transform;
+                    closestEnemy = enemy.transform; 
                 }
             }
 

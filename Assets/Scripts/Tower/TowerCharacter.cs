@@ -55,7 +55,11 @@ namespace TowerDefence
                     // 가장 가까운 적을 찾음
                     closestEnemy = FindClosestEnemy();
 
-                    if (closestEnemy != null)
+                    if (closestEnemy.currentHP <= 0f)
+                    {
+                        return;
+                    }
+                    else if(closestEnemy != null)
                     {
                         float distance = Vector3.Distance(transform.position, closestEnemy.transform.position);
 
