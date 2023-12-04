@@ -11,25 +11,35 @@ namespace TowerDefence
 
     public class IngameManager : MonoBehaviour
     {
+        [Header("----Cost----")]
+        public TextMeshProUGUI costText;  // 연결할 UI Text
         public int currentCost;  // 현재 코스트
         public float costGainInterval = 2f;  // 코스트 획득 간격 (초)
-        public TextMeshProUGUI costText;  // 연결할 UI Text
+
+        [Header("----GameEND----")]
+        public GameObject gameOverUi;
+        public GameObject gameWinUi;
         public TextMeshProUGUI winGold_Text;
         public TextMeshProUGUI overGold_Text;
         public TextMeshProUGUI currentWaveScoreText;
         public TextMeshProUGUI maxWaveScoreText;
         public TextMeshProUGUI timerText;
-        public float currentTime;
-        public int addGold;
-        public int currentWaveScore;
+        private float currentTime;
+        private int addGold;
+        private int currentWaveScore;
+        public CanvasGroup winCanVasGroup;
+        public CanvasGroup overCanVasGroup;
+
         TowerSpawner towerSpawner;
-        public GameObject gameOverUi;
-        public GameObject gameWinUi;
         WaveSystem waveSystem;
+        EnemySpawner enemySpawner;
+
+        [Header("----System----")]
         [SerializeField]
         public SpawnPoints[] spawnPoints;
 
         public int killCount = 0;
+        
 
         [SerializeField]
         GameObject[] Char_Img;
@@ -49,6 +59,7 @@ namespace TowerDefence
 
         [SerializeField]
         Toggle BGMToggle;
+
         private void Start()
         {
             GameManager.GMInstance.SoundManagerRef.PlayBGM(SoundManager.BGM.InGame_1);
@@ -67,10 +78,9 @@ namespace TowerDefence
 
             towerSpawner = FindObjectOfType<TowerSpawner>();
             waveSystem = FindObjectOfType<WaveSystem>();
+            enemySpawner = FindObjectOfType<EnemySpawner>();
             InvokeRepeating("GainCost", 0f, costGainInterval);
-
             MaxWaveScoreText();
-            
 
             if (GameManager.GMInstance.gameDataManagerRef.Stage_Lv == Stage_Level.Stage_1)
             {
@@ -119,6 +129,7 @@ namespace TowerDefence
             }
 
         }
+
         private void Update()
         {
             GameWin();
@@ -208,14 +219,13 @@ namespace TowerDefence
 
         public void GameWin()
         {
-            if (killCount == (waveSystem.wave[(int)GameManager.GMInstance.gameDataManagerRef.Stage_Lv].maxEnemyCount 
-                * waveSystem.wave[(int)GameManager.GMInstance.gameDataManagerRef.Stage_Lv].enemyPrefabs.Length))
+            Enemy[] enemies = FindObjectsOfType<Enemy>();
+            if (enemySpawner.gameEND_Count == true && enemies.Length == 0)
             {
-                Time.timeScale = 0.0f;
-                gameWinUi.SetActive(true);
                 GameWinGoldAdd();
                 Win_Gold_Text();
-
+                gameWinUi.SetActive(true);
+                StartCoroutine(WinFadeCoroutine());
                 killCount = 0;
                 GameManager.GMInstance.gameDataManagerRef.isClearStage[(int)GameManager.GMInstance.gameDataManagerRef.Stage_Lv]
                     = true;
@@ -223,15 +233,58 @@ namespace TowerDefence
         }
         public void GameOver()
         {
-            Time.timeScale = 0.0f;
-            gameOverUi.SetActive(true);
             GameOverGoldAdd();
             Over_Gold_Text();
+            gameOverUi.SetActive(true);
+            StartCoroutine(OverFadeCoroutine());  
+        }
+        IEnumerator WinFadeCoroutine()
+        {
+            winCanVasGroup.alpha = 0f;
+            
+
+            float duration = 1.0f; // 페이드인에 걸리는 시간
+            float elapsed = 0f;
+
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+                float normalizedTime = Mathf.Clamp01(elapsed / duration);
+                winCanVasGroup.alpha = normalizedTime;
+
+                yield return null;
+            }
+
+            // 알파값을 명시적으로 1로 설정
+            winCanVasGroup.alpha = 1f;
+            Time.timeScale = 0.0f;
         }
 
-            // TODO ## 로비화면 환경설정 사운드 조절 함수
-            #region Sound BGM / SFX
-            public void SetSFXVolume(float volume)
+        IEnumerator OverFadeCoroutine()
+        {
+            overCanVasGroup.alpha = 0f;
+
+
+            float duration = 1.0f; // 페이드인에 걸리는 시간
+            float elapsed = 0f;
+
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+                float normalizedTime = Mathf.Clamp01(elapsed / duration);
+                overCanVasGroup.alpha = normalizedTime;
+
+                yield return null;
+            }
+
+            // 알파값을 명시적으로 1로 설정
+            overCanVasGroup.alpha = 1f;
+            Time.timeScale = 0.0f;
+        }
+
+        // TODO ## 로비화면 환경설정 사운드 조절 함수
+        #region Sound BGM / SFX
+        public void SetSFXVolume(float volume)
         {
             // 배열에 존재하는 이펙트 음들의 크기를 조절한다.
             for (int i = 0; i < GameManager.GMInstance.SoundManagerRef.SFXPlayers.Length; i++)
@@ -497,11 +550,11 @@ namespace TowerDefence
 
         public void Win_Gold_Text()
         {
-            winGold_Text.text = addGold.ToString();
+            winGold_Text.text = addGold.ToString() + " 획득!!";
         }
         public void Over_Gold_Text()
         {
-            overGold_Text.text = addGold.ToString();
+            overGold_Text.text = addGold.ToString() + " 획득!!";
         }
         public void CurrentWaveScoreText()
         {

@@ -43,6 +43,8 @@ namespace TowerDefence
         public float matchDamageUp;
         public float matchDamageUp_2;
 
+        public bool GameEND = false;
+
         private void Update()
         {
             if (this.DragIn == true)
@@ -55,11 +57,12 @@ namespace TowerDefence
                     // 가장 가까운 적을 찾음
                     closestEnemy = FindClosestEnemy();
 
-                    if (closestEnemy.currentHP <= 0f)
-                    {
-                        return;
-                    }
-                    else if(closestEnemy != null)
+                    //if (closestEnemy.currentHP <= 0F)
+                    //{
+                    //    closestEnemy = null;
+                    //    return; 
+                    //}
+                    /*else*/ if(closestEnemy != null && closestEnemy.currentHP > 0F)
                     {
                         float distance = Vector3.Distance(transform.position, closestEnemy.transform.position);
 
