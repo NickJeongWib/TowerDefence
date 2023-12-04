@@ -9,7 +9,7 @@ namespace TowerDefence
     {
         [SerializeField]
         private int maxHealth = 3;  // 최대 체력
-        private int currentHealth;  // 현재 체력
+        public int currentHealth;  // 현재 체력
         IngameManager ingameManager;
 
         public Image[] heartImages = null;  // 하트 이미지 배열

@@ -48,6 +48,11 @@ namespace TowerDefence
                 Destroy(gameObject);
             }
 
+            if(target != null && target.GetComponent<Enemy>().currentHP <= 0 )
+            {
+                Destroy(gameObject);
+            }
+
         }
 
         private void FindClosestEnemy()

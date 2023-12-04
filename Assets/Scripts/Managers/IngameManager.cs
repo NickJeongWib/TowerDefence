@@ -33,6 +33,7 @@ namespace TowerDefence
         TowerSpawner towerSpawner;
         WaveSystem waveSystem;
         EnemySpawner enemySpawner;
+        Player player;
 
         [Header("----System----")]
         [SerializeField]
@@ -79,6 +80,7 @@ namespace TowerDefence
             towerSpawner = FindObjectOfType<TowerSpawner>();
             waveSystem = FindObjectOfType<WaveSystem>();
             enemySpawner = FindObjectOfType<EnemySpawner>();
+            player = FindObjectOfType<Player>();
             InvokeRepeating("GainCost", 0f, costGainInterval);
             MaxWaveScoreText();
 
@@ -220,7 +222,7 @@ namespace TowerDefence
         public void GameWin()
         {
             Enemy[] enemies = FindObjectsOfType<Enemy>();
-            if (enemySpawner.gameEND_Count == true && enemies.Length == 0)
+            if (enemySpawner.gameEND_Count == true && enemies.Length == 0 && player.currentHealth > 0)
             {
                 GameWinGoldAdd();
                 Win_Gold_Text();
