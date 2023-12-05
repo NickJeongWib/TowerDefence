@@ -75,12 +75,14 @@ namespace TowerDefence
                     // Áª ±¤°í º¸»ó 150°³ È¹µæ
                     GameManager.GMInstance.gameDataManagerRef.Gem += 150;
                     JsonSerialize.SavePlayerToJson(GameManager.GMInstance.gameDataManagerRef);
+                    GameManager.GMInstance.lobbyManagerRef.Refresh_Gem_Text();
                 }
                 else if (gameObject.name == "GetReward_Gold_Btn")
                 {
                     // °ñµå ±¤°í º¸»ó 1000°ñµå È¹µæ
                     GameManager.GMInstance.gameDataManagerRef.Gold += 1000;
                     JsonSerialize.SavePlayerToJson(GameManager.GMInstance.gameDataManagerRef);
+                    GameManager.GMInstance.lobbyManagerRef.Refresh_Gold_Text();
                 }
                 // Grant a reward.
             }
