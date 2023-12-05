@@ -45,7 +45,7 @@ namespace TowerDefence
 
         void Start()
         {
-            // OnInitializationComplete();
+            OnInitializationComplete();
         }
 
         public void OnInitializationComplete()
