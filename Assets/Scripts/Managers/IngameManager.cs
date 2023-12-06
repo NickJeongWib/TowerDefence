@@ -29,6 +29,7 @@ namespace TowerDefence
         private int currentWaveScore;
         public CanvasGroup winCanVasGroup;
         public CanvasGroup overCanVasGroup;
+        
 
         TowerSpawner towerSpawner;
         WaveSystem waveSystem;
@@ -40,7 +41,7 @@ namespace TowerDefence
         public SpawnPoints[] spawnPoints;
 
         public int killCount = 0;
-        
+        bool winCount = false;
 
         [SerializeField]
         GameObject[] Char_Img;
@@ -168,17 +169,7 @@ namespace TowerDefence
                     UpdateCostText();  // 코스트 업데이트
                     towerSpawner.SpawnCharacter();  // 버튼 동작 실행
                 }
-                else
-                {
-                    Debug.Log("모든 타일이 가득찼습니다.");
-                }
-
             }
-            else
-            {
-                Debug.Log("코스트가 부족합니다.");
-            }
-
         }
 
         bool AreAllTilesOccupied()
@@ -222,7 +213,7 @@ namespace TowerDefence
         public void GameWin()
         {
             Enemy[] enemies = FindObjectsOfType<Enemy>();
-            if (enemySpawner.gameEND_Count == true && enemies.Length == 0 && player.currentHealth > 0)
+            if (enemySpawner.gameEND_Count == true && enemies.Length == 0 && player.currentHealth > 0 && winCount == false)
             {
                 GameWinGoldAdd();
                 Win_Gold_Text();
@@ -231,6 +222,8 @@ namespace TowerDefence
                 killCount = 0;
                 GameManager.GMInstance.gameDataManagerRef.isClearStage[(int)GameManager.GMInstance.gameDataManagerRef.Stage_Lv]
                     = true;
+
+                winCount = true;
             }
         }
         public void GameOver()

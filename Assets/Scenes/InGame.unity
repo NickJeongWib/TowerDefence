@@ -10206,7 +10206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   costText: {fileID: 1263555962}
-  currentCost: 200
+  currentCost: 12
   costGainInterval: 2
   gameOverUi: {fileID: 875212368}
   gameWinUi: {fileID: 826432507}
@@ -118365,7 +118365,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wave:
   - spawnTime: 2
-    maxEnemyCount: 40
+    maxEnemyCount: 12
     enemyPrefabs:
     - {fileID: 4803848294983315011, guid: a154111b6fa9aa847a46041dd8eaae01, type: 3}
     - {fileID: 6387261825648354669, guid: 36d5cdda9def5464facd67e7056216bd, type: 3}
@@ -118379,7 +118379,7 @@ MonoBehaviour:
     - {fileID: 1700758900}
     - {fileID: 629189997}
     - {fileID: 98171781}
-  - spawnTime: 0.5
+  - spawnTime: 1
     maxEnemyCount: 3
     enemyPrefabs:
     - {fileID: 2531041713623977691, guid: 176b864b77465c5428f57aa6294811b9, type: 3}
