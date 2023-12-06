@@ -1901,7 +1901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 575eb871eda09ec4a8fff8b2353f6722, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isClearStage: 01010101010101010100
+  isClearStage: 01000000000000000000
   Stage_Lv: 0
   Equip_Char:
   - {fileID: 0}
